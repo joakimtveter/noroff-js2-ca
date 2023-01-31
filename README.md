@@ -89,3 +89,19 @@ Examples of detailed & accurate tasks:
 - A CSS Framework may be used to build the application UI.
 - A .gitignore file must be provided including node_modules. This folder must be untracked.
 - Content posted on the API is public and associated with your identity. Be appropriate and respectful.
+
+### Marking criteria
+
+- Using debugging and advanced JavaScript features
+- The submission contains code that is modular and split into ES6 modules.
+- The submission contains destructured objects and/or arrays.
+- JSDocs was used to document functions.
+- The submission works correctly without any errors.
+- The candidate(s) has made effective use of git branching & PRs to manage feature development.
+- The candidate(s) has made effective use of planning tools to coordinate feature development.
+- The candidate(s) can reflect on suggested changes and implement feedback.
+- The submission makes use of JWT to authenticate users
+- The submission allows a logged in user to create a post.
+- The submission allows a logged in user to update a post.
+- The submission allows a logged in user to delete a post.
+- The submission contains working search functionality.
