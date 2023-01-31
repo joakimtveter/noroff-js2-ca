@@ -39,6 +39,9 @@ async function register(name, email, password) {
             body: JSON.stringify({ name, email, password }),
         });
         const data = await response.json();
+        if (data.errors) {
+            throw new Error(`${data.statusCode} ${data.status} - ${data.errors[0].message}`);
+        }
         console.log(data);
     } catch (error) {
         console.error(error);
