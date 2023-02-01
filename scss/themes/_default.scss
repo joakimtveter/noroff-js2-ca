@@ -1,0 +1,23 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../base/colors' as *;
+
+:root {
+    --outline-color: #{$palette-accent-500};
+}
+
+.skin-light {
+    --outline-color: #{$palette-accent-500};
+}
+
+.skin-medium {
+    --outline-color: #{$palette-accent-500};
+}
+
+.skin-dark {
+    --outline-color: #{$palette-accent-200};
+}
+
+* {
+    accent-color: $palette-accent-500;
+}

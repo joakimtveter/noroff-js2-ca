@@ -1,0 +1,29 @@
+@use 'src/scss/abstracts/variables' as *;
+@use 'src/scss/base/typography' as *;
+@use 'src/scss/base/utils' as *;
+@use 'src/scss/base/colors' as *;
+
+.page-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto 2rem;
+  padding: 5rem 2.5rem;
+  background-image: url('../images/william-bout-264826.jpg');
+  background-image: url('../images/william-bout-264826-3x.avif');
+  background-color: $palette-accent-300;
+  background-blend-mode: color-dodge;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 175%;
+
+  @media #{$mq-mobile-down} {
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: $font-family-display;
+    text-align: center;
+  }
+}

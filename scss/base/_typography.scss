@@ -1,0 +1,98 @@
+@use '../abstracts/variables' as *;
+@use '../base/colors' as *;
+
+$font-family-display: 'Permanent Marker', 'Poppins', sans-serif;
+$font-family-heading: 'Poppins', sans-serif;
+$font-family-body: 'Open Sans', sans-serif;
+
+$font-size-n4: 0.3125rem;
+$font-size-n3: 0.4375rem;
+$font-size-n2: 0.5625rem;
+$font-size-n1: 0.75rem;
+$font-size-1: 1rem;
+$font-size-2: 1.3125rem;
+$font-size-3: 1.75rem;
+$font-size-4: 2.3125rem;
+$font-size-5: 3.125rem;
+$font-size-6: 4.1875rem;
+$font-size-7: 5.5625rem;
+$font-size-8: 7.4375rem;
+$font-size-9: 9.9375rem;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-heading;
+}
+
+html,
+body {
+    font-family: $font-family-body;
+}
+
+body {
+    font-size: $font-size-2;
+}
+
+h1 {
+    font-size: $font-size-6;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: $font-size-4;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: $font-size-2;
+    margin-bottom: 0.25rem;
+}
+
+p:not(:only-of-type) {
+    margin-bottom: 1rem;
+}
+p:not(:only-of-type):last-child {
+    margin-bottom: 2rem;
+}
+
+*::selection {
+    color: $palette-text-light-primary;
+    background-color: $palette-accent-500;
+}
+
+abbr {
+    cursor: help;
+}
+
+@media #{$mq-mobile-down} {
+    h1 {
+        font-size: $font-size-4;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: $font-size-3;
+    }
+
+    p {
+        font-size: $font-size-1;
+    }
+}
+
+@media #{$mq-mobile-compact} {
+    h1 {
+        font-size: $font-size-3;
+    }
+
+    h2 {
+        font-size: $font-size-2;
+    }
+
+    p {
+        font-size: $font-size-1;
+    }
+}

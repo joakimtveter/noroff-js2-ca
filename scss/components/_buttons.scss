@@ -1,0 +1,110 @@
+@use 'src/scss/abstracts/variables' as *;
+@use 'src/scss/base/colors' as *;
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+button,
+.button {
+  cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+button,
+.button {
+  text-decoration: none;
+  &.contained {
+    border: 2px solid $transparent;
+    border-radius: 100px;
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    padding: 0.25rem 1.5rem;
+    text-align: center;
+    user-select: none;
+
+    &.primary {
+      color: $palette-text-light-primary;
+      background-color: $palette-primary-500;
+      border-color: $palette-primary-500;
+
+      &:hover,
+      &:focus {
+        background-color: $palette-primary-700;
+        border-color: $palette-primary-700;
+      }
+      &:active {
+        background-color: $palette-primary-800;
+        border-color: $palette-primary-800;
+      }
+      &:disabled {
+        color: $palette-text-disabled;
+        background-color: $palette-primary-100;
+        border-color: $palette-primary-100;
+      }
+    }
+
+    &.accent {
+      color: $palette-text-primary;
+      background-color: $palette-accent-500;
+      border-color: $palette-accent-500;
+
+      &:focus,
+      &:hover {
+        background-color: $palette-accent-600;
+        border-color: $palette-accent-600;
+      }
+      &:disabled {
+        color: $palette-text-disabled;
+        background-color: $palette-accent-100;
+      }
+    }
+  }
+
+  &.outlined {
+    border-radius: 100px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 40px;
+    padding: 5px 25px;
+    text-align: center;
+    user-select: none;
+
+    &.primary {
+      color: $palette-text-light-primary;
+      background-color: $transparent;
+      border: 2px solid $palette-primary-500;
+
+      &:focus {
+        color: $palette-text-light-primary;
+        background-color: $palette-primary-500;
+      }
+      &:disabled {
+        color: $palette-text-disabled;
+        background-color: $transparent;
+        border: 2px solid $palette-primary-100;
+      }
+    }
+
+    &.accent {
+      color: $palette-text-light-primary;
+      background-color: $transparent;
+      border: 2px solid $palette-accent-500;
+
+      &:focus {
+        color: $palette-text-disabled;
+        background-color: $palette-accent-500;
+      }
+      &:disabled {
+        color: $palette-text-disabled;
+        background-color: $transparent;
+        border: 2px solid $palette-accent-100;
+      }
+    }
+  }
+}
