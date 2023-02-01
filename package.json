@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "dev": "scss --watch scss:css",
-        "build": "scss scss:css"
+        "dev": "sass --watch scss:css",
+        "build": "sass scss:css"
     },
     "repository": {
         "type": "git",
