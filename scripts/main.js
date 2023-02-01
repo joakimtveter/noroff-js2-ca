@@ -1,7 +1,7 @@
 const logoutButton = document.getElementById('logout-button');
 
 function logOut() {
-    localStorage.removeItem('auth');
+    localStorage.removeItem('user');
     window.location.pathname = 'login.html';
 }
 
