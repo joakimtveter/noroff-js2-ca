@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Register | MyPlace - Your place on the internet</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        <script type="module" src="/scripts/pages/registerPage.js"></script>
+        <script type="module" src="/scripts/main.js"></script>
+    </head>
+    <body>
+        <main class="center-form">
+            <form id="register-form">
+                <h1>Create your MyPlace account</h1>
+                <p>Welcome to your place on the internet. Sign in or create an account to get started.</p>
+                <div class="form-control">
+                    <label id="name-label" for="name">Name:</label>
+                    <input id="name" type="text" name="name" placeholder="Name" aria-labelledby="name-label" />
+                </div>
+                <div class="form-control">
+                    <label id="email-label" for="email">Email:</label>
+                    <input id="email" type="email" name="email" placeholder="Email" aria-labelledby="email-label" />
+                </div>
+                <div class="form-control">
+                    <label id="password-label" for="password">Password:</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        aria-labelledby="password-label"
+                    />
+                </div>
+
+                <div class="form-control">
+                    <button id="register-button" type="submit" class="button contained primary">Create account</button>
+                    <a href="/login.html">Sign in</a>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

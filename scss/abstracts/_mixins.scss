@@ -1,0 +1,15 @@
+@use '../abstracts/variables' as *;
+
+@mixin full-width-container {
+    max-width: $full-width;
+    margin-inline: auto;
+}
+
+@mixin content-width-container {
+    max-width: $content-width;
+    margin-inline: auto;
+
+    @media #{$mq-desktop-down} {
+        padding-inline: 1rem;
+    }
+}

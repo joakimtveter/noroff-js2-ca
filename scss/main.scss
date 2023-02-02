@@ -1,0 +1,30 @@
+// Configuration
+@use 'abstracts/variables';
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+@use 'themes/default';
+
+// Vendors
+// Vendor stylesheets goes here if any
+
+// Base styles
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/colors';
+@use 'base/utils';
+
+// Layouts and components
+@use 'layout/layout';
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/navigation';
+@use 'components/cards';
+@use 'components/buttons';
+@use 'components/forms';
+@use 'components/tables';
+@use 'components/figures';
+
+// Page-specific styles
+
+//Accessabillity
+@use 'accessibility/accessibility';
