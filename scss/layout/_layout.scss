@@ -1,26 +1,26 @@
-@use 'src/scss/abstracts/variables' as *;
-@use 'src/scss/base/colors' as *;
+@use '../abstracts/variables' as *;
+@use '../base/colors' as *;
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 main {
-  flex: 1;
+    flex: 1;
 }
 
 section {
-  padding: 4rem 0;
+    padding: 4rem 0;
 
-  @media #{$mq-tablet-down} {
-    padding: 2rem 0;
-  }
-  @media #{$mq-mobile-down} {
-    padding: 1rem 0;
-  }
+    @media #{$mq-tablet-down} {
+        padding: 2rem 0;
+    }
+    @media #{$mq-mobile-down} {
+        padding: 1rem 0;
+    }
 }
 
 .skin-medium {
-  background-color: $palette-primary-50;
+    background-color: $palette-primary-50;
 }

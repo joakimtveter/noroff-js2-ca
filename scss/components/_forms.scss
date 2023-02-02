@@ -1,42 +1,42 @@
-@use 'src/scss/abstracts/variables' as *;
-@use 'src/scss/base/colors' as *;
-@use 'src/scss/base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../base/colors' as *;
+@use '../base/typography' as *;
 
 form {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .input-button-group {
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 
-  input,
-  button {
-    border: none;
-    font-size: $font-size2;
-    @media #{$mq-mobile-down} {
-      font-size: $font-size1;
-    }
-  }
-
-  input {
-    padding: 0.5rem;
-    border-radius: 0.5rem 0 0 0.5rem;
-    flex: 1;
-    @media #{$mq-mobile-down} {
-      padding: 0.25rem;
+    input,
+    button {
+        border: none;
+        font-size: $font-size-2;
+        @media #{$mq-mobile-down} {
+            font-size: $font-size-1;
+        }
     }
 
-    &::placeholder {
-      color: $palette-text-secondary;
-    }
-  }
+    input {
+        padding: 0.5rem;
+        border-radius: 0.5rem 0 0 0.5rem;
+        flex: 1;
+        @media #{$mq-mobile-down} {
+            padding: 0.25rem;
+        }
 
-  button {
-    padding: 0.5rem 1rem;
-    border-radius: 0 0.5rem 0.5rem 0;
-    &:hover {
-      border: 0 !important;
+        &::placeholder {
+            color: $palette-text-secondary;
+        }
     }
-  }
+
+    button {
+        padding: 0.5rem 1rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+        &:hover {
+            border: 0 !important;
+        }
+    }
 }

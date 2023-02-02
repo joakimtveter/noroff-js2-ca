@@ -1,6 +1,6 @@
 // Configuration
 @use 'abstracts/variables';
-// @use 'abstracts/functions';
+@use 'abstracts/functions';
 @use 'abstracts/mixins';
 @use 'themes/default';
 
@@ -14,16 +14,15 @@
 @use 'base/utils';
 
 // Layouts and components
-// @use 'layout/layout';
-// @use 'layout/header';
-// @use 'layout/footer';
-// @use 'layout/navigation';
-// @use 'components/hero';
-// @use 'components/cards';
-// @use 'components/buttons';
-// @use 'components/forms';
-// @use 'components/tables';
-// @use 'components/figures';
+@use 'layout/layout';
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/navigation';
+@use 'components/cards';
+@use 'components/buttons';
+@use 'components/forms';
+@use 'components/tables';
+@use 'components/figures';
 
 // Page-specific styles
 

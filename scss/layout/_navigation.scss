@@ -1,106 +1,106 @@
-@use 'src/scss/abstracts/variables' as *;
-@use 'src/scss/base/colors' as *;
-@use 'src/scss/base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../base/colors' as *;
+@use '../base/typography' as *;
 
 .main-nav {
-  display: flex;
-  justify-content: flex-end;
-  list-style-type: none;
-  padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    padding: 0;
 }
 
 .nav-link {
-  display: block;
-  color: black;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  &:hover {
-    background-color: $overlay-medium-dark;
-  }
-  &.active {
-    background-color: $overlay-dark;
-    cursor: default;
-  }
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    &:hover {
+        background-color: $overlay-medium-dark;
+    }
+    &.active {
+        background-color: $overlay-dark;
+        cursor: default;
+    }
 }
 
 .menu-btn {
-  display: none;
-  color: $palette-text-primary;
-  position: absolute;
+    display: none;
+    color: $palette-text-primary;
+    position: absolute;
 }
 .menu-close {
-  display: none;
+    display: none;
 }
 
 @media #{$mq-tablet-down} {
-  .menu-btn {
-    svg {
-      height: 37px;
-      width: 37px;
+    .menu-btn {
+        svg {
+            height: 37px;
+            width: 37px;
+        }
+        span {
+            font-size: $font-size-1;
+        }
     }
-    span {
-      font-size: $font-size-1;
-    }
-  }
 }
 
 @media #{$mq-menu} {
-  .menu-btn {
-    display: flex;
-    position: static;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    background-color: $transparent;
-    border: none;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    margin-right: 1rem;
-    svg {
-      width: 100%;
+    .menu-btn {
+        display: flex;
+        position: static;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        background-color: $transparent;
+        border: none;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        margin-right: 1rem;
+        svg {
+            width: 100%;
+        }
+        span {
+            text-transform: uppercase;
+            font-size: $font-size-2;
+        }
     }
-    span {
-      text-transform: uppercase;
-      font-size: $font-size-2;
+    .menu-close {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        color: $palette-accent-200;
+        background-color: $transparent;
+        border: none;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        margin: 2rem 2rem 2rem auto;
+        svg {
+            width: 100%;
+        }
+        span {
+            text-transform: uppercase;
+            font-size: $font-size-2;
+        }
     }
-  }
-  .menu-close {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    color: $palette-accent-200;
-    background-color: $transparent;
-    border: none;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    margin: 2rem 2rem 2rem auto;
-    svg {
-      width: 100%;
+    .main-nav {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: fixed;
+        inset: 0;
+        overflow: auto;
+        background-color: $palette-primary-800;
+        transform: translateX(-150%);
+        transition: 150ms ease-in-out;
+        z-index: 2;
+        a {
+            color: $palette-text-light-primary;
+            font-weight: 600;
+            font-size: $font-size-2;
+        }
+        &.open {
+            transform: translateX(0);
+        }
     }
-    span {
-      text-transform: uppercase;
-      font-size: $font-size-2;
-    }
-  }
-  .main-nav {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: fixed;
-    inset: 0;
-    overflow: auto;
-    background-color: $palette-primary-800;
-    transform: translateX(-150%);
-    transition: 150ms ease-in-out;
-    z-index: 2;
-    a {
-      color: $palette-text-light-primary;
-      font-weight: 600;
-      font-size: $font-size2;
-    }
-    &.open {
-      transform: translateX(0);
-    }
-  }
 }

@@ -1,9 +1,20 @@
 .visually-hidden,
 .sr-only {
-    position: absolute;
-    left: -10000px;
-    top: auto;
-    width: 1px;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
     height: 1px;
     overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.visually-hidden.focusable:focus,
+.sr-only.focusable:focus {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    width: auto;
+    white-space: inherit;
 }

@@ -231,14 +231,578 @@ body {
   height: 100%;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+section {
+  padding: 4rem 0;
+}
+@media (max-width: 900px) {
+  section {
+    padding: 2rem 0;
+  }
+}
+@media (max-width: 500px) {
+  section {
+    padding: 1rem 0;
+  }
+}
+
+.skin-medium {
+  background-color: hsl(187deg, 41%, 91%);
+}
+
+.site-header {
+  background-color: hsl(187deg, 41%, 91%);
+}
+.site-header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+.site-header .branding {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: currentColor;
+}
+.site-header .branding svg {
+  height: 150px;
+}
+@media (max-width: 900px) {
+  .site-header .branding p {
+    font-size: 1.75rem;
+    max-width: 250px;
+  }
+}
+@media (max-width: 500px) {
+  .site-header .branding p {
+    font-size: 1.3125rem;
+  }
+  .site-header .branding svg {
+    height: 125px;
+  }
+}
+@media (max-width: 374px) {
+  .site-header .branding p {
+    font-size: 1rem;
+  }
+  .site-header .branding svg {
+    height: 110px;
+  }
+}
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: hsl(183deg, 100%, 21%);
+  color: hsl(0deg, 0%, 100%);
+  font-size: 1rem;
+}
+@media (max-width: 900px) {
+  .site-footer {
+    font-size: 1rem;
+  }
+}
+.site-footer .footer-content {
+  max-width: 1440px;
+  margin-inline: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  padding: 2rem 1rem 2rem;
+}
+@media (max-width: 900px) {
+  .site-footer .footer-content {
+    grid-template-columns: 1fr;
+    padding-inline: 1rem;
+    gap: 2rem;
+  }
+  .site-footer .footer-content .justify-center {
+    margin-inline: 0;
+  }
+}
+.site-footer .footer-content .footer-column {
+  margin-inline: auto;
+}
+.site-footer .footer-content a {
+  color: hsl(0deg, 0%, 100%);
+}
+.site-footer h2 {
+  font-size: 1.75rem;
+}
+@media (max-width: 500px) {
+  .site-footer h2 {
+    font-size: 1.3125rem;
+  }
+}
+.site-footer h3 {
+  margin-bottom: 0.25rem;
+}
+.site-footer .icon-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 0.5rem;
+  text-decoration: none;
+}
+.site-footer .icon-link:hover {
+  color: hsl(348deg, 69%, 67%);
+}
+.site-footer .icon-link span {
+  font-weight: 600;
+}
+.site-footer .icon-link svg {
+  height: 2rem;
+  width: 2rem;
+}
+.site-footer .some-links {
+  display: flex;
+  gap: 2rem;
+}
+.site-footer .some-links svg {
+  height: 2.5rem;
+}
+.site-footer .some-links svg:hover {
+  color: hsl(348deg, 69%, 67%);
+}
+.site-footer .newsletter-signup {
+  margin-block: 1rem;
+  max-width: toRem(500);
+}
+@media (max-width: 900px) {
+  .site-footer .newsletter-signup .input-button-group input {
+    font-size: 1rem;
+  }
+}
+.site-footer .today {
+  outline: solid 2px hsl(350deg, 73%, 77%);
+  outline-offset: 2px;
+}
+
+.copyright {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 0.75em;
+  padding: 0.5rem;
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(180deg, 100%, 15%);
+  font-size: 1rem;
+}
+.copyright p {
+  cursor: default;
+  font-size: inherit;
+}
+.copyright a {
+  text-decoration: none;
+  color: inherit;
+}
+.copyright a:hover, .copyright a:focus {
+  text-decoration: underline;
+  color: hsla(0deg, 0%, 100%, 0.7);
+}
+
+.main-nav {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-link {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+.nav-link:hover {
+  background-color: hsla(0deg, 0%, 0%, 0.15);
+}
+.nav-link.active {
+  background-color: hsla(0deg, 0%, 0%, 0.25);
+  cursor: default;
+}
+
+.menu-btn {
+  display: none;
+  color: hsla(0deg, 0%, 0%, 0.87);
+  position: absolute;
+}
+
+.menu-close {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .menu-btn svg {
+    height: 37px;
+    width: 37px;
+  }
+  .menu-btn span {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1030px) {
+  .menu-btn {
+    display: flex;
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    background-color: hsla(0deg, 0%, 0%, 0);
+    border: none;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    margin-right: 1rem;
+  }
+  .menu-btn svg {
+    width: 100%;
+  }
+  .menu-btn span {
+    text-transform: uppercase;
+    font-size: 1.3125rem;
+  }
+  .menu-close {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: hsl(350deg, 73%, 77%);
+    background-color: hsla(0deg, 0%, 0%, 0);
+    border: none;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    margin: 2rem 2rem 2rem auto;
+  }
+  .menu-close svg {
+    width: 100%;
+  }
+  .menu-close span {
+    text-transform: uppercase;
+    font-size: 1.3125rem;
+  }
+  .main-nav {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    overflow: auto;
+    background-color: hsl(183deg, 100%, 21%);
+    transform: translateX(-150%);
+    transition: 150ms ease-in-out;
+    z-index: 2;
+  }
+  .main-nav a {
+    color: hsl(0deg, 0%, 100%);
+    font-weight: 600;
+    font-size: 1.3125rem;
+  }
+  .main-nav.open {
+    transform: translateX(0);
+  }
+}
+.card {
+  overflow: hidden;
+  background-color: hsl(0deg, 0%, 96%);
+  display: flex;
+  flex-direction: column;
+}
+.card:hover picture img {
+  transform: scale(1.05);
+}
+.card picture {
+  width: 100%;
+  overflow: hidden;
+}
+.card picture img,
+.card picture source {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  overflow: hidden;
+  transition: 0.2s;
+}
+.card .card-body {
+  position: relative;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+}
+.card .card-body p {
+  font-size: 1rem;
+}
+.card .category-tags {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem 0 0.5rem;
+}
+.card .category-tag {
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.25em 1em;
+  border-radius: 5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: hsl(0deg, 0%, 100%);
+}
+.card .category-tag.event {
+  background-color: hsl(343deg, 95%, 55%);
+}
+.card .category-tag.event:hover {
+  background-color: hsl(344deg, 100%, 50%);
+}
+.card .category-tag.exhibition {
+  background-color: hsl(185deg, 100%, 29%);
+}
+.card .category-tag.exhibition:hover {
+  background-color: hsl(185deg, 100%, 27%);
+}
+.card .card-footer {
+  margin-top: auto;
+  padding: 0.5rem 1rem 1rem;
+  text-align: end;
+}
+.card .card-footer a {
+  color: inherit;
+  font-size: 1rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+button,
+.button {
+  cursor: pointer;
+}
+button:disabled,
+.button:disabled {
+  cursor: not-allowed;
+}
+
+button,
+.button {
+  text-decoration: none;
+}
+button.contained,
+.button.contained {
+  border: 2px solid hsla(0deg, 0%, 0%, 0);
+  border-radius: 100px;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0.25rem 1.5rem;
+  text-align: center;
+  user-select: none;
+}
+button.contained.primary,
+.button.contained.primary {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(185deg, 100%, 29%);
+  border-color: hsl(185deg, 100%, 29%);
+}
+button.contained.primary:hover, button.contained.primary:focus,
+.button.contained.primary:hover,
+.button.contained.primary:focus {
+  background-color: hsl(184deg, 100%, 24%);
+  border-color: hsl(184deg, 100%, 24%);
+}
+button.contained.primary:active,
+.button.contained.primary:active {
+  background-color: hsl(183deg, 100%, 21%);
+  border-color: hsl(183deg, 100%, 21%);
+}
+button.contained.primary:disabled,
+.button.contained.primary:disabled {
+  color: hsla(0deg, 0%, 0%, 0.38);
+  background-color: hsl(186deg, 41%, 79%);
+  border-color: hsl(186deg, 41%, 79%);
+}
+button.contained.accent,
+.button.contained.accent {
+  color: hsla(0deg, 0%, 0%, 0.87);
+  background-color: hsl(343deg, 95%, 55%);
+  border-color: hsl(343deg, 95%, 55%);
+}
+button.contained.accent:focus, button.contained.accent:hover,
+.button.contained.accent:focus,
+.button.contained.accent:hover {
+  background-color: hsl(344deg, 100%, 50%);
+  border-color: hsl(344deg, 100%, 50%);
+}
+button.contained.accent:disabled,
+.button.contained.accent:disabled {
+  color: hsla(0deg, 0%, 0%, 0.38);
+  background-color: hsl(353deg, 100%, 90%);
+}
+button.outlined,
+.button.outlined {
+  border-radius: 100px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 40px;
+  padding: 5px 25px;
+  text-align: center;
+  user-select: none;
+}
+button.outlined.primary,
+.button.outlined.primary {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsla(0deg, 0%, 0%, 0);
+  border: 2px solid hsl(185deg, 100%, 29%);
+}
+button.outlined.primary:focus,
+.button.outlined.primary:focus {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(185deg, 100%, 29%);
+}
+button.outlined.primary:disabled,
+.button.outlined.primary:disabled {
+  color: hsla(0deg, 0%, 0%, 0.38);
+  background-color: hsla(0deg, 0%, 0%, 0);
+  border: 2px solid hsl(186deg, 41%, 79%);
+}
+button.outlined.accent,
+.button.outlined.accent {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsla(0deg, 0%, 0%, 0);
+  border: 2px solid hsl(343deg, 95%, 55%);
+}
+button.outlined.accent:focus,
+.button.outlined.accent:focus {
+  color: hsla(0deg, 0%, 0%, 0.38);
+  background-color: hsl(343deg, 95%, 55%);
+}
+button.outlined.accent:disabled,
+.button.outlined.accent:disabled {
+  color: hsla(0deg, 0%, 0%, 0.38);
+  background-color: hsla(0deg, 0%, 0%, 0);
+  border: 2px solid hsl(353deg, 100%, 90%);
+}
+
+form {
+  margin-bottom: 1rem;
+}
+
+.input-button-group {
+  display: flex;
+  width: 100%;
+}
+.input-button-group input,
+.input-button-group button {
+  border: none;
+  font-size: 1.3125rem;
+}
+@media (max-width: 500px) {
+  .input-button-group input,
+  .input-button-group button {
+    font-size: 1rem;
+  }
+}
+.input-button-group input {
+  padding: 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  flex: 1;
+}
+@media (max-width: 500px) {
+  .input-button-group input {
+    padding: 0.25rem;
+  }
+}
+.input-button-group input::placeholder {
+  color: hsla(0deg, 0%, 0%, 0.6);
+}
+.input-button-group button {
+  padding: 0.5rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.input-button-group button:hover {
+  border: 0 !important;
+}
+
+th {
+  text-align: start;
+  width: fit-content;
+}
+
+figcaption {
+  font-size: 1rem;
+  padding: 0.25rem 1rem;
+  background-color: hsla(0deg, 0%, 0%, 0.15);
+}
+
+figure img,
+figure source,
+picture img,
+picture source {
+  width: 100%;
+  object-fit: cover;
+}
+figure.square img,
+figure.square source,
+picture.square img,
+picture.square source {
+  aspect-ratio: 1;
+}
+figure.wide img,
+figure.wide source,
+picture.wide img,
+picture.wide source {
+  aspect-ratio: 16/9;
+}
+figure.tall img,
+figure.tall source,
+picture.tall img,
+picture.tall source {
+  aspect-ratio: 9/16;
+}
+figure.landscape img,
+figure.landscape source,
+picture.landscape img,
+picture.landscape source {
+  aspect-ratio: 4/3;
+}
+figure.portrait img,
+figure.portrait source,
+picture.portrait img,
+picture.portrait source {
+  aspect-ratio: 3/4;
+}
+
 .visually-hidden,
 .sr-only {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.visually-hidden.focusable:focus,
+.sr-only.focusable:focus {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  width: auto;
+  white-space: inherit;
 }
 
 /*# sourceMappingURL=main.css.map */
