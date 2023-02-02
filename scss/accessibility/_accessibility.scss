@@ -1,3 +1,17 @@
+@use '../base/colors' as *;
+@use '../themes/default' as *;
+
+*:focus {
+    outline: 3px solid var(--outline-color);
+}
+*:focus:not(:focus-visible) {
+    outline: unset;
+}
+*:focus-visible {
+    outline: 3px solid var(--outline-color);
+    outline-offset: 0.25rem;
+}
+
 .visually-hidden,
 .sr-only {
     clip: rect(0 0 0 0);
