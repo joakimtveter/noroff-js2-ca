@@ -10,11 +10,26 @@
         <script type="module" src="/scripts/main.js"></script>
     </head>
     <body>
-        <a href="#" class="visually-hidden focusable">Skip to main content</a>
-        <h1>MyPlace</h1>
-        <button id="logout-button">Log out</button>
-
-        <a href="/login.html">login</a>
-        <a href="/register.html">register</a>
+        <header>
+            <a href="#" class="visually-hidden focusable">Skip to main content</a>
+            <div class="branding">
+                <a href="/index.html">
+                    <p>MyPlace</p>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#">Discover</a></li>
+                </ul>
+            </nav>
+            <button id="logout-button">Log out</button>
+        </header>
+        <main>
+            <section class="post-feed-section">
+                <h1>Discover the latest posts</h1>
+                <ul id="post-feed" class="post-feed"></ul>
+            </section>
+        </main>
     </body>
 </html>
