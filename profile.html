@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MyPlace - Your place on the internet</title>
         <link rel="stylesheet" href="/css/main.css" />
-        <script type="module" src="/scripts/pages/homePage.js"></script>
+        <script type="module" src="/scripts/pages/profilePage.js"></script>
         <script type="module" src="/scripts/main.js"></script>
     </head>
     <body>
@@ -27,9 +27,20 @@
             <button id="logout-button">Log out</button>
         </header>
         <main>
-            <section class="post-feed-section">
-                <h1>Discover the latest posts</h1>
-                <ul id="post-feed" class="post-feed"></ul>
+            <section class="profile-header-section">
+                <img id="profile-banner" src="" />
+                <h1 id="profile-name"></h1>
+                <img id="profile-avatar" src="" />
+            </section>
+            <section>
+                <h2>Followers (<span id="follower-count"></span>)</h2>
+                <ul id="followers-container" class="profile-list"></ul>
+                <h2>Following (<span id="following-count"></span>)</h2>
+                <ul id="following-container" class="profile-list"></ul>
+            </section>
+            <section>
+                <h2>Posts (<span id="post-count"></span>)</h2>
+                <ul id="posts-container"></ul>
             </section>
         </main>
         <div id="toast-container"></div>

@@ -6,12 +6,9 @@ function renderPosts(location, posts) {
         const { id, title, body, _count, media, created, updated, author } = post;
         const { name, avatar } = author;
         const isUpdated = created !== updated;
-        const date = new Date(created).toLocaleDateString('no-NO');
         let singlePost = `
             <li class="post">
-                <div class="post-header">`;
-        if (avatar) {
-            singlePost += `
+                <div class="post-header">
                     <img
                         class="post-header__avatar"
                         src="${avatar}"
@@ -19,10 +16,9 @@ function renderPosts(location, posts) {
                         height="100px"
                         width="100px"
                     />`;
-        }
         singlePost += `
                     <div class="post-header__meta">
-                        <p class="post-header__author-name">@${name}</p>
+                        <p class="post-header__author-name"><a href="/profile.html?name=${name}">@${name}</a></p>
                         <p class="post-header__created-date">
                             Created ${timeSince(new Date(created).getTime())} ${
             isUpdated ? '- <span>Edited</span>' : ''

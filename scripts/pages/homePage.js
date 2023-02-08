@@ -1,6 +1,5 @@
 import { isLoggedIn, getPosts, followProfile, unfollowProfile } from '../client.js';
 import { renderPosts } from '../post.js';
-import { timeSince } from '../utils/days.js';
 
 // redirect to login page if not logged in
 if (!isLoggedIn()) {
