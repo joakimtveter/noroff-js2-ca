@@ -13,7 +13,6 @@ function timeSince(date) {
     const oneMonth = 3600000 * 24 * 30;
     const oneYear = 3600000 * 24 * 365;
     const elapsed = now - date;
-    console.log('elapsed: ', elapsed);
 
     // less than 1 minute
     if (elapsed < oneMinute) return 'Just now';

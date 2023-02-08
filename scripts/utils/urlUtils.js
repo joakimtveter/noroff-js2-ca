@@ -24,3 +24,5 @@ function setUrlParameterWithoutReload(parameter = '', value = '') {
         window.history.pushState({}, '', currentPath);
     }
 }
+
+export { getValueFromURLParameter, setUrlParameterWithoutReload };
