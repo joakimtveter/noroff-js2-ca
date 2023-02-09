@@ -50,28 +50,28 @@ let loggedInUser = getLoggedInUserObject();
 /**
  * Gets user from localStorage and sets loggedInUser variable
  */
-function getLoggedInUserObject() {
-    return JSON.parse(localStorage.getItem('user'));
-}
+// function getLoggedInUserObject() {
+//     return JSON.parse(localStorage.getItem('user'));
+// }
 
 /**
  * Gets access token for logged in user
  * @returns {string} - Access token for logged in user
  */
-function getAccessToken() {
-    if (!loggedInUser) {
-        loggedInUser = getLoggedInUserObject();
-    }
-    return loggedInUser?.accessToken;
-}
+// function getAccessToken() {
+//     if (!loggedInUser) {
+//         loggedInUser = getLoggedInUserObject();
+//     }
+//     return loggedInUser?.accessToken;
+// }
 
 /**
  * Function to check if user is logged in.
  * @returns {boolean} true if user is logged in, false if not
  */
-function isLoggedIn() {
-    return !!getAccessToken();
-}
+// function isLoggedIn() {
+//     return !!getAccessToken();
+// }
 
 /**
  * Logs in user and sets userobjet in localStorage
@@ -81,7 +81,7 @@ function isLoggedIn() {
  */
 async function logIn(email, password) {
     try {
-        const response = await fetch(`${baseUrl}/auth/register`, {
+        const response = await fetch(`${baseUrl}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,10 +93,10 @@ async function logIn(email, password) {
             throw new Error(`${data.statusCode} ${data.status} - ${data.errors[0].message}`);
         }
         const data = await response.json();
-        const user = JSON.stringify(data);
-        console.info(data?.name + ' is logged in');
-        localStorage.setItem('user', user);
-        window.location.pathname = 'index.html';
+        const { accessToken, ...user } = data;
+        localStorage.setItem('token', accessToken);
+        localStorage.setItem('user', JSON.stringify(user));
+        window.location.pathname = '/posts/index.html';
     } catch (error) {
         console.error(error);
         showToast(error, 'error');
