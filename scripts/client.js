@@ -81,7 +81,7 @@ function isLoggedIn() {
  */
 async function logIn(email, password) {
     try {
-        const response = await fetch(`${baseUrl}/auth/register`, {
+        const response = await fetch(`${baseUrl}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
