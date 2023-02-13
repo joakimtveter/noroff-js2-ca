@@ -1,4 +1,4 @@
-import { logIn } from '../client.js';
+import { logIn } from '../api/client.js';
 import { isLoggedIn } from '../utils/storage.js';
 
 if (isLoggedIn()) {
@@ -13,5 +13,3 @@ loginForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     await logIn(email, password);
 });
-
-// joakim.tveter@stud.noroff.no

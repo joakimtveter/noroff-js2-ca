@@ -5,9 +5,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MyPlace - Your place on the internet</title>
-        <script src="/scripts/main.js" type="module"></script>
+        <script type="module">
+            import { isLoggedIn } from './scripts/utils/storage.js';
+            // redirect to posts if user logged in or to login page if not
+            if (isLoggedIn()) {
+                window.location.pathname = '/posts/';
+            } else {
+                window.location.pathname = '/login.html';
+            }
+        </script>
     </head>
     <body>
-        .
+        <p>redirecting...</p>
     </body>
 </html>

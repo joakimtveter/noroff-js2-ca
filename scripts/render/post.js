@@ -1,4 +1,4 @@
-import { timeSince } from './utils/days.js';
+import { timeSince } from '../utils/days.js';
 
 function renderPosts(location, posts) {
     let feed = '';
@@ -11,7 +11,7 @@ function renderPosts(location, posts) {
                 <div class="post-header">
                     <img
                         class="post-header__avatar"
-                        src="${avatar}"
+                        src="${avatar ?? '/images/placeholder.png'}"
                         alt="Name profile picture"
                         height="100px"
                         width="100px"
@@ -25,7 +25,7 @@ function renderPosts(location, posts) {
         }</p>
                     </div>
                     <div class="post-header__actions">
-                        <button class="post-header__follow-button" data-author="${name}">Follow</button>
+                        <button class="post-header__follow-button" data-author="${name ?? 'No name'}">Follow</button>
                     </div>
                 </div>
                 <div class="post-content"> `;
