@@ -33,11 +33,11 @@ async function getPosts(options = {}) {
     let queryParams = '';
     const parameters = [];
 
-    if (options.sort) parameters.push(`sort=${sort}`);
-    if (options.sortOrder) parameters.push(`sortOrder=${sortOrder}`);
-    if (options.limit) parameters.push(`limit=${limit}`);
-    if (options.offset) parameters.push(`offset=${offset}`);
-    if (options.tag) parameters.push(`_tag=${tag}`);
+    if (options.sort) parameters.push(`sort=${options.sort}`);
+    if (options.sortOrder) parameters.push(`sortOrder=${options.sortOrder}`);
+    if (options.limit) parameters.push(`limit=${options.limit}`);
+    if (options.offset) parameters.push(`offset=${options.offset}`);
+    if (options.tag) parameters.push(`_tag=${options.tag}`);
     if (options.author) parameters.push(`_author=true`);
     if (options.reactions) parameters.push(`_reactions=true`);
     if (options.comments) parameters.push(`_comments=true`);
@@ -82,15 +82,15 @@ async function getPostsByProfileName(name, options = {}) {
     let queryParams = '';
     const parameters = [];
 
-    if (options.sort) parameters.push(`sort=${sort}`);
-    if (options.sortOrder) parameters.push(`sortOrder=${sortOrder}`);
-    if (options.limit) parameters.push(`&limit=${limit}`);
-    if (options.offset) parameters.push(`&offset=${offset}`);
-    if (options.tag) parameters.push(`&_tag=${tag}`);
+    if (options.sort) parameters.push(`sort=${options.sort}`);
+    if (options.sortOrder) parameters.push(`sortOrder=${options.sortOrder}`);
+    if (options.limit) parameters.push(`&limit=${options.limit}`);
+    if (options.offset) parameters.push(`&offset=${options.offset}`);
+    if (options.tag) parameters.push(`&_tag=${options.tag}`);
     if (options.author) parameters.push(`&_author=true`);
     if (options.reactions) parameters.push(`&_reactions=true`);
     if (options.comments) parameters.push(`&comments=true`);
-    if (parameters.length > 0) queryParams = '?' + options.join('&');
+    if (parameters.length > 0) queryParams = '?' + parameters.join('&');
 
     return await get(`${BASE_URL}/profiles/${name}/posts${queryParams}`);
 }

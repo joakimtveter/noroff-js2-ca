@@ -45,7 +45,7 @@ async function getProfiles(options = {}) {
     if (options.following) parameters.push(`_following=true`);
     if (options.posts) parameters.push(`_posts=true`);
 
-    if (options.length > 0) queryParams = '?' + options.join('&');
+    if (options.length > 0) queryParams = '?' + parameters.join('&');
     return get(`${BASE_URL}/profiles${queryParams}`);
 }
 
@@ -68,12 +68,13 @@ async function getProfileByName(name, options = {}) {
     if (options.followers) parameters.push('_followers=true');
     if (options.following) parameters.push(`_following=true`);
     if (options.posts) parameters.push(`_posts=true`);
-    if (parameters.length > 0) queryParams = '?' + options.join('&');
+    if (parameters.length > 0) queryParams = '?' + parameters.join('&');
     return await get(`${BASE_URL}/profiles/${name}${queryParams}`);
 }
 
 async function getFollowingList(name) {
-    return await get(`${BASE_URL}/profiles/${name}?_following=true`);
+    const profile = await get(`${BASE_URL}/profiles/${name}?_following=true`);
+    return profile?.following;
 }
 
 /**

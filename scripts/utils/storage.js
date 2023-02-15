@@ -21,7 +21,7 @@ function getAccessToken() {
  * Get the user object for logged in user
  * @returns {currentUser} - User object for logged in user
  */
-async function getUserObject() {
+function getUserObject() {
     const userString = localStorage.getItem('user');
     if (!userString) return null;
     const user = JSON.parse(userString);
@@ -33,7 +33,7 @@ async function getUserObject() {
  * Function to check if a user is logged in.
  * @returns {boolean} -  true if user is logged in, false if not
  */
-async function isLoggedIn() {
+function isLoggedIn() {
     const accessToken = getAccessToken();
     if (!accessToken) return false;
     return true;
