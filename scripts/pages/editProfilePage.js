@@ -1,3 +1,5 @@
+import { updateProfileMedia } from '../api/profiles.js';
+
 const form = document.getElementById('edit-profile-form');
 const banner = document.getElementById('banner');
 const avatar = document.getElementById('avatar');
@@ -12,5 +14,5 @@ form.addEventListener('submit', (e) => {
     const data = Object.fromEntries(formData);
     console.log(data);
 
-    //   updateProfileMedia(data);
+    updateProfileMedia(data);
 });

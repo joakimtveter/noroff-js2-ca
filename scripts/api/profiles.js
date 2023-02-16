@@ -1,5 +1,6 @@
 import { get, post, BASE_URL } from './client.js';
 import { getAccessToken } from '../utils/storage.js';
+import { showToast } from '../utils/toast.js';
 
 /**
  * @typedef {object} getProfilesOptions
@@ -77,18 +78,24 @@ async function getFollowingList(name) {
     return profile?.following;
 }
 
+async function getFollowingNameList(name) {
+    const profile = await get(`${BASE_URL}/profiles/${name}?_following=true`);
+    return profile?.following.map((profile) => profile.name);
+}
+
 /**
  * Follows a profile
  * @param {string} name - Name of profile to follow
  * @returns {Promise<void>}
  */
 async function followProfile(name) {
+    console.log('followProfile', BASE_URL);
     const token = getAccessToken();
     try {
         const response = await fetch(`${BASE_URL}/profiles/${name}/follow`, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
+                accept: 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         });
@@ -109,10 +116,34 @@ async function followProfile(name) {
  * @returns {Promise<void>}
  */
 async function unfollowProfile(name) {
+    console.log('unfollowProfile', BASE_URL);
     const token = getAccessToken();
     try {
         const response = await fetch(`${BASE_URL}/profiles/${name}/unfollow`, {
-            method: 'POST',
+            method: 'PUT',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
+        }
+        const data = await response.json();
+        console.log('unfollowProfile', data);
+    } catch (error) {
+        console.error(error);
+        showToast('error', error);
+    }
+}
+
+async function updateProfileMedia(data) {
+    console.log('updateProfileMedia', data.avatar, data.banner);
+    const token = getAccessToken();
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
@@ -123,10 +154,19 @@ async function unfollowProfile(name) {
             throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
         }
         const data = await response.json();
+        return data;
     } catch (error) {
         console.error(error);
-        showToast('error', error);
+        showToast(error, 'error');
     }
 }
 
-export { getProfiles, getProfileByName, getFollowingList, followProfile, unfollowProfile };
+export {
+    getProfiles,
+    getProfileByName,
+    getFollowingList,
+    getFollowingNameList,
+    followProfile,
+    unfollowProfile,
+    updateProfileMedia,
+};

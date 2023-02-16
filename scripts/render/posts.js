@@ -3,14 +3,15 @@ import { getUserObject } from '../utils/storage.js';
 import { getFollowingList } from '../api/profiles.js';
 
 function renderPosts(location, posts) {
-    const user = getUserObject();
-    const followingList = getFollowingList(user?.name);
-    console.log('1:', followingList);
+    const currentUser = getUserObject().name;
+    const followingList = getFollowingList(currentUser).then((data) => data.map((profile) => profile.name));
+    console.log('followingList: ', typeof followingList, followingList);
     posts.forEach((post) => {
         const { id, title, body, _count, media, created, updated, author } = post;
         const { name, avatar } = author;
         const isUpdated = created !== updated;
-        const isFollowing = followingList.length > 0 ? followingList.name.includes(name) : false;
+        const isFollowing = followingList.includes(name);
+        console.log('isFollowing: ', isFollowing);
 
         //create elements
         const postElement = document.createElement('li');
