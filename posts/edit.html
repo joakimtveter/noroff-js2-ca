@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit profile | MyPlace - Your place on the internet</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        <script type="module" src="/scripts/pages/editPostPage.js"></script>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <h1>Edit your profile media</h1>
+                <form id="edit-post-form">
+                    <div class="form-control">
+                        <label for="title">Title:</label>
+                        <input id="title" type="text" name="title" placeholder="Enter post title" required />
+                    </div>
+                    <div class="form-control">
+                        <label for="body">Body:</label>
+                        <textarea id="body" type="text" name="body"> </textarea>
+                    </div>
+                    <div class="form-control">
+                        <label for="tags">Tags:</label>
+                        <input id="tags" type="text" name="tags" placeholder="Enter comma separated tags" />
+                        <p>Add tags seperated by commas</p>
+                    </div>
+                    <div class="form-control">
+                        <label for="media">Media URL:</label>
+                        <input id="media" type="url" name="media" placeholder="Media URL" />
+                    </div>
+                    <div class="form-control">
+                        <button type="submit" class="button contained primary">Update post</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <div id="toast-container"></div>
+    </body>
+</html>

@@ -47,6 +47,41 @@ async function getPosts(options = {}) {
 }
 
 /**
+ * Gets the posts from a single profile
+ * @param {string} name - Name of profile to get posts from
+ * @param {getPostsOptions} options
+ * @returns
+ */
+async function getPostsByProfileName(name, options = {}) {
+    let queryParams = '';
+    const parameters = [];
+
+    if (options.sort) parameters.push(`sort=${options.sort}`);
+    if (options.sortOrder) parameters.push(`sortOrder=${options.sortOrder}`);
+    if (options.limit) parameters.push(`&limit=${options.limit}`);
+    if (options.offset) parameters.push(`&offset=${options.offset}`);
+    if (options.tag) parameters.push(`&_tag=${options.tag}`);
+    if (options.author) parameters.push(`&_author=true`);
+    if (options.reactions) parameters.push(`&_reactions=true`);
+    if (options.comments) parameters.push(`&comments=true`);
+    if (parameters.length > 0) queryParams = '?' + parameters.join('&');
+
+    return await get(`${BASE_URL}/profiles/${name}/posts${queryParams}`);
+}
+
+async function createPost(data) {
+    console.log('create post:', data);
+}
+
+async function getPostsFromFollowedProfiles() {
+    console.log('get posts from followed profiles');
+}
+
+async function updatePost(id, data) {
+    console.log('update post:', id, data);
+}
+
+/**
  * Deletes a single post
  * @param {number} id - Id of post to delete
  * @returns {Promise<void>} - Returns nothing. Throws error on failure.
@@ -72,27 +107,44 @@ async function deletePost(id) {
     }
 }
 
-/**
- * Gets the posts from a single profile
- * @param {string} name - Name of profile to get posts from
- * @param {getPostsOptions} options
- * @returns
- */
-async function getPostsByProfileName(name, options = {}) {
-    let queryParams = '';
-    const parameters = [];
-
-    if (options.sort) parameters.push(`sort=${options.sort}`);
-    if (options.sortOrder) parameters.push(`sortOrder=${options.sortOrder}`);
-    if (options.limit) parameters.push(`&limit=${options.limit}`);
-    if (options.offset) parameters.push(`&offset=${options.offset}`);
-    if (options.tag) parameters.push(`&_tag=${options.tag}`);
-    if (options.author) parameters.push(`&_author=true`);
-    if (options.reactions) parameters.push(`&_reactions=true`);
-    if (options.comments) parameters.push(`&comments=true`);
-    if (parameters.length > 0) queryParams = '?' + parameters.join('&');
-
-    return await get(`${BASE_URL}/profiles/${name}/posts${queryParams}`);
+async function getPostById(id) {
+    console.log('get post by id:', id);
 }
 
-export { getPosts, deletePost, getPostsByProfileName };
+async function addReaction(id, symbol) {
+    console.log('add reaction:', id, symbol);
+    const token = getAccessToken();
+    try {
+        const response = await fetch(`${BASE_URL}/posts/${id}/react/${symbol}`, {
+            method: 'PUT',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
+        }
+        const data = await response.json();
+    } catch (error) {
+        console.error(error);
+        showToast('error', error);
+    }
+}
+
+async function addComment(id, data) {
+    console.log('add comment:', id, data);
+}
+
+export {
+    getPosts,
+    deletePost,
+    getPostsByProfileName,
+    getPostById,
+    addReaction,
+    addComment,
+    createPost,
+    getPostsFromFollowedProfiles,
+    updatePost,
+};

@@ -73,6 +73,40 @@ async function getProfileByName(name, options = {}) {
     return await get(`${BASE_URL}/profiles/${name}${queryParams}`);
 }
 
+/**
+ * @typedef {object} updateProfileData
+ * @property {string} [updateProfileData.avatar] - URL to avatar image
+ * @property {string} [updateProfileData.banner] - URL to banner image
+ */
+
+/**
+ * Update the profile media
+ * @param {updateProfileData} data - Data to update profile with
+ * @returns {Promise<void>} - No return value, but throws error if something goes wrong
+ */
+async function updateProfileMedia(data) {
+    console.log('updateProfileMedia', data.avatar, data.banner);
+    const token = getAccessToken();
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        showToast(error, 'error');
+    }
+}
+
 async function getFollowingList(name) {
     const profile = await get(`${BASE_URL}/profiles/${name}?_following=true`);
     return profile?.following;
@@ -89,7 +123,6 @@ async function getFollowingNameList(name) {
  * @returns {Promise<void>}
  */
 async function followProfile(name) {
-    console.log('followProfile', BASE_URL);
     const token = getAccessToken();
     try {
         const response = await fetch(`${BASE_URL}/profiles/${name}/follow`, {
@@ -116,7 +149,6 @@ async function followProfile(name) {
  * @returns {Promise<void>}
  */
 async function unfollowProfile(name) {
-    console.log('unfollowProfile', BASE_URL);
     const token = getAccessToken();
     try {
         const response = await fetch(`${BASE_URL}/profiles/${name}/unfollow`, {
@@ -131,33 +163,9 @@ async function unfollowProfile(name) {
             throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
         }
         const data = await response.json();
-        console.log('unfollowProfile', data);
     } catch (error) {
         console.error(error);
         showToast('error', error);
-    }
-}
-
-async function updateProfileMedia(data) {
-    console.log('updateProfileMedia', data.avatar, data.banner);
-    const token = getAccessToken();
-    try {
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error(error);
-        showToast(error, 'error');
     }
 }
 

@@ -30,6 +30,18 @@ function getUserObject() {
 }
 
 /**
+ * Get the user object for logged in user
+ * @returns {string} - Username of the logged in user
+ */
+function getUserName() {
+    const userString = localStorage.getItem('user');
+    if (!userString) return null;
+    const user = JSON.parse(userString);
+    if (!user) return null;
+    return user.name;
+}
+
+/**
  * Function to check if a user is logged in.
  * @returns {boolean} -  true if user is logged in, false if not
  */
@@ -49,4 +61,4 @@ function logout() {
     window.location.pathname = '/login.html';
 }
 
-export { getAccessToken, getUserObject, isLoggedIn, logout };
+export { getAccessToken, getUserObject, getUserName, isLoggedIn, logout };

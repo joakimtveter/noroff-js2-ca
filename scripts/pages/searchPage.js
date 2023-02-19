@@ -26,5 +26,4 @@ if (searchTerm) {
     // renderPosts(searchResultsContainer, filteredPosts);
     searchTermHeading.innerHTML = searchTerm;
     searchResultCount.innerHTML = filteredPosts.length;
-    console.log(filteredPosts);
 }
