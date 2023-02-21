@@ -14,6 +14,13 @@ import { getAccessToken } from '../utils/storage.js';
  */
 
 /**
+ * @typedef {object} limitedPostOptions
+ * @property {boolean} [limitedPostOptions.author] - Include author in response
+ * @property {boolean} [limitedPostOptions.reactions] - Include reactions in response
+ * @property {boolean} [limitedPostOptions.comments] - Include comments in response
+ */
+
+/**
  * @typedef {object} post
  * @property {number} post.id - Post ID
  * @property {string} post.title - Post title
@@ -77,8 +84,28 @@ async function getPostsFromFollowedProfiles() {
     console.log('get posts from followed profiles');
 }
 
-async function updatePost(id, data) {
-    console.log('update post:', id, data);
+async function updatePost(id, requestBodyy) {
+    // console.log('update post:', id, data);
+    const token = getAccessToken();
+
+    try {
+        const response = await fetch(`${BASE_URL}/posts/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(requestBodyy),
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
+        }
+        const data = await response.json();
+    } catch (error) {
+        console.error(error);
+        showToast('error', error);
+    }
 }
 
 /**
@@ -107,12 +134,26 @@ async function deletePost(id) {
     }
 }
 
-async function getPostById(id) {
-    console.log('get post by id:', id);
+/**
+ * Gets a single post by id
+ * @param {number | string} id - Number or string of post id
+ * @param {limitedPostOptions} [options]
+ * @returns {Promise<post>} - Returns a single post
+ */
+async function getPostById(id, options = {}) {
+    console.log('get post by id:', id, options);
+    let queryParams = '';
+    const parameters = [];
+
+    if (options.author) parameters.push(`_author=true`);
+    if (options.reactions) parameters.push(`_reactions=true`);
+    if (options.comments) parameters.push(`_comments=true`);
+
+    if (parameters.length > 0) queryParams = '?' + parameters.join('&');
+    return get(`${BASE_URL}/posts/${id}${queryParams}`);
 }
 
 async function addReaction(id, symbol) {
-    console.log('add reaction:', id, symbol);
     const token = getAccessToken();
     try {
         const response = await fetch(`${BASE_URL}/posts/${id}/react/${symbol}`, {
