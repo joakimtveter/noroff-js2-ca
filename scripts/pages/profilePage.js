@@ -54,7 +54,7 @@ async function renderProfile(username) {
         if (followers) renderProfileCards(followerContainer, followers);
         if (following) renderProfileCards(followingContainer, following);
         if (posts.length > 0) {
-            renderPosts(document.getElementById('posts-container'), posts);
+            renderPosts(document.getElementById('posts-container'), posts, [name]);
         } else {
             document.getElementById('posts-container').innerHTML = '<p>No posts</p>';
         }

@@ -10,8 +10,8 @@ if (!isLoggedIn()) window.location.pathname = '/login.html';
 async function fetchPosts() {
     const username = getUserName();
     const followingList = await getFollowingNameList(username);
-    const posts = await getPosts({ limit: 15, author: true, reactions: true });
-    renderPosts(document.getElementById('post-feed'), posts, followingList);
+    const posts = await getPosts({ limit: 15, author: true, reactions: true, comments: true });
+    renderPosts(document.getElementById('post-feed'), posts, followingList, { comments: true, reactions: true });
     console.log(posts);
 }
 
