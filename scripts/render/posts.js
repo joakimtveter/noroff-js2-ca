@@ -2,40 +2,38 @@ import { timeSince } from '../utils/days.js';
 import { followProfile, unfollowProfile } from '../api/profiles.js';
 import { addReaction, deletePost } from '../api/posts.js';
 import { getUserName } from '../utils/storage.js';
+// import { renderComments } from './comments.js';
+// import { renderReactions } from './reactions.js';
+import { createHtmlElement } from './utils.js';
 
-function renderPosts(location, posts, followingList) {
+function renderPosts(location, posts, followingList = [], options = {}) {
     posts.forEach((post) => {
         const { id, title, body, _count, media, created, updated, author } = post;
         const { name, avatar } = author;
         const isUpdated = created !== updated;
         const isFollowing = followingList.includes(name);
         const isCurrentUser = name === getUserName();
+        const renderComments = options?.comments ? true : false;
+        const renderReactions = options?.reactions ? true : false;
 
         //create elements
-        const postElement = document.createElement('li');
-        postElement.classList.add('post');
-        const postHeader = document.createElement('div');
-        postHeader.classList.add('post-header');
-        const postHeaderAvatar = document.createElement('img');
-        postHeaderAvatar.classList.add('post-header__avatar');
-        postHeaderAvatar.src = avatar ?? '/images/no-avatar.png';
-        postHeaderAvatar.alt = '';
-        postHeaderAvatar.height = 100;
-        postHeaderAvatar.width = 100;
-        const postHeaderMeta = document.createElement('div');
-        postHeaderMeta.classList.add('post-header__meta');
-        const postHeaderAuthorName = document.createElement('p');
-        postHeaderAuthorName.classList.add('post-header__author-name');
-        const postHeaderAuthorNameLink = document.createElement('a');
-        postHeaderAuthorNameLink.href = `/profile/index.html?name=${name}`;
-        postHeaderAuthorNameLink.innerText = `@${name}`;
-        const postHeaderCreatedDate = document.createElement('p');
-        postHeaderCreatedDate.classList.add('post-header__created-date');
+        const postElement = createHtmlElement('li', 'post');
+        const postHeader = createHtmlElement('div', 'post-header');
+        const postHeaderAvatar = createHtmlElement('img', 'post-header__avatar', null, {
+            src: avatar ?? '/images/no-avatar.png',
+            alt: '',
+            height: 100,
+            width: 100,
+        });
+        const postHeaderMeta = createHtmlElement('div', 'post-header__meta');
+        const postHeaderAuthorName = createHtmlElement('p', 'post-header__author-name');
+        const postHeaderAuthorNameLink = createHtmlElement('a', null, `@${name}`, {
+            href: `/profile/index.html?name=${name}`,
+        });
+        const postHeaderCreatedDate = createHtmlElement('p', 'post-header__created-date');
         postHeaderCreatedDate.innerText = `Created ${timeSince(new Date(created).getTime())}`;
         if (isUpdated) {
-            const edited = document.createElement('span');
-            edited.innerText = ' - Edited';
-            edited.classList.add('edited');
+            const edited = createHtmlElement('span', 'edited', ' - Edited');
             postHeaderCreatedDate.append(edited);
         }
         const postHeaderActions = document.createElement('div');
@@ -67,6 +65,8 @@ function renderPosts(location, posts, followingList) {
                 }
             });
         }
+        const postComments = document.createElement('div');
+        postComments.classList.add('post-comments');
         const postContent = document.createElement('div');
         postContent.classList.add('post-content');
         const postContentPicture = document.createElement('picture');
@@ -108,6 +108,66 @@ function renderPosts(location, posts, followingList) {
         celebrateButton.innerText = '👏';
         celebrateButton.ariaLabel = 'Celebrate post';
 
+        if (renderComments) {
+            const commentForm = document.createElement('form');
+            commentForm.id = 'comment-form';
+            const commentInput = document.createElement('input');
+            commentInput.type = 'text';
+            commentInput.name = 'comment';
+            commentInput.placeholder = 'Add a comment...';
+            const commentSubmit = document.createElement('input');
+            commentSubmit.type = 'submit';
+            commentSubmit.value = 'Submit comment';
+            commentForm.appendChild(commentInput);
+            commentForm.appendChild(commentSubmit);
+            commentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const comment = commentInput.value;
+                if (comment) {
+                    addComment(id, comment);
+                    commentInput.value = '';
+                }
+            });
+            // const postComments = document.createElement('div');
+            postComments.appendChild(commentForm);
+
+            if (post?.comments.length > 0) {
+                post.comments.forEach((comment) => {
+                    const commentElement = document.createElement('div');
+                    // commentElement.classList.add('post-comment');
+                    // const commentHeader = document.createElement('div');
+                    // commentHeader.classList.add('post-comment__header');
+                    // const commentHeaderAvatar = document.createElement('img');
+                    // commentHeaderAvatar.classList.add('post-comment__avatar');
+                    // commentHeaderAvatar.src = comment.user.avatar;
+                    // const commentHeaderMeta = document.createElement('div');
+                    // commentHeaderMeta.classList.add('post-comment__meta');
+                    // const commentHeaderAuthorName = document.createElement('p');
+                    // commentHeaderAuthorName.classList.add('post-comment__author-name');
+                    // const commentHeaderAuthorNameLink = document.createElement('a');
+                    // commentHeaderAuthorNameLink.href = `/profile/index.html?name=${comment.user.name}`;
+                    // commentHeaderAuthorNameLink.innerText = `@${comment.user.name}`;
+                    // const commentHeaderCreatedDate = document.createElement('p');
+                    // commentHeaderCreatedDate.classList.add('post-comment__created-date');
+                    // commentHeaderCreatedDate.innerText = `Created ${timeSince(new Date(comment.created).getTime())}`;
+                    // const commentBody = document.createElement('p');
+                    // commentBody.classList.add('post-comment__body');
+                    // commentBody.innerText = comment?.body;
+                    commentElement.innerText = comment?.body;
+
+                    //append elements
+                    // commentHeaderAuthorName.appendChild(commentHeaderAuthorNameLink);
+                    // commentHeaderMeta.appendChild(commentHeaderAuthorName);
+                    // commentHeaderMeta.appendChild(commentHeaderCreatedDate);
+                    // commentHeader.appendChild(commentHeaderAvatar);
+                    // commentHeader.appendChild(commentHeaderMeta);
+                    // commentElement.appendChild(commentHeader);
+                    // commentElement.appendChild(commentBody);
+                    postComments.appendChild(commentElement);
+                });
+            }
+        }
+
         //append elements
         postHeaderAuthorName.appendChild(postHeaderAuthorNameLink);
         postHeaderMeta.appendChild(postHeaderAuthorName);
@@ -131,6 +191,7 @@ function renderPosts(location, posts, followingList) {
         postElement.appendChild(postHeader);
         postElement.appendChild(postContent);
         postElement.appendChild(postFooter);
+        if (renderComments) postElement.appendChild(postComments);
 
         likeButton.addEventListener('click', () => addReaction(id, '👍'));
         loveButton.addEventListener('click', () => addReaction(id, '❤'));
