@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MyPlace - Your place on the internet</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        <script type="module" src="/scripts/pages/singlePostPage.js"></script>
+        <script type="module" src="/scripts/main.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="#" class="visually-hidden focusable">Skip to main content</a>
+            <div class="branding">
+                <a href="/index.html">
+                    <p>MyPlace</p>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/posts/index.html">Home</a></li>
+                    <li><a href="#">Discover</a></li>
+                    <li><a href="/profile/index.html">My profile</a></li>
+                </ul>
+            </nav>
+            <button id="logout-button">Log out</button>
+        </header>
+        <main>
+            <section class="post-feed-section">
+                <h1>Discover the latest posts</h1>
+                <ul id="post-feed" class="post-feed"></ul>
+            </section>
+        </main>
+        <div id="toast-container"></div>
+    </body>
+</html>

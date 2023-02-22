@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit profile | MyPlace - Your place on the internet</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        <script type="module" src="/scripts/pages/editProfilePage.js"></script>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <h1>Edit your profile media</h1>
+                <form id="edit-profile-form">
+                    <div class="form-control">
+                        <label for="banner">Banner image URL:</label>
+                        <input id="banner" type="url" name="banner" placeholder="Banner image URL" />
+                    </div>
+                    <div class="form-control">
+                        <label for="avatar">Avatar image URL:</label>
+                        <input id="avatar" type="url" name="avatar" placeholder="Avatar image URL" />
+                    </div>
+                    <div class="form-control">
+                        <button type="submit" class="button contained primary">Update profile media</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <div id="toast-container"></div>
+    </body>
+</html>

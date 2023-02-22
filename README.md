@@ -7,9 +7,11 @@
 To apply knowledge of JavaScript techniques to implement the front-end functionality for a social media application.
 
 ### API
+
 The API you are using for this project can be found under Social EndPoints in the [Noroff API documentation](https://noroff-api-docs.netlify.app/).
 
 ### Brief
+
 You have been tasked with producing a new JavaScript front-end client for an existing social media platform. The client application must be attractive and responsive, but you have an otherwise blank slate in terms of theme design language.
 
 Using the provided API and API documentation, create a functioning user interface that allows for **viewing, posting, editing and deleting** social media content.
@@ -23,6 +25,7 @@ Using localStorage is highly recommended, especially for storing JWT tokens.
 A finished project fulfils the requirements below with an easy to use and error-free user interface.
 
 #### Required features
+
 The following user stories are required for a passing submission:
 
 - User with `@noroff.no` or `@stud.noroff.no` email can register profile
@@ -36,6 +39,7 @@ The following user stories are required for a passing submission:
 - User can delete a post content item
 
 #### Additional features
+
 The following user stories are optional:
 
 - User can create a comment on a post
@@ -44,6 +48,7 @@ The following user stories are optional:
 - User can react to a post content item
 
 #### Team work
+
 This assignment allows for team work in groups of 2 students. Students forming a work group will need to coordinate closely throughout the planning, development and testing processes. By working in a pair, you are expected to implement additional features.
 
 Commit regularly and use branches to prevent conflicts with your teammate as you work on the same codebase.
