@@ -11,8 +11,6 @@ function createHtmlElement(tag, className = null, content = null, atributtes = {
     if (className) element.className = className;
     if (content) element.innerText = content;
     for (const key in atributtes) {
-        console.log('key: ', key);
-        console.log('value: ', atributtes[key]);
         element.setAttribute(key, atributtes[key]);
     }
     return element;

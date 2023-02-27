@@ -104,32 +104,4 @@ async function get(url) {
     }
 }
 
-/**
- * Generic function to post data to API, includes access token in header and error handeling.
- * @param {string} url - API endpoint including query parameters
- * @param {object} body - Request body
- * @returns {Promise<object[]>} - Returns nothing, redirects to login.html on error.
- */
-async function post(url, body) {
-    const token = getAccessToken();
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ body }),
-        });
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
-        }
-        const data = await response.json();
-    } catch (error) {
-        console.error(error);
-        showToast('error', error);
-    }
-}
-
-export { BASE_URL, logIn, register, get, post };
+export { BASE_URL, logIn, register, get };

@@ -1,5 +1,6 @@
-import { get, post, BASE_URL } from './client.js';
+import { get, BASE_URL } from './client.js';
 import { getAccessToken } from '../utils/storage.js';
+import { showToast } from '../utils/toast.js';
 
 /**
  * @typedef {object} getPostsOptions
@@ -32,7 +33,7 @@ import { getAccessToken } from '../utils/storage.js';
  */
 
 /**
- * Creates API url and gets the posts from API
+ * Gets the posts from API
  * @param {object} getPostsOptions
  * @returns {Promise<post[]>} - Returns an array of posts
  */
@@ -76,16 +77,70 @@ async function getPostsByProfileName(name, options = {}) {
     return await get(`${BASE_URL}/profiles/${name}/posts${queryParams}`);
 }
 
-async function createPost(data) {
-    console.log('create post:', data);
+/**
+ * @typedef {object} postBody
+ * @property {string} postBody.title - Post title
+ * @property {string} postBody.[body] - Post body
+ * @property {string[]} postBody.[tags] - Post tags
+ * @property {string} postBody.[media] - URL to post media
+ */
+
+/**
+ * Creates a new post
+ * @param {object} postBody - Post Request body
+ * @returns {Promise<void>} - Returns nothing. Throws error on failure.
+ */
+async function createPost(requestBody) {
+    const token = getAccessToken();
+    try {
+        const response = await fetch(`${BASE_URL}/posts`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(requestBody),
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
+        }
+        const data = await response.json();
+    } catch (error) {
+        console.error(error);
+        showToast('error', error);
+    }
 }
 
-async function getPostsFromFollowedProfiles() {
-    console.log('get posts from followed profiles');
+/**
+ * Gets the posts from followed profiles from API
+ * @param {object} getPostsOptions
+ * @returns {Promise<post[]>} - Returns an array of posts
+ */
+async function getPostsFromFollowedProfiles(options = {}) {
+    let queryParams = '';
+    const parameters = [];
+
+    if (options.sort) parameters.push(`sort=${options.sort}`);
+    if (options.sortOrder) parameters.push(`sortOrder=${options.sortOrder}`);
+    if (options.limit) parameters.push(`limit=${options.limit}`);
+    if (options.offset) parameters.push(`offset=${options.offset}`);
+    if (options.tag) parameters.push(`_tag=${options.tag}`);
+    if (options.author) parameters.push(`_author=true`);
+    if (options.reactions) parameters.push(`_reactions=true`);
+    if (options.comments) parameters.push(`_comments=true`);
+
+    if (parameters.length > 0) queryParams = '?' + parameters.join('&');
+    return get(`${BASE_URL}/posts/following${queryParams}`);
 }
 
-async function updatePost(id, requestBodyy) {
-    // console.log('update post:', id, data);
+/**
+ * Gets updates a single post
+ * @param {number} id - Id of post to update
+ * @param {object} postBody - Post Request body
+ * @returns {Promise<void>} - Returns nothing. Throws error on failure.
+ */
+async function updatePost(id, requestBody) {
     const token = getAccessToken();
 
     try {
@@ -95,7 +150,7 @@ async function updatePost(id, requestBodyy) {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(requestBodyy),
+            body: JSON.stringify(requestBody),
         });
         if (!response.ok) {
             const error = await response.json();
@@ -110,7 +165,7 @@ async function updatePost(id, requestBodyy) {
 
 /**
  * Deletes a single post
- * @param {number} id - Id of post to delete
+ * @param {number | string} id - Id of post to delete
  * @returns {Promise<void>} - Returns nothing. Throws error on failure.
  */
 async function deletePost(id) {
@@ -128,6 +183,7 @@ async function deletePost(id) {
             throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
         }
         const data = await response.json();
+        showToast('Post deleted', 'info');
     } catch (error) {
         console.error(error);
         showToast(error, 'error');
@@ -153,6 +209,12 @@ async function getPostById(id, options = {}) {
     return get(`${BASE_URL}/posts/${id}${queryParams}`);
 }
 
+/**
+ *  Adds a reaction to a post
+ * @param {number | string} id - Id of post to add reaction to
+ * @param {string} symbol - Symbol of reaction to add (e.g. '👍')
+ * @returns {Promise<void>} - Returns nothing. Throws error on failure.
+ */
 async function addReaction(id, symbol) {
     const token = getAccessToken();
     try {
@@ -174,8 +236,39 @@ async function addReaction(id, symbol) {
     }
 }
 
-async function addComment(id, data) {
-    console.log('add comment:', id, data);
+/**
+ * @typedef {object} postCommentBody
+ * @property {string} postCommentBody.body - Text of comment
+ * @property {string} [postCommentBody.replyToId] - Id of comment to reply to
+ */
+
+/**
+ * Adds a comment to a post
+ * @param {number | string} id - Id of post to add comment to
+ * @param {postCommentBody} requestBody - Request body
+ * @returns {Promise<void>} - Returns nothing. Throws error on failure.
+ */
+async function addComment(id, requestBody) {
+    console.log('add comment:', id, requestBody);
+    const token = getAccessToken();
+    try {
+        const response = await fetch(`${BASE_URL}/posts/${id}/comment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(requestBody),
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
+        }
+        const data = await response.json();
+    } catch (error) {
+        console.error(error);
+        showToast('error', error);
+    }
 }
 
 export {

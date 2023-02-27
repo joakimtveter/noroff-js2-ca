@@ -1,23 +1,22 @@
 import { timeSince } from '../utils/days.js';
 import { followProfile, unfollowProfile } from '../api/profiles.js';
-import { addReaction, deletePost } from '../api/posts.js';
+import { addReaction, deletePost, addComment } from '../api/posts.js';
 import { getUserName } from '../utils/storage.js';
-// import { renderComments } from './comments.js';
-// import { renderReactions } from './reactions.js';
 import { createHtmlElement } from './utils.js';
+import { renderComments } from './comments.js';
 
 function renderPosts(location, posts, followingList = [], options = {}) {
     posts.forEach((post) => {
-        const { id, title, body, _count, media, created, updated, author } = post;
+        const { id, title, body, tags, _count, media, created, updated, author, comments } = post;
         const { name, avatar } = author;
         const isUpdated = created !== updated;
         const isFollowing = followingList.includes(name);
         const isCurrentUser = name === getUserName();
-        const renderComments = options?.comments ? true : false;
-        const renderReactions = options?.reactions ? true : false;
 
-        //create elements
+        // Create post element
         const postElement = createHtmlElement('li', 'post');
+
+        // Create post header
         const postHeader = createHtmlElement('div', 'post-header');
         const postHeaderAvatar = createHtmlElement('img', 'post-header__avatar', null, {
             src: avatar ?? '/images/no-avatar.png',
@@ -30,31 +29,31 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         const postHeaderAuthorNameLink = createHtmlElement('a', null, `@${name}`, {
             href: `/profile/index.html?name=${name}`,
         });
-        const postHeaderCreatedDate = createHtmlElement('p', 'post-header__created-date');
-        postHeaderCreatedDate.innerText = `Created ${timeSince(new Date(created).getTime())}`;
+        const postHeaderCreatedDate = createHtmlElement(
+            'p',
+            'post-header__created-date',
+            `Created ${timeSince(new Date(created).getTime())}`
+        );
         if (isUpdated) {
             const edited = createHtmlElement('span', 'edited', ' - Edited');
             postHeaderCreatedDate.append(edited);
         }
-        const postHeaderActions = document.createElement('div');
-        postHeaderActions.classList.add('post-header__actions');
+        const postHeaderActions = createHtmlElement('div', 'post-header__actions');
         if (isCurrentUser) {
-            const postDeleteButton = document.createElement('button');
-            postDeleteButton.classList.add('post-header__delete-button');
-            postDeleteButton.innerText = 'Delete';
-            postDeleteButton.addEventListener('click', () => deletePost(id));
+            const postDeleteButton = createHtmlElement('button', 'post-header__delete-button', 'Delete');
+            const postEditButton = createHtmlElement('a', 'post-header__edit-button', 'Edit', {
+                href: `/posts/edit.html?id=${id}`,
+            });
             postHeaderActions.appendChild(postDeleteButton);
-            const postEditButton = document.createElement('a');
-            postEditButton.classList.add('post-header__edit-button');
-            postEditButton.innerText = 'Edit';
-            postEditButton.href = `/posts/edit.html?id=${id}`;
             postHeaderActions.appendChild(postEditButton);
+            postDeleteButton.addEventListener('click', () => deletePost(id));
         } else {
-            const postHeaderFollowButton = document.createElement('button');
-            postHeaderFollowButton.classList.add('post-header__follow-button');
-            postHeaderFollowButton.innerText = isFollowing ? 'Unfollow' : 'Follow';
+            const postHeaderFollowButton = createHtmlElement(
+                'button',
+                'post-header__follow-button',
+                isFollowing ? 'Unfollow' : 'Follow'
+            );
             postHeaderActions.appendChild(postHeaderFollowButton);
-
             postHeaderFollowButton.addEventListener('click', () => {
                 if (isFollowing) {
                     unfollowProfile(name);
@@ -65,140 +64,193 @@ function renderPosts(location, posts, followingList = [], options = {}) {
                 }
             });
         }
-        const postComments = document.createElement('div');
-        postComments.classList.add('post-comments');
-        const postContent = document.createElement('div');
-        postContent.classList.add('post-content');
-        const postContentPicture = document.createElement('picture');
-        postContentPicture.classList.add('post-content__image');
-        const postContentImage = document.createElement('img');
-        postContentImage.src = media;
-        const postContentTitle = document.createElement('h2');
-        postContentTitle.classList.add('post-content__title');
-        postContentTitle.innerText = title;
-        const postContentBody = document.createElement('p');
-        postContentBody.classList.add('post-content__body');
-        postContentBody.innerText = body;
-        const postFooter = document.createElement('div');
-        postFooter.classList.add('post-footer');
-        const postFooterCommentsButton = document.createElement('div');
-        postFooterCommentsButton.classList.add('post-footer__comments');
-        postFooterCommentsButton.innerText = `${_count?.comments || '0'} Comments`;
-        const postReactions = document.createElement('div');
-        postReactions.classList.add('post-footer__reactions');
-        postReactions.innerText = `${_count?.reactions || '0'} Reactions`;
-        const postReactionsButtons = document.createElement('div');
-        postReactionsButtons.classList.add('post-footer__reaction-buttons');
-        const likeButton = document.createElement('button');
-        likeButton.innerText = '👍';
-        likeButton.ariaLabel = 'Like post';
-        const loveButton = document.createElement('button');
-        loveButton.innerText = '❤';
-        loveButton.ariaLabel = 'Love post';
-        const funnyButton = document.createElement('button');
-        funnyButton.innerText = '🤣';
-        funnyButton.ariaLabel = 'Mark post as funny';
-        const coolButton = document.createElement('button');
-        coolButton.innerText = '😎';
-        coolButton.ariaLabel = 'Mark post as cool';
-        const sadButton = document.createElement('button');
-        sadButton.innerText = '😢';
-        sadButton.ariaLabel = 'Mark post as sad';
-        const celebrateButton = document.createElement('button');
-        celebrateButton.innerText = '👏';
-        celebrateButton.ariaLabel = 'Celebrate post';
 
-        if (renderComments) {
-            const commentForm = document.createElement('form');
-            commentForm.id = 'comment-form';
-            const commentInput = document.createElement('input');
-            commentInput.type = 'text';
-            commentInput.name = 'comment';
-            commentInput.placeholder = 'Add a comment...';
-            const commentSubmit = document.createElement('input');
-            commentSubmit.type = 'submit';
-            commentSubmit.value = 'Submit comment';
-            commentForm.appendChild(commentInput);
-            commentForm.appendChild(commentSubmit);
-            commentForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const comment = commentInput.value;
-                if (comment) {
-                    addComment(id, comment);
-                    commentInput.value = '';
-                }
-            });
-            // const postComments = document.createElement('div');
-            postComments.appendChild(commentForm);
-
-            if (post?.comments.length > 0) {
-                post.comments.forEach((comment) => {
-                    const commentElement = document.createElement('div');
-                    // commentElement.classList.add('post-comment');
-                    // const commentHeader = document.createElement('div');
-                    // commentHeader.classList.add('post-comment__header');
-                    // const commentHeaderAvatar = document.createElement('img');
-                    // commentHeaderAvatar.classList.add('post-comment__avatar');
-                    // commentHeaderAvatar.src = comment.user.avatar;
-                    // const commentHeaderMeta = document.createElement('div');
-                    // commentHeaderMeta.classList.add('post-comment__meta');
-                    // const commentHeaderAuthorName = document.createElement('p');
-                    // commentHeaderAuthorName.classList.add('post-comment__author-name');
-                    // const commentHeaderAuthorNameLink = document.createElement('a');
-                    // commentHeaderAuthorNameLink.href = `/profile/index.html?name=${comment.user.name}`;
-                    // commentHeaderAuthorNameLink.innerText = `@${comment.user.name}`;
-                    // const commentHeaderCreatedDate = document.createElement('p');
-                    // commentHeaderCreatedDate.classList.add('post-comment__created-date');
-                    // commentHeaderCreatedDate.innerText = `Created ${timeSince(new Date(comment.created).getTime())}`;
-                    // const commentBody = document.createElement('p');
-                    // commentBody.classList.add('post-comment__body');
-                    // commentBody.innerText = comment?.body;
-                    commentElement.innerText = comment?.body;
-
-                    //append elements
-                    // commentHeaderAuthorName.appendChild(commentHeaderAuthorNameLink);
-                    // commentHeaderMeta.appendChild(commentHeaderAuthorName);
-                    // commentHeaderMeta.appendChild(commentHeaderCreatedDate);
-                    // commentHeader.appendChild(commentHeaderAvatar);
-                    // commentHeader.appendChild(commentHeaderMeta);
-                    // commentElement.appendChild(commentHeader);
-                    // commentElement.appendChild(commentBody);
-                    postComments.appendChild(commentElement);
-                });
-            }
-        }
-
-        //append elements
         postHeaderAuthorName.appendChild(postHeaderAuthorNameLink);
         postHeaderMeta.appendChild(postHeaderAuthorName);
         postHeaderMeta.appendChild(postHeaderCreatedDate);
         postHeader.appendChild(postHeaderAvatar);
         postHeader.appendChild(postHeaderMeta);
         postHeader.appendChild(postHeaderActions);
-        postContent.appendChild(postContentPicture);
-        postContentPicture.appendChild(postContentImage);
+        postElement.appendChild(postHeader);
+
+        // Create post content
+        const postContent = createHtmlElement('div', 'post-content');
+        if (media) {
+            const postContentPicture = createHtmlElement('picture', 'post-content__image');
+            const postContentImage = createHtmlElement('img', null, null, { src: media });
+            postContent.appendChild(postContentPicture);
+            postContentPicture.appendChild(postContentImage);
+        }
+        const postContentTitle = createHtmlElement('h2', 'post-content__title', title);
+        const postContentBody = createHtmlElement('p', 'post-content__body', body);
+        const postContentTags = createHtmlElement('div', 'post-content__tags');
+        if (tags) {
+            tags.forEach((tag) => {
+                if (tag !== '') {
+                    const tagElement = createHtmlElement('a', 'post-content__tag', `#${tag}`, {
+                        href: `/posts/index.html?tag=${tag}`,
+                    });
+                    postContentTags.appendChild(tagElement);
+                }
+            });
+        }
         postContent.appendChild(postContentTitle);
         postContent.appendChild(postContentBody);
+        postContent.appendChild(postContentTags);
+        postElement.appendChild(postContent);
+
+        // Create post footer
+        const postFooter = createHtmlElement('div', 'post-footer');
+
+        const postReactionsButtons = createHtmlElement('div', 'post-footer__reaction-buttons');
+        const likeButton = createHtmlElement('button', 'post-footer__reaction-button', '👍', {
+            ariaLabel: 'Like post',
+        });
+        const loveButton = createHtmlElement('button', 'post-footer__reaction-button', '❤', { ariaLabel: 'Love post' });
+        const funnyButton = createHtmlElement('button', 'post-footer__reaction-button', '🤣', {
+            ariaLabel: 'Mark post as funny',
+        });
+        const coolButton = createHtmlElement('button', 'post-footer__reaction-button', '😎', {
+            ariaLabel: 'Mark post as cool',
+        });
+        const sadButton = createHtmlElement('button', 'post-footer__reaction-button', '😢', {
+            ariaLabel: 'Mark post as sad',
+        });
+        // const postComments = createHtmlElement('div', 'post-comments');
+        const celebrateButton = createHtmlElement('button', 'post-footer__reaction-button', '👏', {
+            ariaLabel: 'Celebrate post',
+        });
         postReactionsButtons.appendChild(likeButton);
         postReactionsButtons.appendChild(loveButton);
         postReactionsButtons.appendChild(funnyButton);
         postReactionsButtons.appendChild(coolButton);
         postReactionsButtons.appendChild(sadButton);
         postReactionsButtons.appendChild(celebrateButton);
-        postFooter.appendChild(postReactionsButtons);
-        postFooter.appendChild(postFooterCommentsButton);
-        postFooter.appendChild(postReactions);
-        postElement.appendChild(postHeader);
-        postElement.appendChild(postContent);
-        postElement.appendChild(postFooter);
-        if (renderComments) postElement.appendChild(postComments);
 
-        likeButton.addEventListener('click', () => addReaction(id, '👍'));
-        loveButton.addEventListener('click', () => addReaction(id, '❤'));
-        funnyButton.addEventListener('click', () => addReaction(id, '🤣'));
-        coolButton.addEventListener('click', () => addReaction(id, '😎'));
-        sadButton.addEventListener('click', () => addReaction(id, '😢'));
-        celebrateButton.addEventListener('click', () => addReaction(id, '👏'));
+        const postReactions = createHtmlElement(
+            'div',
+            'post-footer__reactions',
+            `${_count?.reactions || '0'} Reactions`
+        );
+        postFooter.appendChild(postReactionsButtons);
+        postFooter.appendChild(postReactions);
+        postElement.appendChild(postFooter);
+
+        // TODO: Fix so this works more than once
+        // Add event listeners to reaction buttons
+        likeButton.addEventListener('click', () => {
+            addReaction(id, '👍');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        loveButton.addEventListener('click', () => {
+            addReaction(id, '❤');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        funnyButton.addEventListener('click', () => {
+            addReaction(id, '🤣');
+
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        coolButton.addEventListener('click', () => {
+            addReaction(id, '😎');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        sadButton.addEventListener('click', () => {
+            addReaction(id, '😢');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        celebrateButton.addEventListener('click', () => {
+            addReaction(id, '👏');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+
+        //Create post comments
+        const postCommentsContainer = createHtmlElement('div', 'post-comments__container');
+        const postCommentsHeader = createHtmlElement('p', 'post-comments__header', `${_count?.comments} Comments`);
+        postCommentsContainer.appendChild(postCommentsHeader);
+
+        // TODO: Make render comments recurcive
+
+        // const postCommentsList = createHtmlElement('div', 'post-comments');
+        // renderComments(postCommentsList, comments, id);
+        // postCommentsContainer.appendChild(postCommentsList);
+
+        for (let i = 0; i < comments.length; i++) {
+            const comment = comments[i];
+            if (comment.replyToId) continue;
+            const commentElement = createHtmlElement('div', 'post-comment');
+            const commentHeader = createHtmlElement(
+                'p',
+                'post-comment__header',
+                `${comment?.author?.name} - ${timeSince(new Date(comment?.created).getTime())}`
+            );
+            const commentBody = createHtmlElement('p', 'post-comment__body', comment?.body);
+            commentElement.appendChild(commentHeader);
+            commentElement.appendChild(commentBody);
+            for (let j = 0; j < comments.length; j++) {
+                const reply = comments[j];
+                if (reply.replyToId === comment.id) {
+                    const replyElement = createHtmlElement('div', 'post-comment');
+                    const replyHeader = createHtmlElement(
+                        'p',
+                        'post-comment__header',
+                        `${reply?.author?.name} - ${timeSince(new Date(reply?.created).getTime())}`
+                    );
+                    const replyBody = createHtmlElement('p', 'post-comment__body', reply?.body);
+                    const replyButton = createHtmlElement('button', 'post-comment__reply-button', 'Reply');
+                    replyElement.appendChild(replyHeader);
+                    replyElement.appendChild(replyBody);
+                    replyElement.appendChild(replyButton);
+                    replyButton.addEventListener('click', () => (replyToInput = reply.id));
+                    for (let k = 0; k < comments.length; k++) {
+                        const reply2 = comments[k];
+                        if (reply2.replyToId === reply.id) {
+                            const replyElement2 = createHtmlElement('div', 'post-comment');
+                            const replyHeader2 = createHtmlElement(
+                                'p',
+                                'post-comment__header',
+                                `${reply2?.author?.name} - ${timeSince(new Date(reply2?.created).getTime())}`
+                            );
+                            const replyBody2 = createHtmlElement('p', 'post-comment__body', reply2?.body);
+                            replyElement2.appendChild(replyHeader2);
+                            replyElement2.appendChild(replyBody2);
+                            replyElement.appendChild(replyElement2);
+                        }
+                    }
+                    commentElement.appendChild(replyElement);
+                }
+            }
+            postCommentsContainer.appendChild(commentElement);
+        }
+
+        const commentForm = createHtmlElement('form');
+        commentForm.id = 'comment-form';
+        const commentInput = createHtmlElement('input', null, null, {
+            type: 'text',
+            name: 'comment',
+            placeholder: 'Add a comment...',
+        });
+        const replyToInput = createHtmlElement('input', null, null, {
+            type: 'hidden',
+            name: 'replyToId',
+            value: null,
+        });
+        const commentSubmit = createHtmlElement('input', null, null, {
+            type: 'submit',
+            value: 'Submit comment',
+        });
+        commentForm.appendChild(commentInput);
+        commentForm.appendChild(commentSubmit);
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const comment = { body: commentInput.value, replyToId: parseInt(replyToInput.value) || null };
+            if (comment.body) {
+                addComment(id, comment);
+                commentInput.value = '';
+            }
+        });
+        postCommentsContainer.appendChild(commentForm);
+        postElement.appendChild(postCommentsContainer);
 
         location.appendChild(postElement);
     });

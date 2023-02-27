@@ -23,7 +23,7 @@ function timeSince(date) {
     // more than 1 minute, less than 1 hour
     if (elapsed < oneHour) {
         const elapsedMinutes = Math.floor(elapsed / oneMinute);
-        return `${elapsedMinutes} minutes ago'`;
+        return `${elapsedMinutes} minutes ago`;
     }
 
     // more than 1 hour, less than 2 hours

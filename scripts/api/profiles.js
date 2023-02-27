@@ -1,4 +1,4 @@
-import { get, post, BASE_URL } from './client.js';
+import { get, BASE_URL } from './client.js';
 import { getAccessToken } from '../utils/storage.js';
 import { showToast } from '../utils/toast.js';
 
@@ -81,19 +81,21 @@ async function getProfileByName(name, options = {}) {
 
 /**
  * Update the profile media
+ * @param {string} name - Name of profile to update
  * @param {updateProfileData} data - Data to update profile with
  * @returns {Promise<void>} - No return value, but throws error if something goes wrong
  */
-async function updateProfileMedia(data) {
-    console.log('updateProfileMedia', data.avatar, data.banner);
+async function updateProfileMedia(name, requestBody) {
+    console.log('updateProfileMedia', requestBody.avatar, requestBody.banner);
     const token = getAccessToken();
     try {
-        const response = await fetch(url, {
+        const response = await fetch(`${BASE_URL}/profiles/${name}/media`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
+            body: JSON.stringify({ requestBody }),
         });
         if (!response.ok) {
             const error = await response.json();
@@ -107,11 +109,27 @@ async function updateProfileMedia(data) {
     }
 }
 
+/**
+ * @typedef {object} followers
+ * @property {string} followers.avatar - URL to avatar image
+ * @property {string} followers.name - Username
+ */
+
+/**
+ * Gets the followers of a profile
+ * @param {string} name - Name of profile to get followers for
+ * @returns {Promise<followers[]>}
+ */
 async function getFollowingList(name) {
     const profile = await get(`${BASE_URL}/profiles/${name}?_following=true`);
     return profile?.following;
 }
 
+/**
+ * Gets the name of followers of a profile
+ * @param {string} name - Name of profile to get followers for
+ * @returns {Promise<followers[]>}
+ */
 async function getFollowingNameList(name) {
     const profile = await get(`${BASE_URL}/profiles/${name}?_following=true`);
     return profile?.following.map((profile) => profile.name);
