@@ -1,5 +1,5 @@
 import { get, BASE_URL } from './client.js';
-import { getAccessToken } from '../utils/storage.js';
+import { getAccessToken, getUserName } from '../utils/storage.js';
 import { showToast } from '../utils/toast.js';
 
 /**
@@ -85,9 +85,10 @@ async function getProfileByName(name, options = {}) {
  * @param {updateProfileData} data - Data to update profile with
  * @returns {Promise<void>} - No return value, but throws error if something goes wrong
  */
-async function updateProfileMedia(name, requestBody) {
+async function updateProfileMedia(requestBody) {
     console.log('updateProfileMedia', requestBody.avatar, requestBody.banner);
     const token = getAccessToken();
+    const name = getUserName();
     try {
         const response = await fetch(`${BASE_URL}/profiles/${name}/media`, {
             method: 'PUT',
@@ -102,7 +103,7 @@ async function updateProfileMedia(name, requestBody) {
             throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
         }
         const data = await response.json();
-        return data;
+        // return data;
     } catch (error) {
         console.error(error);
         showToast(error, 'error');

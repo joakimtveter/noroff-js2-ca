@@ -81,7 +81,10 @@ function renderPosts(location, posts, followingList = [], options = {}) {
             postContent.appendChild(postContentPicture);
             postContentPicture.appendChild(postContentImage);
         }
-        const postContentTitle = createHtmlElement('h2', 'post-content__title', title);
+        const postContentTitle = createHtmlElement('h2', 'post-content__title');
+        const postContentTitleLink = createHtmlElement('a', 'post-content__title-link', title, {
+            href: `/posts/single.html?id=${id}`,
+        });
         const postContentBody = createHtmlElement('p', 'post-content__body', body);
         const postContentTags = createHtmlElement('div', 'post-content__tags');
         if (tags) {
@@ -94,6 +97,7 @@ function renderPosts(location, posts, followingList = [], options = {}) {
                 }
             });
         }
+        postContentTitle.appendChild(postContentTitleLink);
         postContent.appendChild(postContentTitle);
         postContent.appendChild(postContentBody);
         postContent.appendChild(postContentTags);
