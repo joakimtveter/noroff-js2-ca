@@ -882,6 +882,15 @@ picture.portrait source {
   margin-inline: auto;
 }
 
+.post-comment .post-comment {
+  margin-inline-start: 1rem;
+  border-left: 2px solid hotpink;
+}
+.post-comment .post-comment .post-comment {
+  margin-inline-start: 2rem;
+  border-left: 4px solid lime;
+}
+
 .profile-list {
   display: flex;
   flex-wrap: wrap;

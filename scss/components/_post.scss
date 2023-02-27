@@ -71,3 +71,15 @@
 .post-footer__comments {
     margin-inline: auto;
 }
+
+.post-comment {
+    .post-comment {
+        margin-inline-start: 1rem;
+        border-left: 2px solid hotpink;
+
+        .post-comment {
+            margin-inline-start: 2rem;
+            border-left: 4px solid lime;
+        }
+    }
+}

@@ -3,10 +3,11 @@ import { followProfile, unfollowProfile } from '../api/profiles.js';
 import { addReaction, deletePost, addComment } from '../api/posts.js';
 import { getUserName } from '../utils/storage.js';
 import { createHtmlElement } from './utils.js';
+import { renderComments } from './comments.js';
 
 function renderPosts(location, posts, followingList = [], options = {}) {
     posts.forEach((post) => {
-        const { id, title, body, tags, _count, media, created, updated, author } = post;
+        const { id, title, body, tags, _count, media, created, updated, author, comments } = post;
         const { name, avatar } = author;
         const isUpdated = created !== updated;
         const isFollowing = followingList.includes(name);
@@ -115,7 +116,7 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         const sadButton = createHtmlElement('button', 'post-footer__reaction-button', '😢', {
             ariaLabel: 'Mark post as sad',
         });
-        const postComments = createHtmlElement('div', 'post-comments');
+        // const postComments = createHtmlElement('div', 'post-comments');
         const celebrateButton = createHtmlElement('button', 'post-footer__reaction-button', '👏', {
             ariaLabel: 'Celebrate post',
         });
@@ -126,14 +127,6 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         postReactionsButtons.appendChild(sadButton);
         postReactionsButtons.appendChild(celebrateButton);
 
-        // Add event listeners to reaction buttons
-        likeButton.addEventListener('click', () => addReaction(id, '👍'));
-        loveButton.addEventListener('click', () => addReaction(id, '❤'));
-        funnyButton.addEventListener('click', () => addReaction(id, '🤣'));
-        coolButton.addEventListener('click', () => addReaction(id, '😎'));
-        sadButton.addEventListener('click', () => addReaction(id, '😢'));
-        celebrateButton.addEventListener('click', () => addReaction(id, '👏'));
-
         const postReactions = createHtmlElement(
             'div',
             'post-footer__reactions',
@@ -143,32 +136,104 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         postFooter.appendChild(postReactions);
         postElement.appendChild(postFooter);
 
+        // TODO: Fix so this works more than once
+        // Add event listeners to reaction buttons
+        likeButton.addEventListener('click', () => {
+            addReaction(id, '👍');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        loveButton.addEventListener('click', () => {
+            addReaction(id, '❤');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        funnyButton.addEventListener('click', () => {
+            addReaction(id, '🤣');
+
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        coolButton.addEventListener('click', () => {
+            addReaction(id, '😎');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        sadButton.addEventListener('click', () => {
+            addReaction(id, '😢');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+        celebrateButton.addEventListener('click', () => {
+            addReaction(id, '👏');
+            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+        });
+
         //Create post comments
         const postCommentsContainer = createHtmlElement('div', 'post-comments__container');
         const postCommentsHeader = createHtmlElement('p', 'post-comments__header', `${_count?.comments} Comments`);
         postCommentsContainer.appendChild(postCommentsHeader);
 
-        if (post?.comments.length > 0) {
-            post.comments.forEach((comment) => {
-                const commentElement = document.createElement('div');
-                const commentHeader = createHtmlElement(
-                    'p',
-                    'post-comment__header',
-                    `${comment?.author?.name} - ${timeSince(new Date(comment?.created).getTime())}`
-                );
-                const commentBody = createHtmlElement('p', 'post-comment__body', comment?.body);
+        // TODO: Make render comments recurcive
 
-                commentElement.appendChild(commentHeader);
-                commentElement.appendChild(commentBody);
-                postCommentsContainer.appendChild(commentElement);
-            });
+        // const postCommentsList = createHtmlElement('div', 'post-comments');
+        // renderComments(postCommentsList, comments, id);
+        // postCommentsContainer.appendChild(postCommentsList);
+
+        for (let i = 0; i < comments.length; i++) {
+            const comment = comments[i];
+            if (comment.replyToId) continue;
+            const commentElement = createHtmlElement('div', 'post-comment');
+            const commentHeader = createHtmlElement(
+                'p',
+                'post-comment__header',
+                `${comment?.author?.name} - ${timeSince(new Date(comment?.created).getTime())}`
+            );
+            const commentBody = createHtmlElement('p', 'post-comment__body', comment?.body);
+            commentElement.appendChild(commentHeader);
+            commentElement.appendChild(commentBody);
+            for (let j = 0; j < comments.length; j++) {
+                const reply = comments[j];
+                if (reply.replyToId === comment.id) {
+                    const replyElement = createHtmlElement('div', 'post-comment');
+                    const replyHeader = createHtmlElement(
+                        'p',
+                        'post-comment__header',
+                        `${reply?.author?.name} - ${timeSince(new Date(reply?.created).getTime())}`
+                    );
+                    const replyBody = createHtmlElement('p', 'post-comment__body', reply?.body);
+                    const replyButton = createHtmlElement('button', 'post-comment__reply-button', 'Reply');
+                    replyElement.appendChild(replyHeader);
+                    replyElement.appendChild(replyBody);
+                    replyElement.appendChild(replyButton);
+                    replyButton.addEventListener('click', () => (replyToInput = reply.id));
+                    for (let k = 0; k < comments.length; k++) {
+                        const reply2 = comments[k];
+                        if (reply2.replyToId === reply.id) {
+                            const replyElement2 = createHtmlElement('div', 'post-comment');
+                            const replyHeader2 = createHtmlElement(
+                                'p',
+                                'post-comment__header',
+                                `${reply2?.author?.name} - ${timeSince(new Date(reply2?.created).getTime())}`
+                            );
+                            const replyBody2 = createHtmlElement('p', 'post-comment__body', reply2?.body);
+                            replyElement2.appendChild(replyHeader2);
+                            replyElement2.appendChild(replyBody2);
+                            replyElement.appendChild(replyElement2);
+                        }
+                    }
+                    commentElement.appendChild(replyElement);
+                }
+            }
+            postCommentsContainer.appendChild(commentElement);
         }
+
         const commentForm = createHtmlElement('form');
         commentForm.id = 'comment-form';
         const commentInput = createHtmlElement('input', null, null, {
             type: 'text',
             name: 'comment',
             placeholder: 'Add a comment...',
+        });
+        const replyToInput = createHtmlElement('input', null, null, {
+            type: 'hidden',
+            name: 'replyToId',
+            value: null,
         });
         const commentSubmit = createHtmlElement('input', null, null, {
             type: 'submit',
@@ -178,8 +243,8 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         commentForm.appendChild(commentSubmit);
         commentForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const comment = commentInput.value;
-            if (comment) {
+            const comment = { body: commentInput.value, replyToId: parseInt(replyToInput.value) || null };
+            if (comment.body) {
                 addComment(id, comment);
                 commentInput.value = '';
             }
