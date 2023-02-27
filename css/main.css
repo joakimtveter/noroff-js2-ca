@@ -265,7 +265,8 @@ section {
 }
 
 .site-header {
-  background-color: hsl(187deg, 41%, 91%);
+  background-color: hsl(185deg, 100%, 29%);
+  color: hsl(0deg, 0%, 100%);
 }
 .site-header .header-content {
   display: flex;
@@ -275,13 +276,10 @@ section {
   margin-inline: auto;
 }
 .site-header .branding {
-  display: flex;
-  align-items: center;
+  color: inherit;
+  font-size: 3.125rem;
+  font-weight: 500;
   text-decoration: none;
-  color: currentColor;
-}
-.site-header .branding svg {
-  height: 150px;
 }
 @media (max-width: 900px) {
   .site-header .branding p {
@@ -420,25 +418,30 @@ section {
   color: hsla(0deg, 0%, 100%, 0.7);
 }
 
-.main-nav {
+.main-nav .main-nav_list {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   list-style-type: none;
   padding: 0;
 }
-
-.nav-link {
+.main-nav .main-nav_link {
   display: block;
-  color: black;
+  color: inherit;
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
-.nav-link:hover {
+.main-nav .main-nav_link:hover {
   background-color: hsla(0deg, 0%, 0%, 0.15);
 }
-.nav-link.active {
+.main-nav .main-nav_link.active {
   background-color: hsla(0deg, 0%, 0%, 0.25);
   cursor: default;
+}
+.main-nav .main-nav_link.avatar img {
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
 }
 
 .menu-btn {
@@ -652,6 +655,23 @@ button.contained.accent:focus, button.contained.accent:hover,
 }
 button.contained.accent:disabled,
 .button.contained.accent:disabled {
+  color: hsla(0deg, 0%, 0%, 0.38);
+  background-color: hsl(353deg, 100%, 90%);
+}
+button.contained.white,
+.button.contained.white {
+  color: hsla(0deg, 0%, 0%, 0.87);
+  background-color: hsl(0deg, 0%, 100%);
+  border-color: hsl(0deg, 0%, 100%);
+}
+button.contained.white:focus, button.contained.white:hover,
+.button.contained.white:focus,
+.button.contained.white:hover {
+  background-color: hsl(0deg, 0%, 88%);
+  border-color: hsl(0deg, 0%, 88%);
+}
+button.contained.white:disabled,
+.button.contained.white:disabled {
   color: hsla(0deg, 0%, 0%, 0.38);
   background-color: hsl(353deg, 100%, 90%);
 }
