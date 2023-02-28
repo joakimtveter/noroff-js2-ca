@@ -10,21 +10,25 @@
         <script type="module" src="/scripts/main.js"></script>
     </head>
     <body>
-        <header>
-            <a href="#" class="visually-hidden focusable">Skip to main content</a>
-            <div class="branding">
-                <a href="/index.html">
-                    <p>MyPlace</p>
-                </a>
+        <header class="site-header">
+            <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
+            <div class="header-content">
+                <a class="branding" href="/posts/index.html"> MyPlace </a>
+                <nav class="main-nav" title="main">
+                    <ul class="main-nav_list" role="list">
+                        <li class="main-nav_item"><a class="main-nav_link" href="/posts/index.html">Home</a></li>
+                        <li class="main-nav_item"><a class="main-nav_link" href="#">Discover</a></li>
+                        <li class="main-nav_item">
+                            <a class="main-nav_link avatar" href="/profile/index.html" aria-label="My profile">
+                                <img id="header-avatar" src="/images/no-avatar.png" />
+                            </a>
+                        </li>
+                        <li class="main-nav_item">
+                            <button id="logout-button" class="button contained white">Log out</button>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="/posts/index.html">Home</a></li>
-                    <li><a href="#">Discover</a></li>
-                    <li><a href="/profile/index.html">My profile</a></li>
-                </ul>
-            </nav>
-            <button id="logout-button">Log out</button>
         </header>
         <main>
             <section class="profile-header-section">
