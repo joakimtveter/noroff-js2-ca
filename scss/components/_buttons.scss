@@ -64,6 +64,22 @@ button,
                 background-color: $palette-accent-100;
             }
         }
+
+        &.white {
+            color: $palette-text-primary;
+            background-color: $palette-neutral-0;
+            border-color: $palette-neutral-0;
+
+            &:focus,
+            &:hover {
+                background-color: $palette-neutral-300;
+                border-color: $palette-neutral-300;
+            }
+            &:disabled {
+                color: $palette-text-disabled;
+                background-color: $palette-accent-100;
+            }
+        }
     }
 
     &.outlined {

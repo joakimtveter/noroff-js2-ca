@@ -4,7 +4,8 @@
 @use '../base/typography' as *;
 
 .site-header {
-    background-color: $palette-primary-50;
+    background-color: $palette-primary-500;
+    color: $palette-text-light-primary;
 
     .header-content {
         display: flex;
@@ -14,13 +15,10 @@
     }
 
     .branding {
-        display: flex;
-        align-items: center;
+        color: inherit;
+        font-size: $font-size-5;
+        font-weight: 500;
         text-decoration: none;
-        color: currentColor;
-        svg {
-            height: 150px;
-        }
     }
 
     @media #{$mq-tablet-down} {
