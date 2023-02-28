@@ -93,17 +93,17 @@ async function updateProfileMedia(requestBody) {
         const response = await fetch(`${BASE_URL}/profiles/${name}/media`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
+                accept: 'application/json',
                 Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ requestBody }),
+            body: JSON.stringify(requestBody),
         });
         if (!response.ok) {
             const error = await response.json();
             throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
         }
         const data = await response.json();
-        // return data;
     } catch (error) {
         console.error(error);
         showToast(error, 'error');
