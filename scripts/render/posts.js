@@ -91,7 +91,7 @@ function renderPosts(location, posts, followingList = [], options = {}) {
             tags.forEach((tag) => {
                 if (tag !== '') {
                     const tagElement = createHtmlElement('a', 'post-content__tag', `#${tag}`, {
-                        href: `/posts/index.html?tag=${tag}`,
+                        href: `/posts/tag.html?tag=${tag}`,
                     });
                     postContentTags.appendChild(tagElement);
                 }

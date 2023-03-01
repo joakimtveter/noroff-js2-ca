@@ -27,6 +27,7 @@ async function renderProfile(username) {
         // let isFollowing = false;
         if (isOwnProfile) {
             document.getElementById('edit-profile-button').hidden = false;
+            document.getElementById('add-post-button').hidden = false;
         } else {
             const followButton = document.getElementById('profile-follow-button');
             followButton.innerText = isFollowing ? 'Unfollow' : 'Follow';
