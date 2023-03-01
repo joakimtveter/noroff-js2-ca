@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit profile | MyPlace - Your place on the internet</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        <script type="module" src="/scripts/pages/createPostPage.js"></script>
+        <script type="module" src="/scripts/main.js"></script>
+    </head>
+    <body>
+        <header class="site-header">
+            <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
+            <div class="header-content">
+                <a class="branding" href="/posts/index.html"> MyPlace </a>
+                <nav class="main-nav" title="main">
+                    <ul class="main-nav_list" role="list">
+                        <li class="main-nav_item"><a class="main-nav_link" href="/posts/index.html">Home</a></li>
+                        <li class="main-nav_item"><a class="main-nav_link" href="/posts/discover.html">Discover</a></li>
+                        <li class="main-nav_item">
+                            <a class="main-nav_link avatar" href="/profile/index.html" aria-label="My profile">
+                                <img id="header-avatar" src="/images/no-avatar.png" />
+                            </a>
+                        </li>
+                        <li class="main-nav_item">
+                            <button id="logout-button" class="button contained white">Log out</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <h1>Create post</h1>
+                <form id="post-form" class="post-form">
+                    <div class="form-control">
+                        <label for="title">Title:</label>
+                        <input id="title" type="text" name="title" placeholder="Enter post title" required />
+                    </div>
+                    <div class="form-control">
+                        <label for="body">Body:</label>
+                        <textarea id="body" type="text" name="body"> </textarea>
+                    </div>
+                    <div class="form-control">
+                        <label for="media">Media URL:</label>
+                        <input id="media" type="url" name="media" placeholder="Media URL" />
+                    </div>
+                    <div class="form-control">
+                        <label for="tags">Tags:</label>
+                        <input id="tags" type="text" name="tags" placeholder="Enter comma separated tags" />
+                        <p>Add tags seperated by commas</p>
+                    </div>
+                    <div class="form-control">
+                        <button type="submit" class="button contained primary">Submit post</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <div id="toast-container"></div>
+    </body>
+</html>

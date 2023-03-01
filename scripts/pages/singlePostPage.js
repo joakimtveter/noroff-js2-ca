@@ -1,4 +1,4 @@
-import { getValueFromURLParameter } from '../utils/urlUtils.js';
+import { getValueFromURLParameter } from '../utils.js';
 import { getPostById } from '../api/posts.js';
 import { renderPosts } from '../render/posts.js';
 
