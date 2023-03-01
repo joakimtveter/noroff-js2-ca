@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MyPlace - Your place on the internet</title>
         <link rel="stylesheet" href="/css/main.css" />
-        <script type="module" src="/scripts/pages/singlePostPage.js"></script>
+        <script type="module" src="/scripts/pages/tagPage.js"></script>
         <script type="module" src="/scripts/main.js"></script>
     </head>
     <body>
@@ -30,9 +30,12 @@
                 </nav>
             </div>
         </header>
-
-        <main>
-            <ul id="single-post"></ul>
+        <main id="main-content">
+            <a href="/posts/create.html">Create Post</a>
+            <section class="post-feed-section">
+                <h1>The latest posts about <span id="title-modifier-tag">a tag</span></h1>
+                <ul id="post-feed" class="post-feed"></ul>
+            </section>
         </main>
         <div id="toast-container"></div>
     </body>
