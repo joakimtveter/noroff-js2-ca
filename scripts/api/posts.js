@@ -1,6 +1,6 @@
 import { get, BASE_URL } from './client.js';
 import { getAccessToken } from '../utils/storage.js';
-import { showToast } from '../utils/toast.js';
+import { showToast } from '../utils.js';
 
 /**
  * @typedef {object} getPostsOptions
@@ -69,9 +69,9 @@ async function getPostsByProfileName(name, options = {}) {
     if (options.limit) parameters.push(`&limit=${options.limit}`);
     if (options.offset) parameters.push(`&offset=${options.offset}`);
     if (options.tag) parameters.push(`&_tag=${options.tag}`);
-    if (options.author) parameters.push(`&_author=true`);
-    if (options.reactions) parameters.push(`&_reactions=true`);
-    if (options.comments) parameters.push(`&comments=true`);
+    if (options.author) parameters.push(`_author=true`);
+    if (options.reactions) parameters.push(`_reactions=true`);
+    if (options.comments) parameters.push(`_comments=true`);
     if (parameters.length > 0) queryParams = '?' + parameters.join('&');
 
     return await get(`${BASE_URL}/profiles/${name}/posts${queryParams}`);
@@ -106,6 +106,8 @@ async function createPost(requestBody) {
             throw new Error(`${error.statusCode} ${error.status} - ${error.errors[0].message}`);
         }
         const data = await response.json();
+        console.log('createPost response: ', data);
+        showToast('Post created', 'success');
     } catch (error) {
         console.error(error);
         showToast('error', error);
@@ -197,7 +199,6 @@ async function deletePost(id) {
  * @returns {Promise<post>} - Returns a single post
  */
 async function getPostById(id, options = {}) {
-    console.log('get post by id:', id, options);
     let queryParams = '';
     const parameters = [];
 

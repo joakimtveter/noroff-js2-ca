@@ -1,4 +1,4 @@
-import { createHtmlElement } from './utils.js';
+import { createHtmlElement } from './createHtmlElement.js';
 
 function renderComments(location, commentsArray, id) {
     for (let i = 0; i < commentsArray.length; i++) {

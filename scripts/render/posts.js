@@ -1,8 +1,8 @@
-import { timeSince } from '../utils/days.js';
+import { timeSince } from '../utils.js';
 import { followProfile, unfollowProfile } from '../api/profiles.js';
 import { addReaction, deletePost, addComment } from '../api/posts.js';
 import { getUserName } from '../utils/storage.js';
-import { createHtmlElement } from './utils.js';
+import { createHtmlElement } from './createHtmlElement.js';
 import { renderComments } from './comments.js';
 
 function renderPosts(location, posts, followingList = [], options = {}) {

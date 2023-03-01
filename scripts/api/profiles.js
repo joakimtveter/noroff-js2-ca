@@ -1,6 +1,6 @@
 import { get, BASE_URL } from './client.js';
 import { getAccessToken, getUserName } from '../utils/storage.js';
-import { showToast } from '../utils/toast.js';
+import { showToast } from '../utils.js';
 
 /**
  * @typedef {object} getProfilesOptions
@@ -86,7 +86,6 @@ async function getProfileByName(name, options = {}) {
  * @returns {Promise<void>} - No return value, but throws error if something goes wrong
  */
 async function updateProfileMedia(requestBody) {
-    console.log('updateProfileMedia', requestBody.avatar, requestBody.banner);
     const token = getAccessToken();
     const name = getUserName();
     try {

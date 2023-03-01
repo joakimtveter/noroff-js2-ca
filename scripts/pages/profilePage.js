@@ -1,4 +1,4 @@
-import { getValueFromURLParameter } from '../utils/urlUtils.js';
+import { getValueFromURLParameter } from '../utils.js';
 import { isLoggedIn, getUserObject } from '../utils/storage.js';
 import { getProfileByName, followProfile, unfollowProfile } from '../api/profiles.js';
 import { getPostsByProfileName } from '../api/posts.js';
@@ -18,7 +18,7 @@ async function renderProfile(username) {
     try {
         const profile = await getProfileByName(username, { followers: true, following: true, posts: true });
         const { name, avatar, banner, followers, following, _count } = profile;
-        const posts = await getPostsByProfileName(username, { author: true });
+        const posts = await getPostsByProfileName(username, { author: true, reactions: true, comments: true });
         const followerContainer = document.getElementById('followers-container');
         const followingContainer = document.getElementById('following-container');
 
@@ -54,6 +54,7 @@ async function renderProfile(username) {
         if (followers) renderProfileCards(followerContainer, followers);
         if (following) renderProfileCards(followingContainer, following);
         if (posts.length > 0) {
+            console.log('posts: ', posts, name);
             renderPosts(document.getElementById('posts-container'), posts, [name]);
         } else {
             document.getElementById('posts-container').innerHTML = '<p>No posts</p>';
