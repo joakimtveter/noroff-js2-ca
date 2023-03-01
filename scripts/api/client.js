@@ -1,4 +1,4 @@
-import { showToast } from '../utils/toast.js';
+import { showToast } from '../utils.js';
 import { getAccessToken } from '../utils/storage.js';
 
 const BASE_URL = 'https://api.noroff.dev/api/v1/social';

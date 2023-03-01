@@ -6,7 +6,6 @@ if (!isLoggedIn()) window.location.pathname = '/login.html';
 document.getElementById('logout-button').addEventListener('click', logout);
 
 const user = getUserObject();
-console.log(user);
 if (user.avatar) {
     document.getElementById('header-avatar').src = user.avatar;
 }

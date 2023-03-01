@@ -1,5 +1,5 @@
 import { isLoggedIn } from '../utils/storage.js';
-import { getValueFromURLParameter } from '../utils/urlUtils.js';
+import { getValueFromURLParameter } from '../utils.js';
 import { getPosts } from '../api/posts.js';
 import { renderPosts } from '../render/posts.js';
 

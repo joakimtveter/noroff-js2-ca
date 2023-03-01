@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Edit profile | MyPlace - Your place on the internet</title>
         <link rel="stylesheet" href="/css/main.css" />
-        <script type="module" src="/scripts/pages/editPostPage.js"></script>
+        <script type="module" src="/scripts/pages/createPostPage.js"></script>
+        <script type="module" src="/scripts/main.js"></script>
     </head>
     <body>
         <header class="site-header">
@@ -16,7 +17,7 @@
                 <nav class="main-nav" title="main">
                     <ul class="main-nav_list" role="list">
                         <li class="main-nav_item"><a class="main-nav_link" href="/posts/index.html">Home</a></li>
-                        <li class="main-nav_item"><a class="main-nav_link" href="#">Discover</a></li>
+                        <li class="main-nav_item"><a class="main-nav_link" href="/posts/discover.html">Discover</a></li>
                         <li class="main-nav_item">
                             <a class="main-nav_link avatar" href="/profile/index.html" aria-label="My profile">
                                 <img id="header-avatar" src="/images/no-avatar.png" />
@@ -31,8 +32,8 @@
         </header>
         <main>
             <div class="container">
-                <h1>Edit your profile media</h1>
-                <form id="edit-post-form">
+                <h1>Create post</h1>
+                <form id="post-form" class="post-form">
                     <div class="form-control">
                         <label for="title">Title:</label>
                         <input id="title" type="text" name="title" placeholder="Enter post title" required />
@@ -51,7 +52,7 @@
                         <p>Add tags seperated by commas</p>
                     </div>
                     <div class="form-control">
-                        <button type="submit" class="button contained primary">Update post</button>
+                        <button type="submit" class="button contained primary">Submit post</button>
                     </div>
                 </form>
             </div>
