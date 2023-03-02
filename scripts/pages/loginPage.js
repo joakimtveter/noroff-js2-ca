@@ -1,5 +1,5 @@
 import { logIn } from '../api/client.js';
-import { isLoggedIn } from '../utils/storage.js';
+import { isLoggedIn } from '../utils.js';
 
 if (isLoggedIn()) {
     window.location.pathname = '/posts/index.html';

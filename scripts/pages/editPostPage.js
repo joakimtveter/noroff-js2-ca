@@ -1,4 +1,4 @@
-import { isLoggedIn } from '../utils/storage.js';
+import { isLoggedIn } from '../utils.js';
 import { getValueFromURLParameter, redirect } from '../utils.js';
 import { getPostById, updatePost } from '../api/posts.js';
 

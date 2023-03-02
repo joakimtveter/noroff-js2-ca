@@ -1,6 +1,5 @@
-import { isLoggedIn } from '../utils/storage.js';
 import { createPost } from '../api/posts.js';
-import { redirect } from '../utils.js';
+import { redirect, isLoggedIn } from '../utils.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
