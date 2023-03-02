@@ -1,7 +1,7 @@
 import { isLoggedIn, getUserObject, getValueFromURLParameter } from '../utils.js';
 import { getProfileByName, followProfile, unfollowProfile } from '../api/profiles.js';
 import { getPostsByProfileName } from '../api/posts.js';
-import { renderProfileCards } from '../render/profileCards.js';
+import { renderProfileCards } from '../render.js';
 import { renderPosts } from '../render/posts.js';
 
 // Redirect to login page if not logged in

@@ -1,1 +1,1 @@
-export { renderProfileCards } from './render/profileCards';
+export { renderProfileCards } from './render/renderProfileCards.js';
