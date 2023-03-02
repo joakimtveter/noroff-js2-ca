@@ -1,5 +1,5 @@
 import { updateProfileMedia } from '../api/profiles.js';
-import { getUserObject } from '../utils/storage.js';
+import { getUserObject } from '../utils.js';
 
 const form = document.getElementById('edit-profile-form');
 const banner = document.getElementById('banner');

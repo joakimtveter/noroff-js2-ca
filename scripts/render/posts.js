@@ -1,17 +1,17 @@
-import { timeSince } from '../utils.js';
+import { timeSince, getUserName } from '../utils.js';
 import { followProfile, unfollowProfile } from '../api/profiles.js';
 import { addReaction, deletePost, addComment } from '../api/posts.js';
-import { getUserName } from '../utils/storage.js';
 import { createHtmlElement } from './createHtmlElement.js';
 import { renderComments } from './comments.js';
 
 function renderPosts(location, posts, followingList = [], options = {}) {
+    const currentUser = getUserName();
     posts.forEach((post) => {
-        const { id, title, body, tags, _count, media, created, updated, author, comments } = post;
+        const { id, title, body, tags, _count, media, created, updated, author, comments, reactions } = post;
         const { name, avatar } = author;
         const isUpdated = created !== updated;
         const isFollowing = followingList.includes(name);
-        const isCurrentUser = name === getUserName();
+        const isCurrentUser = name === currentUser;
 
         // Create post element
         const postElement = createHtmlElement('li', 'post');
@@ -131,42 +131,49 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         postReactionsButtons.appendChild(sadButton);
         postReactionsButtons.appendChild(celebrateButton);
 
-        const postReactions = createHtmlElement(
-            'div',
-            'post-footer__reactions',
-            `${_count?.reactions || '0'} Reactions`
-        );
+        const postReactions = createHtmlElement('div', 'post-footer__reactions', `Reactions`);
+        const postReactionsCount = createHtmlElement('span', 'post-footer__reactions-count', _count?.reactions || '0');
+        postReactions.prepend(postReactionsCount);
         postFooter.appendChild(postReactionsButtons);
         postFooter.appendChild(postReactions);
         postElement.appendChild(postFooter);
 
-        // TODO: Fix so this works more than once
         // Add event listeners to reaction buttons
         likeButton.addEventListener('click', () => {
             addReaction(id, '👍');
-            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+            postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
         });
         loveButton.addEventListener('click', () => {
             addReaction(id, '❤');
-            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+            postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
         });
         funnyButton.addEventListener('click', () => {
             addReaction(id, '🤣');
 
-            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+            postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
         });
         coolButton.addEventListener('click', () => {
             addReaction(id, '😎');
-            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+            postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
         });
         sadButton.addEventListener('click', () => {
             addReaction(id, '😢');
-            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+            postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
         });
         celebrateButton.addEventListener('click', () => {
             addReaction(id, '👏');
-            postReactions.innerText = `${parseInt(_count?.reactions) + 1} Reactions`;
+            postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
         });
+
+        // Reactions list
+        if (reactions.length > 0) {
+            const postReactionsList = createHtmlElement('div', 'post-footer__reactions-list');
+            reactions.forEach((reaction) => {
+                const reactionElement = createHtmlElement('span', null, reaction.symbol + ' ' + reaction.count);
+                postReactionsList.appendChild(reactionElement);
+            });
+            postFooter.appendChild(postReactionsList);
+        }
 
         //Create post comments
         const postCommentsContainer = createHtmlElement('div', 'post-comments__container');

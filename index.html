@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MyPlace - Your place on the internet</title>
         <script type="module">
-            import { isLoggedIn } from './scripts/utils/storage.js';
+            import { isLoggedIn } from './scripts/utils.js';
             // redirect to posts if user logged in or to login page if not
             if (isLoggedIn()) {
                 window.location.pathname = '/posts/index.html';

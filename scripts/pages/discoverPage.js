@@ -1,4 +1,4 @@
-import { isLoggedIn, getUserName } from '../utils/storage.js';
+import { isLoggedIn, getUserName } from '../utils.js';
 import { getPosts } from '../api/posts.js';
 import { renderPosts } from '../render/posts.js';
 import { getFollowingNameList } from '../api/profiles.js';

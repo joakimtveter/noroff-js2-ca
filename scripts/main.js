@@ -1,4 +1,4 @@
-import { getUserObject, isLoggedIn, logout } from './utils/storage.js';
+import { getUserObject, isLoggedIn, logout } from './utils.js';
 
 if (!isLoggedIn()) window.location.pathname = '/login.html';
 

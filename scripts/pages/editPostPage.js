@@ -1,6 +1,6 @@
-import { isLoggedIn } from '../utils/storage.js';
+import { isLoggedIn } from '../utils.js';
 import { getValueFromURLParameter, redirect } from '../utils.js';
-import { getPostById, updatePost } from '../api/posts.js';
+import { getPostById, updatePost, deletePost } from '../api/posts.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
@@ -36,4 +36,11 @@ editPostForm.addEventListener('submit', async (e) => {
     };
     updatePost(postId, requestBody);
     redirect(`/posts/single.html?id=${postId}`);
+});
+
+// Delete post
+const deletePostButton = document.getElementById('delete-post-button');
+deletePostButton.addEventListener('click', async () => {
+    await deletePost(postId);
+    redirect('/posts/index.html');
 });

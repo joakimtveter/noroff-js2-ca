@@ -1,6 +1,5 @@
 import { get, BASE_URL } from './client.js';
-import { getAccessToken } from '../utils/storage.js';
-import { showToast } from '../utils.js';
+import { showToast, getAccessToken } from '../utils.js';
 
 /**
  * @typedef {object} getPostsOptions

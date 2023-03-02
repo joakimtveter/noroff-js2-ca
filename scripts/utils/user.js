@@ -51,14 +51,4 @@ function isLoggedIn() {
     return true;
 }
 
-/**
- * Function to log out current user
- * @returns {void} - Removes user object and accesstoken from local storage and redirect to login.html
- */
-function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.pathname = '/login.html';
-}
-
-export { getAccessToken, getUserObject, getUserName, isLoggedIn, logout };
+export { getAccessToken, getUserObject, getUserName, isLoggedIn };

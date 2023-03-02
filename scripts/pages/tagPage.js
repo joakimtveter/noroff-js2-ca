@@ -1,8 +1,7 @@
-import { isLoggedIn, getUserName } from '../utils/storage.js';
+import { isLoggedIn, getUserName, getValueFromURLParameter } from '../utils.js';
 import { getPosts } from '../api/posts.js';
 import { renderPosts } from '../render/posts.js';
 import { getFollowingNameList } from '../api/profiles.js';
-import { getValueFromURLParameter } from '../utils.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
