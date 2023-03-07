@@ -1,7 +1,6 @@
 import { isLoggedIn, getUserName, getValueFromURLParameter } from '../utils.js';
-import { getPosts } from '../api/posts.js';
+import { getPosts, getFollowingNameList } from '../client.js';
 import { renderPosts } from '../render/posts.js';
-import { getFollowingNameList } from '../api/profiles.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
@@ -9,6 +8,7 @@ if (!isLoggedIn()) window.location.pathname = '/login.html';
 // Get tag from URL
 const tag = getValueFromURLParameter('tag');
 document.getElementById('title-modifier-tag').innerText = `#${tag}`;
+document.title = `Discover #${tag} posts | MyPlace - Your place on the internetk`;
 
 // Get posts and render them
 async function fetchPosts() {

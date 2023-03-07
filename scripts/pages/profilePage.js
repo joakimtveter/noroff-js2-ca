@@ -1,6 +1,5 @@
 import { isLoggedIn, getUserObject, getValueFromURLParameter } from '../utils.js';
-import { getProfileByName, followProfile, unfollowProfile } from '../api/profiles.js';
-import { getPostsByProfileName } from '../api/posts.js';
+import { getPostsByProfileName, getProfileByName, followProfile, unfollowProfile } from '../client.js';
 import { renderProfileCards } from '../render.js';
 import { renderPosts } from '../render/posts.js';
 
