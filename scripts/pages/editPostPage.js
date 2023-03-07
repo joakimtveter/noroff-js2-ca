@@ -1,6 +1,5 @@
-import { isLoggedIn } from '../utils.js';
-import { getValueFromURLParameter, redirect } from '../utils.js';
-import { getPostById, updatePost, deletePost } from '../api/posts.js';
+import { isLoggedIn, getValueFromURLParameter, redirect } from '../utils.js';
+import { getPostById, updatePost, deletePost } from '../client.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';

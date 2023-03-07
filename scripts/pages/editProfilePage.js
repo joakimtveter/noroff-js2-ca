@@ -1,4 +1,4 @@
-import { updateProfileMedia } from '../api/profiles.js';
+import { updateProfileMedia } from '../client.js';
 import { getUserObject } from '../utils.js';
 
 const form = document.getElementById('edit-profile-form');

@@ -1,4 +1,4 @@
-import { createPost } from '../api/posts.js';
+import { createPost } from '../client.js';
 import { redirect, isLoggedIn } from '../utils.js';
 
 // Redirect to login page if not logged in

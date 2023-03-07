@@ -1,7 +1,6 @@
 import { isLoggedIn, getUserName } from '../utils.js';
-import { getPostsFromFollowedProfiles } from '../api/posts.js';
+import { getPostsFromFollowedProfiles, getFollowingNameList } from '../client.js';
 import { renderPosts } from '../render/posts.js';
-import { getFollowingNameList } from '../api/profiles.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';

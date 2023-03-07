@@ -1,5 +1,5 @@
 import { getValueFromURLParameter } from '../utils.js';
-import { getPostById } from '../api/posts.js';
+import { getPostById } from '../client.js';
 import { renderPosts } from '../render/posts.js';
 
 const postId = getValueFromURLParameter('id');

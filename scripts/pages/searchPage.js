@@ -1,5 +1,5 @@
 import { getValueFromURLParameter, isLoggedIn } from '../utils.js';
-import { getPosts } from '../api/posts.js';
+import { getPosts } from '../client.js';
 import { renderPosts } from '../render/posts.js';
 
 // Redirect to login page if not logged in
