@@ -1002,6 +1002,38 @@ picture.portrait source {
   opacity: 1;
 }
 
+#search-form {
+  display: flex;
+  flex-direction: row;
+  min-height: 40px;
+  margin: 0;
+}
+#search-form:focus-within {
+  outline: 2px solid hsl(343deg, 95%, 55%);
+  outline-offset: 3px;
+}
+#search-form #search-input {
+  margin: 0;
+  border-radius: 10px 0 0 10px;
+  border: none;
+  padding-inline: 0.5rem;
+}
+#search-form #search-input:focus {
+  outline: none;
+}
+#search-form #search-button {
+  background-color: #ffffff;
+  display: block;
+  margin: 0;
+  min-width: 40px;
+  min-height: 40px;
+  border: none;
+  border-radius: 0 10px 10px 0;
+}
+#search-form #search-button:focus, #search-form #search-button:hover {
+  background-color: hsl(187deg, 41%, 91%);
+}
+
 *:focus {
   outline: 3px solid var(--outline-color);
 }
