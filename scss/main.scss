@@ -1,11 +1,9 @@
 // Configuration
 @use 'abstracts/variables';
-@use 'abstracts/functions';
 @use 'abstracts/mixins';
 @use 'themes/default';
 
-// Vendors
-// Vendor stylesheets goes here if any
+// Vendors (if any)
 
 // Base styles
 @use 'base/reset';
@@ -16,6 +14,7 @@
 // Layouts and components
 @use 'layout/layout';
 @use 'layout/header';
+@use 'layout/feedHeader';
 @use 'layout/footer';
 @use 'layout/navigation';
 @use 'components/cards';
@@ -27,9 +26,11 @@
 @use 'components/post';
 @use 'components/profileCards';
 @use 'components/toasts';
-@use 'components/searchForm';
+@use 'components/loadingSpinner';
 
 // Page-specific styles
 
 //Accessabillity
 @use 'accessibility/accessibility';
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;800&display=swap');

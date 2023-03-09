@@ -1,17 +1,25 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 @use '../base/colors' as *;
+
+.feed-header__section {
+    padding-block: 3rem 0;
+}
+
+.feed-header__container {
+    @include feed-width-container;
+}
 
 #search-form {
     display: flex;
     flex-direction: row;
-    min-height: 40px;
-    margin: 0;
 
     &:focus-within {
         outline: 2px solid $palette-accent-500;
-        outline-offset: 3px;
+        outline-offset: 4px;
     }
     #search-input {
-        margin: 0;
+        flex-grow: 2;
         border-radius: 10px 0 0 10px;
         border: none;
         padding-inline: 0.5rem;
@@ -21,11 +29,10 @@
     }
     #search-button {
         background-color: #ffffff;
-        display: block;
-        margin: 0;
         min-width: 40px;
         min-height: 40px;
         border: none;
+        padding-inline: 0.5rem;
         border-radius: 0 10px 10px 0;
 
         &:focus,
