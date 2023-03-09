@@ -6,6 +6,7 @@ import { getFollowingNameList } from '../client.js';
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
 
+const spinner = document.getElementById('loading');
 const postFeed = document.getElementById('post-feed');
 let posts = [];
 let filteredPosts = [];
