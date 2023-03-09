@@ -1,0 +1,36 @@
+@use '../base/colors' as *;
+
+#search-form {
+    display: flex;
+    flex-direction: row;
+    min-height: 40px;
+    margin: 0;
+
+    &:focus-within {
+        outline: 2px solid $palette-accent-500;
+        outline-offset: 3px;
+    }
+    #search-input {
+        margin: 0;
+        border-radius: 10px 0 0 10px;
+        border: none;
+        padding-inline: 0.5rem;
+        &:focus {
+            outline: none;
+        }
+    }
+    #search-button {
+        background-color: #ffffff;
+        display: block;
+        margin: 0;
+        min-width: 40px;
+        min-height: 40px;
+        border: none;
+        border-radius: 0 10px 10px 0;
+
+        &:focus,
+        &:hover {
+            background-color: $palette-primary-50;
+        }
+    }
+}
