@@ -1,11 +1,10 @@
-import { isLoggedIn, getUserName, getValueFromURLParameter } from '../utils.js';
+import { isLoggedIn, getUserName, getValueFromURLParameter, hideSpinner } from '../utils.js';
 import { getPostsFromFollowedProfiles, getFollowingNameList } from '../client.js';
 import { renderPosts } from '../render/posts.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
 
-const spinner = document.getElementById('loading');
 const postFeed = document.getElementById('post-feed');
 let posts = [];
 let filteredPosts = [];
@@ -70,7 +69,8 @@ async function fetchPosts() {
     if (filteredPosts.length === 0) {
         postFeed.innerText = `No posts found, you must follow someone to see their posts here.`;
     }
-    spinner.classList.add('hide-element');
+    // spinner.classList.add('hide-element');
+    hideSpinner();
 }
 
 fetchPosts();
