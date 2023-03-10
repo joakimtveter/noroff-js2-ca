@@ -1,3 +1,4 @@
+import { BASE_URL } from '../../client.js';
 import { showToast } from '../../utils.js';
 
 /**
