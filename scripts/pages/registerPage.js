@@ -1,4 +1,5 @@
-import { register, isLoggedIn } from '../client.js';
+import { register } from '../client.js';
+import { isLoggedIn } from '../utils';
 
 // redirect to index.html if user is already logged in
 if (isLoggedIn()) {
