@@ -33,3 +33,9 @@
 [x] The submission allows a logged in user to update a post.
 [x] The submission allows a logged in user to delete a post.
 [x] The submission contains working search functionality.
+
+## Feedback from other students
+
+[] Follow, unfollow - bug
+[] Better no posts in feed message.
+[] Popup bug

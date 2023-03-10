@@ -3,13 +3,17 @@
 
 :root {
     --outline-color: $palette-accent-500;
-    --accent-color: $palette-accent-500;
+    --accent-color: $palette-primary-500;
     --background-color: $palette-neutral-100;
     --text-color-primary: $palette-text-primary;
     --text-color-secondary: $palette-text-secondary;
     --text-color-disabled: $palette-text-disabled;
     --selected-text-color: $palette-text-light-primary;
     --selected-bg-color: $palette-neutral-900;
+}
+
+body {
+    accent-color: var(--accent-color);
 }
 
 .theme-neutral-light {

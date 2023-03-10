@@ -67,6 +67,9 @@ async function fetchPosts() {
         comments: true,
         reactions: true,
     });
+    if (filteredPosts.length === 0) {
+        postFeed.innerText = `No posts found, you must follow someone to see their posts here.`;
+    }
     spinner.classList.add('hide-element');
 }
 

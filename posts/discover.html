@@ -48,19 +48,15 @@
             </div>
         </section>
         <main id="main-content">
-            <div class="feed-width-container">
-                <section class="post-feed-section">
-                    <h1 class='h2'>Discover the <span id="title-modifier">latest posts</span> on MyPlace</h1>
-                    <form id='feed-filters'>
-                            <label>Filters:</label>
-                            <input type="checkbox" name="hasImage" id="hasImage" />
-                            <label for="hasImage">
-                                Post has image
-                            </label>
-                            <input type="checkbox" name="hasTags" id="hasTags" />
-                            <label for="hasTags">
-                                Post has tags
-                            </label>
+            <section class="post-feed-section">
+                <div class="feed-width-container">
+                    <h1 class="h2">Discover the <span id="title-modifier">latest posts</span> on MyPlace</h1>
+                    <form id="feed-filters">
+                        <label>Filters:</label>
+                        <input type="checkbox" name="hasImage" id="hasImage" />
+                        <label for="hasImage"> Post has image </label>
+                        <input type="checkbox" name="hasTags" id="hasTags" />
+                        <label for="hasTags"> Post has tags </label>
                     </form>
                     <ul id="post-feed" class="post-feed"></ul>
                 </div>

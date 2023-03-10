@@ -50,16 +50,19 @@ function renderPosts(location, posts, followingList = [], options = {}) {
             const postHeaderFollowButton = createHtmlElement(
                 'button',
                 'post-header__follow-button',
-                isFollowing ? 'Unfollow' : 'Follow'
+                isFollowing ? 'Unfollow' : 'Follow',
+                { 'data-following': isFollowing ? true : false }
             );
             postHeaderActions.appendChild(postHeaderFollowButton);
-            postHeaderFollowButton.addEventListener('click', () => {
-                if (isFollowing) {
+            postHeaderFollowButton.addEventListener('click', (e) => {
+                if (e.target.dataset.following === 'true') {
                     unfollowProfile(name);
                     postHeaderFollowButton.innerText = 'Follow';
+                    postHeaderFollowButton.dataset.following = 'false';
                 } else {
                     followProfile(name);
                     postHeaderFollowButton.innerText = 'Unfollow';
+                    postHeaderFollowButton.dataset.following = 'true';
                 }
             });
         }
@@ -109,7 +112,10 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         const likeButton = createHtmlElement('button', 'post-footer__reaction-button', '👍', {
             ariaLabel: 'Like post',
         });
-        const loveButton = createHtmlElement('button', 'post-footer__reaction-button', '❤', { ariaLabel: 'Love post' });
+        const loveButton = createHtmlElement('button', 'post-footer__reaction-button', '❤', {
+            ariaLabel: 'Love post',
+            style: 'color: rebeccapurple;',
+        });
         const funnyButton = createHtmlElement('button', 'post-footer__reaction-button', '🤣', {
             ariaLabel: 'Mark post as funny',
         });
@@ -130,7 +136,7 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         postReactionsButtons.appendChild(sadButton);
         postReactionsButtons.appendChild(celebrateButton);
 
-        const postReactions = createHtmlElement('div', 'post-footer__reactions', `Reactions`);
+        const postReactions = createHtmlElement('div', 'post-footer__reactions', ` Reactions`);
         const postReactionsCount = createHtmlElement('span', 'post-footer__reactions-count', _count?.reactions || '0');
         postReactions.prepend(postReactionsCount);
         postFooter.appendChild(postReactionsButtons);
@@ -165,76 +171,36 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         });
 
         // Reactions list
-        if (reactions.length > 0) {
-            const postReactionsList = createHtmlElement('div', 'post-footer__reactions-list');
-            reactions.forEach((reaction) => {
-                const reactionElement = createHtmlElement('span', null, reaction.symbol + ' ' + reaction.count);
-                postReactionsList.appendChild(reactionElement);
-            });
-            postFooter.appendChild(postReactionsList);
-        }
+        const postReactionsList = createHtmlElement('div', 'post-footer__reactions-list');
+        reactions.forEach((reaction) => {
+            const reactionElement = createHtmlElement('span', null, reaction.symbol + ' ' + reaction.count);
+            postReactionsList.appendChild(reactionElement);
+        });
 
         //Create post comments
+        const postCommentsHeader = createHtmlElement('div', 'post-comments__header');
         const postCommentsContainer = createHtmlElement('div', 'post-comments__container');
-        const postCommentsHeader = createHtmlElement('p', 'post-comments__header', `${_count?.comments} Comments`);
+        const postCommentsCount = createHtmlElement('p', 'post-comments__count', `${_count?.comments} Comments`);
+        postCommentsHeader.appendChild(postCommentsCount);
+        postCommentsHeader.appendChild(postReactionsList);
         postCommentsContainer.appendChild(postCommentsHeader);
 
         // TODO: Make render comments recurcive
-
-        // const postCommentsList = createHtmlElement('div', 'post-comments');
-        // renderComments(postCommentsList, comments, id);
-        // postCommentsContainer.appendChild(postCommentsList);
-
-        for (let i = 0; i < comments.length; i++) {
-            const comment = comments[i];
-            if (comment.replyToId) continue;
+        comments.forEach((comment) => {
             const commentElement = createHtmlElement('div', 'post-comment');
             const commentHeader = createHtmlElement(
                 'p',
                 'post-comment__header',
-                `${comment?.author?.name} - ${timeSince(new Date(comment?.created).getTime())}`
+                `@${comment?.author?.name} - ${timeSince(new Date(comment?.created).getTime())}`
             );
             const commentBody = createHtmlElement('p', 'post-comment__body', comment?.body);
             commentElement.appendChild(commentHeader);
             commentElement.appendChild(commentBody);
-            for (let j = 0; j < comments.length; j++) {
-                const reply = comments[j];
-                if (reply.replyToId === comment.id) {
-                    const replyElement = createHtmlElement('div', 'post-comment');
-                    const replyHeader = createHtmlElement(
-                        'p',
-                        'post-comment__header',
-                        `${reply?.author?.name} - ${timeSince(new Date(reply?.created).getTime())}`
-                    );
-                    const replyBody = createHtmlElement('p', 'post-comment__body', reply?.body);
-                    const replyButton = createHtmlElement('button', 'post-comment__reply-button', 'Reply');
-                    replyElement.appendChild(replyHeader);
-                    replyElement.appendChild(replyBody);
-                    replyElement.appendChild(replyButton);
-                    replyButton.addEventListener('click', () => (replyToInput = reply.id));
-                    for (let k = 0; k < comments.length; k++) {
-                        const reply2 = comments[k];
-                        if (reply2.replyToId === reply.id) {
-                            const replyElement2 = createHtmlElement('div', 'post-comment');
-                            const replyHeader2 = createHtmlElement(
-                                'p',
-                                'post-comment__header',
-                                `${reply2?.author?.name} - ${timeSince(new Date(reply2?.created).getTime())}`
-                            );
-                            const replyBody2 = createHtmlElement('p', 'post-comment__body', reply2?.body);
-                            replyElement2.appendChild(replyHeader2);
-                            replyElement2.appendChild(replyBody2);
-                            replyElement.appendChild(replyElement2);
-                        }
-                    }
-                    commentElement.appendChild(replyElement);
-                }
-            }
             postCommentsContainer.appendChild(commentElement);
-        }
+        });
 
-        const commentForm = createHtmlElement('form');
-        commentForm.id = 'comment-form';
+        const commentForm = createHtmlElement('form', 'post-comment__form');
+        commentForm.id = 'comment-form-' + id;
         const commentInput = createHtmlElement('input', null, null, {
             type: 'text',
             name: 'comment',
