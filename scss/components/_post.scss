@@ -91,3 +91,12 @@
         }
     }
 }
+
+#single-post {
+    list-style-type: none;
+
+    .post {
+        margin-inline: auto;
+        max-width: 900px;
+    }
+}

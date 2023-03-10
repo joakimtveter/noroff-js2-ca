@@ -1,8 +1,8 @@
 @use '../abstracts/variables' as *;
 @use '../base/colors' as *;
 
-$font-family-display: 'Permanent Marker', 'Poppins', sans-serif;
-$font-family-heading: 'Poppins', sans-serif;
+$font-family-display: 'Open Sans', sans-serif;
+$font-family-heading: 'Open Sans', sans-serif;
 $font-family-body: 'Open Sans', sans-serif;
 
 $font-size-n4: 0.3125rem;
@@ -19,15 +19,6 @@ $font-size-7: 5.5625rem;
 $font-size-8: 7.4375rem;
 $font-size-9: 9.9375rem;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: $font-family-heading;
-}
-
 html,
 body {
     font-family: $font-family-body;
@@ -37,18 +28,78 @@ body {
     font-size: $font-size-2;
 }
 
-h1 {
-    font-size: $font-size-6;
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+    font-family: $font-family-heading;
+}
+
+.display-1 {
+    font-size: $font-size-9;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-2 {
+    font-size: $font-size-8;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-3 {
+    font-size: $font-size-7;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+h1,
+.h1 {
+    font-size: $font-size-5;
+    font-weight: 500;
     margin-bottom: 1rem;
 }
 
-h2 {
+h2,
+.h2 {
     font-size: $font-size-4;
+    font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
-h3 {
+h3,
+.h3 {
+    font-size: $font-size-3;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+h4,
+.h4 {
     font-size: $font-size-2;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+h5,
+.h5 {
+    font-size: $font-size-1;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+h6,
+.h6 {
+    font-size: $font-size-1;
+    font-weight: 600;
     margin-bottom: 0.25rem;
 }
 
@@ -63,13 +114,30 @@ p:not(:only-of-type):last-child {
     margin-bottom: 2rem;
 }
 
-*::selection {
-    color: $palette-text-light-primary;
-    background-color: $palette-accent-500;
+p:only-of-type {
+    margin-bottom: 2rem;
+}
+
+p:not(.long) {
+    max-width: 75ch;
+}
+
+p {
+    font-size: inherit;
+    font-weight: inherit;
 }
 
 abbr {
     cursor: help;
+}
+
+a {
+    color: inherit;
+    cursor: pointer;
+}
+
+p a {
+    font-weight: 500;
 }
 
 @media #{$mq-mobile-down} {
@@ -99,4 +167,9 @@ abbr {
     p {
         font-size: $font-size-1;
     }
+}
+
+// Project specific styles
+.feed-heading {
+    font-size: $font-size-1;
 }

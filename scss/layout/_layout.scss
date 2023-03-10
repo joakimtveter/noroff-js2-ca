@@ -12,16 +12,23 @@ main {
 }
 
 section {
-    padding: 4rem 0;
+    padding-block: 4rem;
 
     @media #{$mq-tablet-down} {
-        padding: 2rem 0;
+        padding-block: 2rem;
     }
     @media #{$mq-mobile-down} {
-        padding: 1rem 0;
+        padding-block: 1rem;
     }
-}
 
-.skin-medium {
-    background-color: $palette-primary-50;
+    &.extra-padding {
+        padding-block: 6rem;
+
+        @media #{$mq-tablet-down} {
+            padding-block: 3rem;
+        }
+        @media #{$mq-mobile-down} {
+            padding-block: 1.5rem;
+        }
+    }
 }

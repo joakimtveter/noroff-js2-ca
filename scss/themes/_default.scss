@@ -1,23 +1,35 @@
 @use '../abstracts/variables' as *;
-@use '../abstracts/functions' as *;
 @use '../base/colors' as *;
 
 :root {
+    --outline-color: $palette-accent-500;
+    --accent-color: $palette-accent-500;
+    --background-color: $palette-neutral-100;
+    --text-color-primary: $palette-text-primary;
+    --text-color-secondary: $palette-text-secondary;
+    --text-color-disabled: $palette-text-disabled;
+    --selected-text-color: $palette-text-light-primary;
+    --selected-bg-color: $palette-neutral-900;
+}
+
+.theme-neutral-light {
+    background-color: $palette-neutral-200;
+}
+
+.theme-neutral-medium {
     --outline-color: #{$palette-accent-500};
+    background-color: $palette-neutral-300;
+    color: $palette-text-primary;
 }
 
-.skin-light {
+.theme-neutral-dark {
     --outline-color: #{$palette-accent-500};
+    background-color: $palette-neutral-500;
+    color: $palette-text-primary;
 }
 
-.skin-medium {
+.theme-primary {
     --outline-color: #{$palette-accent-500};
-}
-
-.skin-dark {
-    --outline-color: #{$palette-accent-200};
-}
-
-* {
-    accent-color: $palette-accent-500;
+    background-color: $palette-primary-500;
+    color: $palette-text-light-primary;
 }
