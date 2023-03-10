@@ -9,8 +9,10 @@ export { logout } from './utils/logout.js';
 export { reload } from './utils/reload.js';
 export { redirect } from './utils/redirect.js';
 export { getValueFromURLParameter } from './utils/getValueFromURLParameter.js';
-export { setUrlParameterWithoutReload } from './utils/setUrlParameterWithoutReload.js';
+export { setUrlParametersWithoutReload } from './utils/setUrlParametersWithoutReload.js';
 
 // Other functions
 export { timeSince } from './utils/timeSince.js';
 export { showToast } from './utils/showToast.js';
+export { hideSpinner } from './utils/hideSpinner.js';
+export { showSpinner } from './utils/showSpinner.js';
