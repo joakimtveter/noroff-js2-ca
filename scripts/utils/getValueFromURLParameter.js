@@ -4,10 +4,8 @@
  * @returns {string} Value of the parameter
  */
 function getValueFromURLParameter(parameter) {
-    const urlParams = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-    });
-    return urlParams[parameter];
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(parameter);
 }
 
 export { getValueFromURLParameter };
