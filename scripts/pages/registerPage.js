@@ -14,5 +14,4 @@ registerButton.addEventListener('click', (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     register(name, email, password);
-    console.log('register button clicked');
 });

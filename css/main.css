@@ -1033,6 +1033,52 @@ button.outlined.accent:disabled,
   background-color: hsla(0deg, 0%, 0%, 0);
   border: 2px solid hsl(353deg, 100%, 90%);
 }
+button.text,
+.button.text {
+  border: none;
+  background-color: transparent;
+  padding: 0.25rem 0.5rem;
+  font-size: 80%;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  min-width: 40px;
+}
+button.text.primary,
+.button.text.primary {
+  color: hsl(185deg, 100%, 29%);
+  background-color: hsla(0deg, 0%, 0%, 0);
+  border: 2px solid hsla(0deg, 0%, 0%, 0);
+}
+button.text.primary:disabled,
+.button.text.primary:disabled {
+  color: hsl(186deg, 41%, 79%);
+  background-color: hsla(0deg, 0%, 0%, 0);
+  border: 2px solid hsla(0deg, 0%, 0%, 0);
+}
+button.text.accent,
+.button.text.accent {
+  color: hsl(343deg, 95%, 55%);
+}
+button.text.accent:disabled,
+.button.text.accent:disabled {
+  color: hsl(353deg, 100%, 90%);
+  background-color: hsla(0deg, 0%, 0%, 0);
+  border: 2px solid hsla(0deg, 0%, 0%, 0);
+}
+button.text.error,
+.button.text.error {
+  color: hsl(0deg, 65%, 51%);
+}
+button.text.error:hover, button.text.error:focus,
+.button.text.error:hover,
+.button.text.error:focus {
+  background-color: hsla(0deg, 0%, 0%, 0.1);
+}
+button.text.error:disabled,
+.button.text.error:disabled {
+  opacity: 0.65;
+}
 
 form {
   margin-bottom: 1rem;

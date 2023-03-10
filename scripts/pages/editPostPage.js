@@ -6,6 +6,7 @@ if (!isLoggedIn()) window.location.pathname = '/login.html';
 // Redirect to create post page if no id in url
 const postId = getValueFromURLParameter('id');
 if (!postId) window.location.pathname = '/posts/create.html';
+document.getElementById('title-modifier-id').innerText = postId;
 
 // Populate form with post data
 const post = await getPostById(postId, { author: true, comments: true, reactions: true });

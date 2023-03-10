@@ -123,4 +123,50 @@ button,
             }
         }
     }
+
+    &.text {
+        border: none;
+        background-color: transparent;
+        padding: 0.25rem 0.5rem;
+        font-size: 80%;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+        min-width: 40px;
+
+        &.primary {
+            color: $palette-primary-500;
+            background-color: $transparent;
+            border: 2px solid $transparent;
+
+            &:disabled {
+                color: $palette-primary-100;
+                background-color: $transparent;
+                border: 2px solid $transparent;
+            }
+        }
+
+        &.accent {
+            color: $palette-accent-500;
+
+            &:disabled {
+                color: $palette-accent-100;
+                background-color: $transparent;
+                border: 2px solid $transparent;
+            }
+        }
+
+        &.error {
+            color: $palette-error;
+
+            &:hover,
+            &:focus {
+                background-color: hsla(0, 0%, 0%, 0.1);
+            }
+
+            &:disabled {
+                opacity: 0.65;
+            }
+        }
+    }
 }

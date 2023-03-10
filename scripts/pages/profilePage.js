@@ -21,8 +21,6 @@ async function renderProfile(username) {
         const followingContainer = document.getElementById('following-container');
 
         let isFollowing = followers.map((profile) => profile.name).includes(currentUser);
-        console.log('isFollowing: ', isFollowing);
-        // let isFollowing = false;
         if (isOwnProfile) {
             document.getElementById('edit-profile-button').hidden = false;
             document.getElementById('add-post-button').hidden = false;
@@ -53,7 +51,6 @@ async function renderProfile(username) {
         if (followers) renderProfileCards(followerContainer, followers);
         if (following) renderProfileCards(followingContainer, following);
         if (posts.length > 0) {
-            console.log('posts: ', posts, name);
             renderPosts(document.getElementById('posts-container'), posts, [name]);
         } else {
             document.getElementById('posts-container').innerHTML = '<p>No posts</p>';
