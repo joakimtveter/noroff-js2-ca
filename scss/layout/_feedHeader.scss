@@ -13,6 +13,8 @@
 #search-form {
     display: flex;
     flex-direction: row;
+    border: 1px solid $palette-neutral-400;
+    border-radius: 10px;
 
     &:focus-within {
         outline: 2px solid $palette-accent-500;

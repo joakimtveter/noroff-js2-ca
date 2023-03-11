@@ -1,15 +1,30 @@
+@use '../base/colors' as *;
+@use '../base/typography' as *;
+
 .profile-list {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-between;
     padding: 0;
+    gap: 0.75rem;
     list-style-type: none;
 }
 
 .profile-card {
     list-style-type: none;
+    cursor: pointer;
+    padding: 0.5rem;
     width: 150px;
-    border: 1px solid hotpink;
+    border: 1px solid $palette-neutral-400;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px, rgba(0, 0, 0, 0.12) 0px 1px 3px,
+            rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    }
+
+    &:focus-within {
+        outline: 2px solid $palette-primary-500;
+        outline-offset: 2px;
+    }
 }
 .profile-card__avatar-container {
     width: 100px;
@@ -26,4 +41,13 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.profile-card__name {
+    font-size: $font-size-1;
+    font-weight: 600;
+    text-align: center;
+    a {
+        text-decoration: none;
+    }
 }
