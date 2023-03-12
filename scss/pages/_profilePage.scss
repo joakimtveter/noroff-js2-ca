@@ -13,22 +13,23 @@
     }
 
     .profile-header {
+        position: relative;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         height: 100px;
-        @media #{$mq-mobile-down} {
-            display: block;
-        }
     }
     #profile-name {
         font-size: $font-size-4;
         font-weight: 600;
-        margin-left: 2rem;
+        margin-left: 10rem;
         @media #{$mq-mobile-down} {
-            margin: 0;
+            font-size: $font-size-3;
+            margin-left: 9rem;
         }
     }
     #profile-avatar {
+        position: absolute;
         width: 150px;
         height: 150px;
         margin-left: 2rem;
@@ -51,7 +52,7 @@
         text-transform: uppercase;
         padding: 0.25rem 0.5rem;
         color: $palette-primary-500;
-        font-size: $font-size-2;
+        font-size: $font-size-1;
         margin-left: auto;
         &:hover {
             background-color: $palette-primary-50;
@@ -62,6 +63,7 @@
         margin-left: auto;
         margin-right: 1rem;
         color: $palette-primary-800;
+        font-size: $font-size-1;
         &:hover {
             background-color: $palette-primary-50;
         }
@@ -69,6 +71,7 @@
 
     #add-post-button {
         margin-right: 1rem;
+        font-size: $font-size-1;
         background-color: $palette-primary-500;
         color: $palette-primary-50;
     }
