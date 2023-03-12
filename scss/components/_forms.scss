@@ -71,3 +71,13 @@ form {
 label[for] {
     cursor: pointer;
 }
+
+.error-text {
+    color: $palette-error;
+    font-size: $font-size-n1;
+    margin-bottom: 0 !important;
+}
+
+input.error {
+    border-color: $palette-error;
+}

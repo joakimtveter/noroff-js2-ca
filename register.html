@@ -15,16 +15,23 @@
     </head>
     <body>
         <main class="center-form">
-            <form id="register-form">
+            <form id="register-form" novalidate>
                 <h1>Create your MyPlace account</h1>
                 <p>Welcome to your place on the internet. Sign in or create an account to get started.</p>
                 <div class="form-control">
                     <label id="name-label" for="name">Name:</label>
-                    <input id="name" type="text" name="name" placeholder="Name" aria-labelledby="name-label" />
+                    <input id="name" type="text" name="name" placeholder="Name" aria-labelledby="name-label" required />
                 </div>
                 <div class="form-control">
                     <label id="email-label" for="email">Email:</label>
-                    <input id="email" type="email" name="email" placeholder="Email" aria-labelledby="email-label" />
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        aria-labelledby="email-label"
+                        required
+                    />
                 </div>
                 <div class="form-control">
                     <label id="password-label" for="password">Password:</label>
@@ -34,6 +41,7 @@
                         name="password"
                         placeholder="Password"
                         aria-labelledby="password-label"
+                        required
                     />
                 </div>
 

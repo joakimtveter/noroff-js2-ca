@@ -25,7 +25,7 @@ import { get } from '../../client.js';
 
 /**
  * Gets the posts from followed profiles from API
- * @param {object} getPostsOptions
+ * @param {getPostsOptions} options
  * @returns {Promise<post[]>} - Returns an array of posts
  */
 async function getPostsFromFollowedProfiles(options = {}) {

@@ -1,17 +1,25 @@
 import { register } from '../client.js';
 import { isLoggedIn } from '../utils.js';
+import { validateRegistrationForm, clearFormErrors, handleFormErrors } from '../validation.js';
 
 // redirect to index.html if user is already logged in
 if (isLoggedIn()) {
     window.location.pathname = 'index.html';
 }
 
-const registerButton = document.getElementById('register-button');
+const registerForm = document.getElementById('register-form');
 
-registerButton.addEventListener('click', (e) => {
+registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    register(name, email, password);
+    const errors = validateRegistrationForm(email, password, name);
+    console.log(errors);
+    if (errors.length > 0) {
+        handleFormErrors(e.target, errors);
+    } else {
+        clearFormErrors(e.target);
+        register(name, email, password);
+    }
 });

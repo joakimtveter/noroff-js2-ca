@@ -5,9 +5,8 @@
  * @returns {boolean} - Whether or not the string has less the maximum amount characters.
  */
 function stringIsShorterThan(string, maxLength = 255) {
-    if (string && string.length <= maxLength) {
-        return true;
-    }
+    if (string === '') return true;
+    if (string && string.length <= maxLength) return true;
     return false;
 }
 
