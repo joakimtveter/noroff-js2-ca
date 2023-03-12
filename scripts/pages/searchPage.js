@@ -11,14 +11,16 @@ const searchResultsContainer = document.getElementById('search-results');
 const searchField = document.getElementById('search-input');
 const searchTerm = getValueFromURLParameter('q') || '';
 const username = getUserName();
+console.log('searchTerm', searchTerm);
 
 const results = await getPosts({ author: true, comments: true, reactions: true });
+console.log('results', results);
 const followingList = await getFollowingNameList(username);
 const filteredPosts = results.filter((post) => {
     const searchTermLower = searchTerm.toLowerCase();
     const title = post?.title.toLowerCase();
     const author = post?.author.name.toLowerCase();
-    const body = post?.body.toLowerCase();
+    const body = post?.body ? post?.body.toLowerCase() : '';
     const tags = post?.tags?.map((tag) => tag.toLowerCase());
 
     if (title.includes(searchTermLower)) return true;
