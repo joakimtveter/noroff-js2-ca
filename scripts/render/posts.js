@@ -112,9 +112,8 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         const likeButton = createHtmlElement('button', 'post-footer__reaction-button', '👍', {
             ariaLabel: 'Like post',
         });
-        const loveButton = createHtmlElement('button', 'post-footer__reaction-button', '❤', {
+        const loveButton = createHtmlElement('button', 'post-footer__reaction-button', '❤️', {
             ariaLabel: 'Love post',
-            style: 'color: rebeccapurple;',
         });
         const funnyButton = createHtmlElement('button', 'post-footer__reaction-button', '🤣', {
             ariaLabel: 'Mark post as funny',
@@ -137,7 +136,11 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         postReactionsButtons.appendChild(celebrateButton);
 
         const postReactions = createHtmlElement('div', 'post-footer__reactions', ` Reactions`);
-        const postReactionsCount = createHtmlElement('span', 'post-footer__reactions-count', _count?.reactions || '0');
+        const reactionCount = reactions.reduce((acc, reaction) => {
+            acc += reaction.count;
+            return acc;
+        }, 0);
+        const postReactionsCount = createHtmlElement('span', 'post-footer__reactions-count', reactionCount || '0');
         postReactions.prepend(postReactionsCount);
         postFooter.appendChild(postReactionsButtons);
         postFooter.appendChild(postReactions);
@@ -147,33 +150,100 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         likeButton.addEventListener('click', () => {
             addReaction(id, '👍');
             postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
+            let count;
+            if (document.querySelector(`.id${id}-👍-count`)) {
+                count = document.querySelector(`.id${id}-👍-count`);
+            } else {
+                const list = document.querySelector(`.post-footer__reactions-list.id${id}`);
+                const reaction = createHtmlElement('div', null, '👍');
+                count = createHtmlElement('span', `id${id}-👍-count`, '0');
+                reaction.appendChild(count);
+                list.appendChild(reaction);
+            }
+            count.innerText = parseInt(count.innerText) + 1;
         });
         loveButton.addEventListener('click', () => {
-            addReaction(id, '❤');
+            addReaction(id, '❤️️');
             postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
+            let count;
+            if (document.querySelector(`.id${id}-❤️️-count`)) {
+                count = document.querySelector(`.id${id}-❤️️-count`);
+            } else {
+                const list = document.querySelector(`.post-footer__reactions-list.id${id}`);
+                const reaction = createHtmlElement('div', null, '❤️️');
+                count = createHtmlElement('span', `id${id}-❤️️-count`, '0');
+                reaction.appendChild(count);
+                list.appendChild(reaction);
+            }
+            count.innerText = parseInt(count.innerText) + 1;
         });
         funnyButton.addEventListener('click', () => {
             addReaction(id, '🤣');
-
             postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
+            let count;
+            if (document.querySelector(`.id${id}-🤣-count`)) {
+                count = document.querySelector(`.id${id}-🤣-count`);
+            } else {
+                const list = document.querySelector(`.post-footer__reactions-list.id${id}`);
+                const reaction = createHtmlElement('div', null, '🤣');
+                count = createHtmlElement('span', `id${id}-🤣-count`, '0');
+                reaction.appendChild(count);
+                list.appendChild(reaction);
+            }
+            count.innerText = parseInt(count.innerText) + 1;
         });
         coolButton.addEventListener('click', () => {
             addReaction(id, '😎');
             postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
+            let count;
+            if (document.querySelector(`.id${id}-😎-count`)) {
+                count = document.querySelector(`.id${id}-😎-count`);
+            } else {
+                const list = document.querySelector(`.post-footer__reactions-list.id${id}`);
+                const reaction = createHtmlElement('div', null, '😎');
+                count = createHtmlElement('span', `id${id}-😎-count`, '0');
+                reaction.appendChild(count);
+                list.appendChild(reaction);
+            }
+            count.innerText = parseInt(count.innerText) + 1;
         });
         sadButton.addEventListener('click', () => {
             addReaction(id, '😢');
             postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
+            let count;
+            if (document.querySelector(`.id${id}-😢-count`)) {
+                count = document.querySelector(`.id${id}-😢-count`);
+            } else {
+                const list = document.querySelector(`.post-footer__reactions-list.id${id}`);
+                const reaction = createHtmlElement('div', null, '😢');
+                count = createHtmlElement('span', `id${id}-😢-count`, '0');
+                reaction.appendChild(count);
+                list.appendChild(reaction);
+            }
+            count.innerText = parseInt(count.innerText) + 1;
         });
         celebrateButton.addEventListener('click', () => {
             addReaction(id, '👏');
             postReactionsCount.innerText = parseInt(postReactionsCount.innerText) + 1;
+            let count;
+            if (document.querySelector(`.id${id}-👏-count`)) {
+                count = document.querySelector(`.id${id}-👏-count`);
+            } else {
+                const list = document.querySelector(`.post-footer__reactions-list.id${id}`);
+                const reaction = createHtmlElement('div', null, '👏');
+                count = createHtmlElement('span', `id${id}-👏-count`, '0');
+                reaction.appendChild(count);
+                list.appendChild(reaction);
+            }
+            count.innerText = parseInt(count.innerText) + 1;
         });
 
         // Reactions list
-        const postReactionsList = createHtmlElement('div', 'post-footer__reactions-list');
+        const postReactionsList = createHtmlElement('div', `post-footer__reactions-list id${id}`);
         reactions.forEach((reaction) => {
-            const reactionElement = createHtmlElement('span', null, reaction.symbol + ' ' + reaction.count);
+            const reactionElement = createHtmlElement('div', null, reaction.symbol);
+            const reactionElementCount = createHtmlElement('span', `id${id}-${reaction.symbol}-count`, reaction.count);
+            reactionElement.appendChild(reactionElementCount);
             postReactionsList.appendChild(reactionElement);
         });
 
@@ -186,18 +256,23 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         postCommentsContainer.appendChild(postCommentsHeader);
 
         // TODO: Make render comments recurcive
-        comments.forEach((comment) => {
-            const commentElement = createHtmlElement('div', 'post-comment');
-            const commentHeader = createHtmlElement(
-                'p',
-                'post-comment__header',
-                `@${comment?.author?.name} - ${timeSince(new Date(comment?.created).getTime())}`
-            );
-            const commentBody = createHtmlElement('p', 'post-comment__body', comment?.body);
-            commentElement.appendChild(commentHeader);
-            commentElement.appendChild(commentBody);
-            postCommentsContainer.appendChild(commentElement);
-        });
+        console.log(comments);
+        comments
+            .sort((a, b) => {
+                return a.id > b.id;
+            })
+            .forEach((comment) => {
+                const commentElement = createHtmlElement('div', 'post-comment');
+                const commentHeader = createHtmlElement(
+                    'p',
+                    'post-comment__header',
+                    `@${comment?.author?.name} - ${timeSince(new Date(comment?.created).getTime())}`
+                );
+                const commentBody = createHtmlElement('p', 'post-comment__body', comment?.body);
+                commentElement.appendChild(commentHeader);
+                commentElement.appendChild(commentBody);
+                postCommentsContainer.appendChild(commentElement);
+            });
 
         const commentForm = createHtmlElement('form', 'post-comment__form');
         commentForm.id = 'comment-form-' + id;
@@ -205,28 +280,31 @@ function renderPosts(location, posts, followingList = [], options = {}) {
             type: 'text',
             name: 'comment',
             placeholder: 'Add a comment...',
+            required: true,
         });
-        const replyToInput = createHtmlElement('input', null, null, {
-            type: 'hidden',
-            name: 'replyToId',
-            value: null,
-        });
-        const commentSubmit = createHtmlElement('input', null, null, {
+        const commentSubmit = createHtmlElement('button', null, 'Comment', {
             type: 'submit',
-            value: 'Submit comment',
         });
         commentForm.appendChild(commentInput);
         commentForm.appendChild(commentSubmit);
         commentForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const comment = { body: commentInput.value, replyToId: parseInt(replyToInput.value) || null };
-            if (comment.body) {
-                addComment(id, comment);
-                commentInput.value = '';
-            }
+            const comment = { body: commentInput.value, replyToId: null };
+            addComment(id, comment);
+            const commentElement = createHtmlElement('div', 'post-comment');
+            const commentHeader = createHtmlElement(
+                'p',
+                'post-comment__header',
+                `@${currentUser} - ${timeSince(new Date().getTime())}`
+            );
+            const commentBody = createHtmlElement('p', 'post-comment__body', commentInput.value);
+            commentElement.appendChild(commentHeader);
+            commentElement.appendChild(commentBody);
+            postCommentsContainer.appendChild(commentElement);
+            commentInput.value = '';
         });
-        postCommentsContainer.appendChild(commentForm);
         postElement.appendChild(postCommentsContainer);
+        postElement.appendChild(commentForm);
 
         location.appendChild(postElement);
     });

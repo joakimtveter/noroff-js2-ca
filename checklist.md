@@ -27,7 +27,7 @@
 [ ] The submission works correctly without any errors.
 [x] The candidate(s) has made effective use of git branching & PRs to manage feature development.
 [x] The candidate(s) has made effective use of planning tools to coordinate feature development.
-[ ] The candidate(s) can reflect on suggested changes and implement feedback.
+[x] The candidate(s) can reflect on suggested changes and implement feedback.
 [x] The submission makes use of JWT to authenticate users
 [x] The submission allows a logged in user to create a post.
 [x] The submission allows a logged in user to update a post.
@@ -36,6 +36,23 @@
 
 ## Feedback from other students
 
-[] Follow, unfollow - bug
-[] Better no posts in feed message.
-[] Popup bug
+[x] Follow, unfollow - bug
+[x] Better no posts in feed message.
+[x] Popup bug
+
+## Feedback from Teachers
+
+[x] meta desciprion
+[x] search bar
+[ ] responsive
+[x] Registration does not work
+
+## Final checklist
+
+[ ] Registerform validation
+[x] create post styling
+[ ] create post validation
+[x] edit post styling
+[ ] edit post validation
+[x] tag page styles
+[ ] focus states

@@ -1,5 +1,5 @@
 import { showToast } from '../../utils.js';
-
+import { BASE_URL } from '../../client.js';
 /**
  * Registers a new user and redirects to login.html
  * @param {string} name

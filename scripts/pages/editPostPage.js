@@ -42,5 +42,5 @@ editPostForm.addEventListener('submit', async (e) => {
 const deletePostButton = document.getElementById('delete-post-button');
 deletePostButton.addEventListener('click', async () => {
     await deletePost(postId);
-    redirect('/posts/index.html');
+    redirect('/profile/index.html');
 });
