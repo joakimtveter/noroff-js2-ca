@@ -81,3 +81,10 @@ label[for] {
 input.error {
     border-color: $palette-error;
 }
+
+#feed-filters {
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-1;
+        padding-inline: 0.5rem;
+    }
+}

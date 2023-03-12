@@ -1,5 +1,6 @@
 @use '../base/colors' as *;
 @use '../base/typography' as *;
+@use '../abstracts/variables' as *;
 
 .post-feed {
     display: flex;
@@ -28,6 +29,10 @@
     object-fit: cover;
     border-radius: 50%;
     margin-inline-end: 1rem;
+    @media #{$mq-mobile-down} {
+        height: 75px;
+        width: 75px;
+    }
 }
 
 .post-header__actions {
@@ -69,6 +74,9 @@
     &:hover {
         background-color: $palette-primary-50;
     }
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-n1;
+    }
 }
 
 .post-header__meta {
@@ -88,12 +96,19 @@
             text-decoration: underline;
         }
     }
+
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-2;
+    }
 }
 
 .post-header__created-date {
     font-size: $font-size-1;
     padding-inline-start: 0.5rem;
     margin-bottom: 0 !important;
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-n1;
+    }
 }
 
 .edited {
@@ -112,6 +127,9 @@
         text-decoration: none;
         &:hover {
             text-decoration: underline;
+        }
+        @media #{$mq-mobile-down} {
+            font-size: $font-size-2;
         }
     }
 }
@@ -169,6 +187,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media #{$mq-mobile-compact} {
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 .post-footer__reaction-buttons {
@@ -186,9 +208,19 @@
     }
 }
 
+.post-footer__reactions {
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-1;
+    }
+}
+
 .post-footer__reactions-list {
     display: flex;
+    overflow: hidden;
     gap: 0.5rem;
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-1;
+    }
 }
 
 .post-comments__container {
@@ -199,6 +231,9 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-n1;
+    }
 }
 
 .post-comments__count {
@@ -209,8 +244,15 @@
     display: flex;
     padding-inline: 1rem;
     margin-bottom: 1rem;
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-1;
+    }
+    @media #{$mq-mobile-compact} {
+        font-size: $font-size-n1;
+    }
     input {
         flex-grow: 10;
+        flex-shrink: 2;
         padding-inline: 0.5rem;
         border: 2px solid $palette-neutral-300;
         border-right-color: transparent;
@@ -218,6 +260,7 @@
     }
     button {
         flex-grow: 0;
+        flex-shrink: 1;
         padding-inline: 0.5rem;
         border: none;
         background-color: $palette-primary-500;
@@ -230,13 +273,21 @@
     background-color: $palette-neutral-100;
     padding-inline-start: 0.5rem;
     border-left: 5px solid $palette-primary-200;
+    @media #{$mq-mobile-compact} {
+        font-size: $font-size-n1;
+    }
     .post-comment__header {
         color: $palette-primary-800;
-        font-size: $font-size-1;
         margin-block-end: 0;
+        @media #{$mq-mobile-compact} {
+            font-size: $font-size-n1;
+        }
     }
     .post-comment__body {
         margin: 0 !important;
         margin-block-end: 0.75rem !important;
+        @media #{$mq-mobile-compact} {
+            font-size: $font-size-n1;
+        }
     }
 }

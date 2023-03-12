@@ -10,10 +10,10 @@ $breakpoint-mobile: 500px;
 $breakpoint-tablet: 900px;
 $breakpoint-desktop: 1200px;
 $breakpoint-huge-screen: 1440px;
-$breakpoint-menu: 1030px;
+// $breakpoint-menu: 1030px;
 
 // Media queries
-$mq-menu: '(max-width: #{$breakpoint-menu})';
+// $mq-menu: '(max-width: #{$breakpoint-menu})';
 $mq-mobile-compact: '(max-width: #{$breakpoint-mobile-compact})';
 $mq-mobile-up: '(min-width: calc(#{$breakpoint-mobile-compact} + 0.0625rem))';
 $mq-mobile-down: '(max-width: #{$breakpoint-mobile})';

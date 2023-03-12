@@ -1,5 +1,6 @@
 @use '../base/colors' as *;
 @use '../base/typography' as *;
+@use '../abstracts/variables' as *;
 
 .profile-page {
     .profile-header-section {
@@ -15,6 +16,17 @@
         display: flex;
         align-items: center;
         height: 100px;
+        @media #{$mq-mobile-down} {
+            display: block;
+        }
+    }
+    #profile-name {
+        font-size: $font-size-4;
+        font-weight: 600;
+        margin-left: 2rem;
+        @media #{$mq-mobile-down} {
+            margin: 0;
+        }
     }
     #profile-avatar {
         width: 150px;
@@ -25,6 +37,9 @@
         border: 3px solid #fff;
 
         transform: translateY(-50%);
+        @media #{$mq-mobile-down} {
+            margin: 0;
+        }
     }
 
     #profile-follow-button {

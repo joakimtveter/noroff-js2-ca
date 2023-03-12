@@ -1,5 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../base/colors' as *;
+@use '../base/typography' as *;
 
 .button-group {
     display: flex;
@@ -27,6 +28,10 @@ button,
         padding: 0.25rem 1.5rem;
         text-align: center;
         user-select: none;
+
+        @media #{$mq-mobile-down} {
+            font-size: $font-size-1;
+        }
 
         &.primary {
             color: $palette-text-light-primary;

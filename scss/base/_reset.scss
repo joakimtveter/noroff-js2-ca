@@ -13,6 +13,8 @@ body {
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 body,

@@ -51,6 +51,8 @@ body {
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 body,
@@ -155,12 +157,30 @@ h2,
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
+@media (max-width: 500px) {
+  h2,
+  .h2 {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 374px) {
+  h2,
+  .h2 {
+    font-size: 1.3125rem;
+  }
+}
 
 h3,
 .h3 {
   font-size: 1.75rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
+}
+@media (max-width: 500px) {
+  h3,
+  .h3 {
+    font-size: 1.3125rem;
+  }
 }
 
 h4,
@@ -557,18 +577,21 @@ section.extra-padding {
   font-weight: 500;
   text-decoration: none;
 }
-@media (max-width: 900px) {
-  .site-header .branding p {
-    font-size: 1.75rem;
+@media (max-width: 1200px) {
+  .site-header .header-content {
+    padding-inline: 1rem;
+  }
+  .site-header .branding {
+    font-size: 2.3125rem;
     max-width: 250px;
   }
 }
 @media (max-width: 500px) {
-  .site-header .branding p {
-    font-size: 1.3125rem;
+  .site-header .header-content {
+    flex-direction: column;
   }
-  .site-header .branding svg {
-    height: 125px;
+  .site-header .branding {
+    font-size: 1.75rem;
   }
 }
 @media (max-width: 374px) {
@@ -741,6 +764,14 @@ section.extra-padding {
   list-style-type: none;
   padding: 0;
 }
+@media (max-width: 500px) {
+  .main-nav .main-nav_list {
+    margin-top: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
 .main-nav .main-nav_link {
   display: block;
   color: inherit;
@@ -754,91 +785,34 @@ section.extra-padding {
   background-color: hsla(0deg, 0%, 0%, 0.25);
   cursor: default;
 }
+@media (max-width: 500px) {
+  .main-nav .main-nav_link {
+    font-size: 1rem;
+  }
+}
 .main-nav .main-nav_link.avatar img {
   border-radius: 50%;
   height: 3rem;
   width: 3rem;
+  object-fit: cover;
 }
-
-.menu-btn {
-  display: none;
-  color: hsla(0deg, 0%, 0%, 0.87);
-  position: absolute;
-}
-
-.menu-close {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  .menu-btn svg {
-    height: 37px;
-    width: 37px;
+@media (max-width: 500px) {
+  .main-nav .main-nav_link.avatar img {
+    height: 2.5rem;
+    width: 2.5rem;
   }
-  .menu-btn span {
+}
+
+@media (max-width: 500px) {
+  #logout-button {
     font-size: 1rem;
+    padding: 0;
+    color: inherit;
+    background-color: transparent;
+    border: none;
   }
 }
-@media (max-width: 1030px) {
-  .menu-btn {
-    display: flex;
-    position: static;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    background-color: hsla(0deg, 0%, 0%, 0);
-    border: none;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    margin-right: 1rem;
-  }
-  .menu-btn svg {
-    width: 100%;
-  }
-  .menu-btn span {
-    text-transform: uppercase;
-    font-size: 1.3125rem;
-  }
-  .menu-close {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    color: hsl(350deg, 73%, 77%);
-    background-color: hsla(0deg, 0%, 0%, 0);
-    border: none;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    margin: 2rem 2rem 2rem auto;
-  }
-  .menu-close svg {
-    width: 100%;
-  }
-  .menu-close span {
-    text-transform: uppercase;
-    font-size: 1.3125rem;
-  }
-  .main-nav {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: fixed;
-    inset: 0;
-    overflow: auto;
-    background-color: hsl(183deg, 100%, 21%);
-    transform: translateX(-150%);
-    transition: 150ms ease-in-out;
-    z-index: 2;
-  }
-  .main-nav a {
-    color: hsl(0deg, 0%, 100%);
-    font-weight: 600;
-    font-size: 1.3125rem;
-  }
-  .main-nav.open {
-    transform: translateX(0);
-  }
-}
+
 .card {
   overflow: hidden;
   background-color: hsl(0deg, 0%, 96%);
@@ -933,6 +907,12 @@ button.contained,
   padding: 0.25rem 1.5rem;
   text-align: center;
   user-select: none;
+}
+@media (max-width: 500px) {
+  button.contained,
+  .button.contained {
+    font-size: 1rem;
+  }
 }
 button.contained.primary,
 .button.contained.primary {
@@ -1154,6 +1134,13 @@ input.error {
   border-color: hsl(0deg, 65%, 51%);
 }
 
+@media (max-width: 500px) {
+  #feed-filters {
+    font-size: 1rem;
+    padding-inline: 0.5rem;
+  }
+}
+
 th {
   text-align: start;
   width: fit-content;
@@ -1236,6 +1223,12 @@ picture.portrait source {
   border-radius: 50%;
   margin-inline-end: 1rem;
 }
+@media (max-width: 500px) {
+  .post-header__avatar {
+    height: 75px;
+    width: 75px;
+  }
+}
 
 .post-header__actions {
   margin-left: auto;
@@ -1277,6 +1270,11 @@ picture.portrait source {
 .post-header__follow-button:hover {
   background-color: hsl(187deg, 41%, 91%);
 }
+@media (max-width: 500px) {
+  .post-header__follow-button {
+    font-size: 0.75rem;
+  }
+}
 
 .post-header__meta {
   display: flex;
@@ -1296,11 +1294,21 @@ picture.portrait source {
 .post-header__author-name a:hover {
   text-decoration: underline;
 }
+@media (max-width: 500px) {
+  .post-header__author-name {
+    font-size: 1.3125rem;
+  }
+}
 
 .post-header__created-date {
   font-size: 1rem;
   padding-inline-start: 0.5rem;
   margin-bottom: 0 !important;
+}
+@media (max-width: 500px) {
+  .post-header__created-date {
+    font-size: 0.75rem;
+  }
 }
 
 .edited {
@@ -1321,6 +1329,11 @@ picture.portrait source {
 }
 .post-content__title a:hover {
   text-decoration: underline;
+}
+@media (max-width: 500px) {
+  .post-content__title a {
+    font-size: 1.3125rem;
+  }
 }
 
 .post-content__body {
@@ -1377,6 +1390,12 @@ picture.portrait source {
   align-items: center;
   justify-content: space-between;
 }
+@media (max-width: 374px) {
+  .post-footer {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 
 .post-footer__reaction-buttons {
   display: flex;
@@ -1393,9 +1412,21 @@ picture.portrait source {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
+@media (max-width: 500px) {
+  .post-footer__reactions {
+    font-size: 1rem;
+  }
+}
+
 .post-footer__reactions-list {
   display: flex;
+  overflow: hidden;
   gap: 0.5rem;
+}
+@media (max-width: 500px) {
+  .post-footer__reactions-list {
+    font-size: 1rem;
+  }
 }
 
 .post-comments__container {
@@ -1407,6 +1438,11 @@ picture.portrait source {
   justify-content: space-between;
   margin-bottom: 1rem;
 }
+@media (max-width: 500px) {
+  .post-comments__header {
+    font-size: 0.75rem;
+  }
+}
 
 .post-comments__count {
   margin-bottom: 0 !important;
@@ -1417,8 +1453,19 @@ picture.portrait source {
   padding-inline: 1rem;
   margin-bottom: 1rem;
 }
+@media (max-width: 500px) {
+  .post-comment__form {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 374px) {
+  .post-comment__form {
+    font-size: 0.75rem;
+  }
+}
 .post-comment__form input {
   flex-grow: 10;
+  flex-shrink: 2;
   padding-inline: 0.5rem;
   border: 2px solid hsl(0deg, 0%, 88%);
   border-right-color: transparent;
@@ -1426,6 +1473,7 @@ picture.portrait source {
 }
 .post-comment__form button {
   flex-grow: 0;
+  flex-shrink: 1;
   padding-inline: 0.5rem;
   border: none;
   background-color: hsl(185deg, 100%, 29%);
@@ -1438,14 +1486,28 @@ picture.portrait source {
   padding-inline-start: 0.5rem;
   border-left: 5px solid hsl(185deg, 42%, 65%);
 }
+@media (max-width: 374px) {
+  .post-comment {
+    font-size: 0.75rem;
+  }
+}
 .post-comment .post-comment__header {
   color: hsl(183deg, 100%, 21%);
-  font-size: 1rem;
   margin-block-end: 0;
+}
+@media (max-width: 374px) {
+  .post-comment .post-comment__header {
+    font-size: 0.75rem;
+  }
 }
 .post-comment .post-comment__body {
   margin: 0 !important;
   margin-block-end: 0.75rem !important;
+}
+@media (max-width: 374px) {
+  .post-comment .post-comment__body {
+    font-size: 0.75rem;
+  }
 }
 
 .profile-list {
@@ -1597,6 +1659,21 @@ picture.portrait source {
   align-items: center;
   height: 100px;
 }
+@media (max-width: 500px) {
+  .profile-page .profile-header {
+    display: block;
+  }
+}
+.profile-page #profile-name {
+  font-size: 2.3125rem;
+  font-weight: 600;
+  margin-left: 2rem;
+}
+@media (max-width: 500px) {
+  .profile-page #profile-name {
+    margin: 0;
+  }
+}
 .profile-page #profile-avatar {
   width: 150px;
   height: 150px;
@@ -1605,6 +1682,11 @@ picture.portrait source {
   border-radius: 50%;
   border: 3px solid #fff;
   transform: translateY(-50%);
+}
+@media (max-width: 500px) {
+  .profile-page #profile-avatar {
+    margin: 0;
+  }
 }
 .profile-page #profile-follow-button {
   height: fit-content;
