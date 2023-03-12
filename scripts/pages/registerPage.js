@@ -1,4 +1,5 @@
-import { register, isLoggedIn } from '../client.js';
+import { register } from '../client.js';
+import { isLoggedIn } from '../utils.js';
 
 // redirect to index.html if user is already logged in
 if (isLoggedIn()) {
@@ -13,5 +14,4 @@ registerButton.addEventListener('click', (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     register(name, email, password);
-    console.log('register button clicked');
 });

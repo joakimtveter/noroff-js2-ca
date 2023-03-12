@@ -6,6 +6,7 @@ if (!isLoggedIn()) window.location.pathname = '/login.html';
 // Redirect to create post page if no id in url
 const postId = getValueFromURLParameter('id');
 if (!postId) window.location.pathname = '/posts/create.html';
+document.getElementById('title-modifier-id').innerText = postId;
 
 // Populate form with post data
 const post = await getPostById(postId, { author: true, comments: true, reactions: true });
@@ -41,5 +42,5 @@ editPostForm.addEventListener('submit', async (e) => {
 const deletePostButton = document.getElementById('delete-post-button');
 deletePostButton.addEventListener('click', async () => {
     await deletePost(postId);
-    redirect('/posts/index.html');
+    redirect('/profile/index.html');
 });

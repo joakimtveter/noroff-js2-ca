@@ -23,5 +23,5 @@ createPostForm.addEventListener('submit', async (e) => {
         media,
     };
     await createPost(requestBody);
-    redirect('/posts/index.html');
+    redirect('/posts/discover.html');
 });

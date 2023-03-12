@@ -8,9 +8,9 @@ if (!isLoggedIn()) window.location.pathname = '/login.html';
 const searchTermHeading = document.getElementById('search-term');
 const searchResultCount = document.getElementById('search-results-count');
 const searchResultsContainer = document.getElementById('search-results');
+const searchField = document.getElementById('search-input');
 const searchTerm = getValueFromURLParameter('q') || '';
 const username = getUserName();
-console.log('searchTerm:', searchTerm);
 
 const results = await getPosts({ author: true, comments: true, reactions: true });
 const followingList = await getFollowingNameList(username);
@@ -25,8 +25,9 @@ const filteredPosts = results.filter((post) => {
     if (body.includes(searchTermLower)) return true;
     if (author.includes(searchTermLower)) return true;
     if (tags.includes(searchTermLower)) return true;
-    // return false;
 });
+// hideSpinner();
+searchField.value = searchTerm;
 searchTermHeading.innerText = searchTerm || 'All posts';
 searchResultCount.innerText = filteredPosts.length;
 document.title = `Search results for "${searchTerm || 'All posts'}" | MyPlace - Your place on the internet`;
