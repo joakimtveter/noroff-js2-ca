@@ -1,0 +1,90 @@
+@use '../abstracts/variables' as *;
+@use '../base/colors' as *;
+@use '../base/typography' as *;
+
+form {
+    margin-bottom: 1rem;
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    a {
+        font-size: $font-size-2;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.center-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    form {
+        max-width: 500px;
+        margin-inline: auto;
+        background-color: $palette-neutral-50;
+        padding: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    }
+
+    h1 {
+        font-size: $font-size-3;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    label {
+        font-size: $font-size-1;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    button[type='submit'] {
+        margin-top: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    a[href] {
+        font-size: $font-size-2;
+        text-align: center;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+label[for] {
+    cursor: pointer;
+}
+
+.error-text {
+    color: $palette-error;
+    font-size: $font-size-n1;
+    margin-bottom: 0 !important;
+}
+
+input.error {
+    border-color: $palette-error;
+}
+
+#feed-filters {
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-1;
+        padding-inline: 0.5rem;
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "name": "noroff-js2-ca",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.html",
+    "scripts": {
+        "dev": "sass --watch scss:css",
+        "build": "sass scss:css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/joakimtveter/noroff-js2-ca.git"
+    },
+    "keywords": [],
+    "author": "Joakim Tveter",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/joakimtveter/noroff-js2-ca/issues"
+    },
+    "homepage": "https://github.com/joakimtveter/noroff-js2-ca#readme",
+    "devDependencies": {
+        "sass": "^1.57.1"
+    }
+}

@@ -1,0 +1,243 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Max width containers
+body {
+    max-width: $max-width;
+    margin-inline: auto;
+}
+
+.content-width-container {
+    @include content-width-container;
+}
+
+.full-width-container {
+    @include full-width-container;
+}
+
+.col-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+
+    @media #{$mq-mobile-down} {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+
+        figure,
+        picture {
+            order: 2;
+        }
+    }
+}
+
+.col-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    @media #{$mq-mobile-down} {
+        grid-template-columns: 1fr;
+    }
+}
+
+.justify-center {
+    margin-inline: auto;
+
+    @media #{$mq-mobile-down} {
+        margin-inline: unset;
+    }
+}
+
+.align-center {
+    margin-block: auto;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.center-xy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.no-border {
+    border: none;
+}
+
+.box-shadow-100 {
+    box-shadow: $box-shadow-100;
+}
+
+.box-shadow-200 {
+    box-shadow: $box-shadow-200;
+}
+
+.box-shadow-300 {
+    box-shadow: $box-shadow-300;
+}
+
+.hide-element {
+    display: none !important;
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.p-1 {
+    padding: $spaceing-1;
+}
+
+.p-2 {
+    padding: $spaceing-2;
+}
+
+.p-3 {
+    padding: $spaceing-3;
+}
+
+.p-4 {
+    padding: $spaceing-4;
+}
+
+.p-5 {
+    padding: $spaceing-5;
+}
+
+.pi-0 {
+    padding-inline: 0;
+}
+
+.pi-1 {
+    padding-inline: $spaceing-1;
+}
+
+.pi-2 {
+    padding-inline: $spaceing-2;
+}
+
+.pi-3 {
+    padding-inline: $spaceing-3;
+}
+
+.pi-4 {
+    padding-inline: $spaceing-4;
+}
+
+.pi-5 {
+    padding-inline: $spaceing-5;
+}
+
+.pb-0 {
+    padding-block: 0;
+}
+
+.pb-1 {
+    padding-block: $spaceing-1;
+}
+
+.pb-2 {
+    padding-block: $spaceing-2;
+}
+
+.pb-3 {
+    padding-block: $spaceing-3;
+}
+
+.pb-4 {
+    padding-block: $spaceing-4;
+}
+
+.pb-5 {
+    padding-block: $spaceing-5;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+.m-1 {
+    margin: $spaceing-1;
+}
+
+.m-2 {
+    margin: $spaceing-2;
+}
+
+.m-3 {
+    margin: $spaceing-3;
+}
+
+.m-4 {
+    margin: $spaceing-4;
+}
+
+.m-5 {
+    margin: $spaceing-5;
+}
+
+.mi-0 {
+    margin-inline: 0;
+}
+
+.mi-auto {
+    margin-inline: auto;
+}
+
+.mi-1 {
+    margin-inline: $spaceing-1;
+}
+
+.mi-2 {
+    margin-inline: $spaceing-2;
+}
+
+.mi-3 {
+    margin-inline: $spaceing-3;
+}
+
+.mi-4 {
+    margin-inline: $spaceing-4;
+}
+
+.mi-5 {
+    margin-inline: $spaceing-5;
+}
+
+.mb-0 {
+    margin-block: 0;
+}
+
+.mb-1 {
+    margin-block: $spaceing-1;
+}
+
+.mb-2 {
+    margin-block: $spaceing-2;
+}
+
+.mb-3 {
+    margin-block: $spaceing-3;
+}
+
+.mb-4 {
+    margin-block: $spaceing-4;
+}
+
+.mb-5 {
+    margin-block: $spaceing-5;
+}
+
+// Project specific styles
+
+.feed-width-container {
+    @include feed-width-container;
+}

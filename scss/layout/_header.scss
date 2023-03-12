@@ -1,0 +1,55 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../base/colors' as *;
+@use '../base/typography' as *;
+
+.site-header {
+    background-color: $palette-primary-500;
+    color: $palette-text-light-primary;
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include full-width-container;
+    }
+
+    .branding {
+        color: inherit;
+        font-size: $font-size-5;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    @media #{$mq-desktop-down} {
+        .header-content {
+            padding-inline: 1rem;
+        }
+
+        .branding {
+            font-size: $font-size-4;
+            max-width: 250px;
+        }
+    }
+
+    @media #{$mq-mobile-down} {
+        .header-content {
+            flex-direction: column;
+        }
+
+        .branding {
+            font-size: $font-size-3;
+        }
+    }
+
+    @media #{$mq-mobile-compact} {
+        .branding {
+            p {
+                font-size: $font-size-1;
+            }
+            svg {
+                height: 110px;
+            }
+        }
+    }
+}

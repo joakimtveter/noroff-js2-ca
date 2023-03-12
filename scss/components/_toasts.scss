@@ -1,0 +1,58 @@
+@use '../base/typography' as *;
+@use '../base/colors' as *;
+
+#toast-container {
+    position: fixed;
+    z-index: 9;
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.toast {
+    position: relative;
+    font-size: $font-size-1;
+    color: hsla(0, 0%, 0%, 0.76);
+    height: 1px;
+    width: 1px;
+    margin: -3px;
+    overflow: hidden;
+    border-width: 0;
+    border-style: solid;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    opacity: 0;
+
+    &.info {
+        background-color: $palette-info-light;
+        border-color: $palette-info-dark;
+    }
+    &.success {
+        background-color: $palette-success-light;
+        border-color: $palette-success-dark;
+    }
+    &.warning {
+        background-color: $palette-warning-light;
+        border-color: $palette-warning-dark;
+    }
+    &.error {
+        background-color: $palette-error-light;
+        border-color: $palette-error-dark;
+    }
+}
+
+.toast.active {
+    flex-direction: column;
+    height: auto;
+    clip: auto;
+    border-width: 2px;
+
+    font-size: $font-size-1;
+
+    width: fit-content;
+    padding: 0.25rem 1rem;
+    margin-bottom: 0.25rem;
+    opacity: 1;
+}

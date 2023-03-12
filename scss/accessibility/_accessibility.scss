@@ -1,0 +1,34 @@
+@use '../base/colors' as *;
+@use '../themes/default' as *;
+
+*:focus {
+    outline: 3px solid var(--outline-color);
+}
+*:focus:not(:focus-visible) {
+    outline: unset;
+}
+*:focus-visible {
+    outline: 3px solid var(--outline-color);
+    outline-offset: 0.25rem;
+}
+
+.visually-hidden,
+.sr-only {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.visually-hidden.focusable:focus,
+.sr-only.focusable:focus {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    width: auto;
+    white-space: inherit;
+}

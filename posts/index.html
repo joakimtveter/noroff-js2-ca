@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My feed | MyPlace - Your place on the internet</title>
+        <meta
+            name="description"
+            content="This is YOUR place where you see what your friends are up to. Myplace is YOUR place on the internet."
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <script type="module" src="/scripts/pages/postsPage.js"></script>
+        <script type="module" src="/scripts/main.js"></script>
+    </head>
+    <body>
+        <header class="site-header">
+            <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
+            <div class="header-content">
+                <a class="branding" href="/posts/index.html"> MyPlace </a>
+                <nav class="main-nav" title="main">
+                    <ul class="main-nav_list" role="list">
+                        <li class="main-nav_item"><a class="main-nav_link" href="/posts/index.html">Home</a></li>
+                        <li class="main-nav_item"><a class="main-nav_link" href="/posts/discover.html">Discover</a></li>
+                        <li class="main-nav_item">
+                            <a class="main-nav_link avatar" href="/profile/index.html" aria-label="My profile">
+                                <img id="header-avatar" src="/images/no-avatar.png" />
+                            </a>
+                        </li>
+                        <li class="main-nav_item">
+                            <button id="logout-button" class="button contained white">Log out</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section class="feed-header__section">
+            <div class="feed-header__container">
+                <div class="feed-header__card">
+                    <form id="search-form" method="get" action="/search.html">
+                        <input id="search-input" type="search" name="q" placeholder="Search for post" />
+                        <button id="search-button" type="submit" aria-label="Search">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                                />
+                            </svg>
+                        </button>
+                    </form>
+                    <a class="button contained primary" href="/posts/create.html">Create Post</a>
+                </div>
+            </div>
+        </section>
+        <main id="main-content">
+            <section class="post-feed-section">
+                <div class="feed-width-container">
+                    <h1 class="h2">Latest posts from your friends</h1>
+                    <form id="feed-filters">
+                        <label>Filters:</label>
+                        <input type="checkbox" name="hasImage" id="hasImage" />
+                        <label for="hasImage"> Post has image </label>
+                        <input type="checkbox" name="hasTags" id="hasTags" />
+                        <label for="hasTags"> Post has tags </label>
+                    </form>
+                    <ul id="post-feed" class="post-feed"></ul>
+                </div>
+            </section>
+        </main>
+        <div id="loading">
+            <div class="spinner"></div>
+            <p class="sr-only">Loading...</p>
+        </div>
+        <div id="toast-container"></div>
+    </body>
+</html>
