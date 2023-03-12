@@ -1,5 +1,17 @@
 # Noroff Javascript 2 Course Assignment
 
+## Delivery
+
+Pull Request for delivery of assignment: https://github.com/joakimtveter/noroff-js2-ca/pulls
+Project board: https://github.com/users/joakimtveter/projects/3/views/1
+
+## Setup
+
+Needs a local web server to run.
+
+-   Run `npm install` to install dependencies.
+-   Run `npm run dev` to compile and watch SCSS.
+
 ## Assignment
 
 ### Goal
@@ -28,24 +40,24 @@ A finished project fulfils the requirements below with an easy to use and error-
 
 The following user stories are required for a passing submission:
 
-- User with `@noroff.no` or `@stud.noroff.no` email can register profile
-- Registered user can login
-- User can view a post content feed
-- User can filter the post content feed
-- User can search the post content feed
-- User can view a post content item by ID
-- User can create a post content item
-- User can update a post content item
-- User can delete a post content item
+-   User with `@noroff.no` or `@stud.noroff.no` email can register profile
+-   Registered user can login
+-   User can view a post content feed
+-   User can filter the post content feed
+-   User can search the post content feed
+-   User can view a post content item by ID
+-   User can create a post content item
+-   User can update a post content item
+-   User can delete a post content item
 
 #### Additional features
 
 The following user stories are optional:
 
-- User can create a comment on a post
-- User can edit profile media
-- User can follow/unfollow a profile
-- User can react to a post content item
+-   User can create a comment on a post
+-   User can edit profile media
+-   User can follow/unfollow a profile
+-   User can react to a post content item
 
 #### Team work
 
@@ -61,17 +73,17 @@ Commit regularly and use branches to prevent conflicts with your teammate as you
 
 Examples of overly vague tasks:
 
-- Make the HTML for the post page
-- Website Styling
-- JavaScript for API
-- Test the website
+-   Make the HTML for the post page
+-   Website Styling
+-   JavaScript for API
+-   Test the website
 
 Examples of detailed & accurate tasks:
 
-- Create search form HTML
-- Search form SCSS styling
-- Filter posts function
-- Implement search event listener
+-   Create search form HTML
+-   Search form SCSS styling
+-   Filter posts function
+-   Implement search event listener
 
 4. Review the [API Guide](https://noroff-api-docs.netlify.app/social-endpoints/authentication) and [API Documentation](https://nf-api.onrender.com/docs).
 5. Plan your approach, desired features and work strategy.
@@ -90,23 +102,23 @@ Examples of detailed & accurate tasks:
 
 ### Restrictions
 
-- Required functionality must be implemented in original, pure JavaScript.
-- A CSS Framework may be used to build the application UI.
-- A .gitignore file must be provided including node_modules. This folder must be untracked.
-- Content posted on the API is public and associated with your identity. Be appropriate and respectful.
+-   Required functionality must be implemented in original, pure JavaScript.
+-   A CSS Framework may be used to build the application UI.
+-   A .gitignore file must be provided including node_modules. This folder must be untracked.
+-   Content posted on the API is public and associated with your identity. Be appropriate and respectful.
 
 ### Marking criteria
 
-- Using debugging and advanced JavaScript features
-- The submission contains code that is modular and split into ES6 modules.
-- The submission contains destructured objects and/or arrays.
-- JSDocs was used to document functions.
-- The submission works correctly without any errors.
-- The candidate(s) has made effective use of git branching & PRs to manage feature development.
-- The candidate(s) has made effective use of planning tools to coordinate feature development.
-- The candidate(s) can reflect on suggested changes and implement feedback.
-- The submission makes use of JWT to authenticate users
-- The submission allows a logged in user to create a post.
-- The submission allows a logged in user to update a post.
-- The submission allows a logged in user to delete a post.
-- The submission contains working search functionality.
+-   Using debugging and advanced JavaScript features
+-   The submission contains code that is modular and split into ES6 modules.
+-   The submission contains destructured objects and/or arrays.
+-   JSDocs was used to document functions.
+-   The submission works correctly without any errors.
+-   The candidate(s) has made effective use of git branching & PRs to manage feature development.
+-   The candidate(s) has made effective use of planning tools to coordinate feature development.
+-   The candidate(s) can reflect on suggested changes and implement feedback.
+-   The submission makes use of JWT to authenticate users
+-   The submission allows a logged in user to create a post.
+-   The submission allows a logged in user to update a post.
+-   The submission allows a logged in user to delete a post.
+-   The submission contains working search functionality.

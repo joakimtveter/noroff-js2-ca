@@ -24,7 +24,7 @@
 [x] The submission contains code that is modular and split into ES6 modules.
 [x] The submission contains destructured objects and/or arrays.
 [x] JSDocs was used to document functions.
-[ ] The submission works correctly without any errors.
+[x] The submission works correctly without any errors.
 [x] The candidate(s) has made effective use of git branching & PRs to manage feature development.
 [x] The candidate(s) has made effective use of planning tools to coordinate feature development.
 [x] The candidate(s) can reflect on suggested changes and implement feedback.
@@ -44,7 +44,7 @@
 
 [x] meta desciprion
 [x] search bar
-[ ] responsive
+[x] responsive
 [x] Registration does not work
 
 ## Final checklist
@@ -55,5 +55,4 @@
 [x] edit post styling
 [x] edit post validation
 [x] tag page styles
-[ ] focus states
-[ ] Loading spinner
+

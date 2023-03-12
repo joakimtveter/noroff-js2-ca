@@ -55,6 +55,7 @@ async function renderProfile(username) {
         } else {
             document.getElementById('posts-container').innerHTML = '<p>No posts</p>';
         }
+        document.getElementById('loading').classList.add('hide-element');
     } catch (error) {
         console.error(error);
     }
