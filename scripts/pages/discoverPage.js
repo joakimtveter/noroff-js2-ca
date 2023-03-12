@@ -21,26 +21,22 @@ function initPostFilters() {
 
 function setHasImageFilter() {
     const value = getValueFromURLParameter('hasImage');
-    console.log('value: ', typeof value, value);
     if (value === 'true') {
         hasImageFilter = true;
     } else {
         hasImageFilter = false;
     }
     document.getElementById('hasImage').checked = hasImageFilter;
-    console.log(hasImageFilter);
 }
 
 function setHasTagsFilter() {
     const value = getValueFromURLParameter('hasTags');
-    console.log('value: ', typeof value, value);
     if (value === 'true') {
         hasTagsFilter = true;
         document.getElementById('hasTags').checked = true;
     } else {
         hasTagsFilter = false;
     }
-    console.log(hasTagsFilter);
 }
 
 initPostFilters();
@@ -50,7 +46,6 @@ async function fetchPosts() {
     const username = getUserName();
     followingList = await getFollowingNameList(username);
     posts = await getPosts({ limit: 100, author: true, reactions: true, comments: true });
-    console.log(posts);
     filteredPosts = posts
         .filter((post) => {
             if (!hasImageFilter) return true;
@@ -60,7 +55,6 @@ async function fetchPosts() {
             if (!hasTagsFilter) return true;
             if (post.tags.length > 0) return true;
         });
-    console.log(filteredPosts);
     renderPosts(postFeed, filteredPosts, followingList, {
         comments: true,
         reactions: true,
@@ -90,7 +84,6 @@ feedFilters.addEventListener('change', (e) => {
             if (!hasTagsFilter) return true;
             if (post.tags.length > 0) return true;
         });
-    console.log(filteredPosts);
     renderPosts(postFeed, filteredPosts, followingList, {
         comments: true,
         reactions: true,
