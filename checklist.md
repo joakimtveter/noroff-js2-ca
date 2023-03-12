@@ -51,9 +51,9 @@
 
 [x] Registerform validation
 [x] create post styling
-[ ] create post validation
+[x] create post validation
 [x] edit post styling
-[ ] edit post validation
+[x] edit post validation
 [x] tag page styles
 [ ] focus states
 [ ] Loading spinner
