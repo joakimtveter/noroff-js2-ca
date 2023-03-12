@@ -3,6 +3,14 @@
 ## Delivery
 
 Pull Request for delivery of assignment: https://github.com/joakimtveter/noroff-js2-ca/pulls
+Project board: https://github.com/users/joakimtveter/projects/3/views/1
+
+## Setup
+
+Needs a local web server to run.
+
+-   Run `npm install` to install dependencies.
+-   Run `npm run dev` to compile and watch SCSS.
 
 ## Assignment
 
