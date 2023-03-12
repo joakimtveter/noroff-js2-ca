@@ -1,5 +1,6 @@
 import { createPost } from '../client.js';
 import { redirect, isLoggedIn } from '../utils.js';
+import { validatePostForm, clearFormErrors, handleFormErrors } from '../validation.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
@@ -16,12 +17,19 @@ createPostForm.addEventListener('submit', async (e) => {
     const body = postBody.value.trim();
     const tags = postTags.value.split(',').map((tag) => tag.trim());
     const media = postMedia.value.trim();
-    const requestBody = {
-        title,
-        body,
-        tags,
-        media,
-    };
-    await createPost(requestBody);
-    redirect('/posts/discover.html');
+    const errors = validatePostForm(title);
+    if (errors.length > 0) {
+        handleFormErrors(e.target, errors);
+    } else {
+        clearFormErrors(e.target);
+
+        const requestBody = {
+            title,
+            body,
+            tags,
+            media,
+        };
+        await createPost(requestBody);
+        redirect('/posts/discover.html');
+    }
 });

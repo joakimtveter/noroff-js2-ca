@@ -1,5 +1,6 @@
 import { isLoggedIn, getValueFromURLParameter, redirect } from '../utils.js';
 import { getPostById, updatePost, deletePost } from '../client.js';
+import { validatePostForm, clearFormErrors, handleFormErrors } from '../validation.js';
 
 // Redirect to login page if not logged in
 if (!isLoggedIn()) window.location.pathname = '/login.html';
@@ -28,14 +29,21 @@ editPostForm.addEventListener('submit', async (e) => {
     const body = postBody.value.trim();
     const tags = postTags.value.split(',').map((tag) => tag.trim());
     const media = postMedia.value.trim();
-    const requestBody = {
-        title,
-        body,
-        tags,
-        media,
-    };
-    updatePost(postId, requestBody);
-    redirect(`/posts/single.html?id=${postId}`);
+    const errors = validatePostForm(title);
+    if (errors.length > 0) {
+        handleFormErrors(e.target, errors);
+    } else {
+        clearFormErrors(e.target);
+
+        const requestBody = {
+            title,
+            body,
+            tags,
+            media,
+        };
+        updatePost(postId, requestBody);
+        redirect(`/posts/single.html?id=${postId}`);
+    }
 });
 
 // Delete post

@@ -49,10 +49,11 @@
 
 ## Final checklist
 
-[ ] Registerform validation
+[x] Registerform validation
 [x] create post styling
 [ ] create post validation
 [x] edit post styling
 [ ] edit post validation
 [x] tag page styles
 [ ] focus states
+[ ] Loading spinner

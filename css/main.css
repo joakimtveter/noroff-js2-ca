@@ -1144,6 +1144,16 @@ label[for] {
   cursor: pointer;
 }
 
+.error-text {
+  color: hsl(0deg, 65%, 51%);
+  font-size: 0.75rem;
+  margin-bottom: 0 !important;
+}
+
+input.error {
+  border-color: hsl(0deg, 65%, 51%);
+}
+
 th {
   text-align: start;
   width: fit-content;
