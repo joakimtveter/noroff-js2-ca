@@ -19,26 +19,22 @@ function initPostFilters() {
 
 function setHasImageFilter() {
     const value = getValueFromURLParameter('hasImage');
-    console.log('value: ', typeof value, value);
     if (value === 'true') {
         hasImageFilter = true;
     } else {
         hasImageFilter = false;
     }
     document.getElementById('hasImage').checked = hasImageFilter;
-    console.log(hasImageFilter);
 }
 
 function setHasTagsFilter() {
     const value = getValueFromURLParameter('hasTags');
-    console.log('value: ', typeof value, value);
     if (value === 'true') {
         hasTagsFilter = true;
         document.getElementById('hasTags').checked = true;
     } else {
         hasTagsFilter = false;
     }
-    console.log(hasTagsFilter);
 }
 
 initPostFilters();
@@ -95,7 +91,6 @@ feedFilters.addEventListener('change', (e) => {
             if (!hasTagsFilter) return true;
             if (post.tags.length > 0) return true;
         });
-    console.log(filteredPosts);
     renderPosts(postFeed, filteredPosts, followingList, {
         comments: true,
         reactions: true,

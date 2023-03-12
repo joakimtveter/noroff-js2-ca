@@ -255,8 +255,7 @@ function renderPosts(location, posts, followingList = [], options = {}) {
         postCommentsHeader.appendChild(postReactionsList);
         postCommentsContainer.appendChild(postCommentsHeader);
 
-        // TODO: Make render comments recurcive
-        console.log(comments);
+        // TODO: After delivery - Make render comments recurcive
         comments
             .sort((a, b) => {
                 return a.id > b.id;

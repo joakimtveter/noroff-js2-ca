@@ -15,7 +15,6 @@ registerForm.addEventListener('submit', (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const errors = validateRegistrationForm(email, password, name);
-    console.log(errors);
     if (errors.length > 0) {
         handleFormErrors(e.target, errors);
     } else {

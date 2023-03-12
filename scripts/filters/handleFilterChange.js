@@ -18,7 +18,6 @@ function handleFilterChange() {
                 if (!hasTagsFilter) return true;
                 if (post.tags.length > 0) return true;
             });
-        console.log(filteredPosts);
         renderPosts(postFeed, filteredPosts, followingList, {
             comments: true,
             reactions: true,
