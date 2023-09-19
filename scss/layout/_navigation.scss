@@ -1,0 +1,59 @@
+@use '../abstracts/variables' as *;
+@use '../base/colors' as *;
+@use '../base/typography' as *;
+
+.main-nav {
+    .main-nav_list {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        list-style-type: none;
+        padding: 0;
+        @media #{$mq-mobile-down} {
+            margin-top: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+    }
+
+    .main-nav_link {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+
+        &:hover {
+            background-color: $overlay-medium-dark;
+        }
+        &.active {
+            background-color: $overlay-dark;
+            cursor: default;
+        }
+
+        @media #{$mq-mobile-down} {
+            font-size: $font-size-1;
+        }
+
+        &.avatar img {
+            border-radius: 50%;
+            height: 3rem;
+            width: 3rem;
+            object-fit: cover;
+            @media #{$mq-mobile-down} {
+                height: 2.5rem;
+                width: 2.5rem;
+            }
+        }
+    }
+}
+
+#logout-button {
+    @media #{$mq-mobile-down} {
+        font-size: $font-size-1;
+        padding: 0;
+        color: inherit;
+        background-color: transparent;
+        border: none;
+    }
+}

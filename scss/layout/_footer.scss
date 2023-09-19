@@ -1,0 +1,127 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../base/colors' as *;
+@use '../base/typography' as *;
+
+.site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: $palette-primary-800;
+    color: $palette-text-light-primary;
+    font-size: $font-size-1;
+    @media #{$mq-tablet-down} {
+        font-size: $font-size-1;
+    }
+
+    .footer-content {
+        @include full-width-container;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem;
+        padding: 2rem 1rem 2rem;
+
+        @media #{$mq-tablet-down} {
+            grid-template-columns: 1fr;
+            padding-inline: 1rem;
+            gap: 2rem;
+
+            .justify-center {
+                margin-inline: 0;
+            }
+        }
+
+        .footer-column {
+            margin-inline: auto;
+        }
+
+        a {
+            color: $palette-text-light-primary;
+        }
+    }
+
+    h2 {
+        font-size: $font-size-3;
+        @media #{$mq-mobile-down} {
+            font-size: $font-size-2;
+        }
+    }
+    h3 {
+        margin-bottom: 0.25rem;
+    }
+
+    .icon-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-block: 0.5rem;
+        text-decoration: none;
+
+        &:hover {
+            color: $palette-accent-300;
+        }
+
+        span {
+            font-weight: 600;
+        }
+
+        svg {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+    .some-links {
+        display: flex;
+        gap: 2rem;
+        svg {
+            height: 2.5rem;
+            &:hover {
+                color: $palette-accent-300;
+            }
+        }
+    }
+
+    .newsletter-signup {
+        margin-block: 1rem;
+        max-width: toRem(500);
+        @media #{$mq-tablet-down} {
+            .input-button-group input {
+                font-size: $font-size-1;
+            }
+        }
+    }
+
+    .today {
+        outline: solid 2px $palette-accent-200;
+        outline-offset: 2px;
+    }
+}
+
+.copyright {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 0.75em;
+    padding: 0.5rem;
+    color: $palette-text-light-primary;
+    background-color: $palette-primary-900;
+    font-size: $font-size-1;
+
+    p {
+        cursor: default;
+        font-size: inherit;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+            color: $palette-text-light-secondary;
+        }
+    }
+}

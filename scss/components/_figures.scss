@@ -1,0 +1,47 @@
+@use '../base/typography' as *;
+@use '../base/colors' as *;
+
+figcaption {
+    font-size: $font-size-1;
+    padding: 0.25rem 1rem;
+    background-color: $overlay-medium-dark;
+}
+
+figure,
+picture {
+    img,
+    source {
+        width: 100%;
+        object-fit: cover;
+    }
+    &.square {
+        img,
+        source {
+            aspect-ratio: 1;
+        }
+    }
+    &.wide {
+        img,
+        source {
+            aspect-ratio: 16 / 9;
+        }
+    }
+    &.tall {
+        img,
+        source {
+            aspect-ratio: 9 / 16;
+        }
+    }
+    &.landscape {
+        img,
+        source {
+            aspect-ratio: 4 / 3;
+        }
+    }
+    &.portrait {
+        img,
+        source {
+            aspect-ratio: 3 / 4;
+        }
+    }
+}

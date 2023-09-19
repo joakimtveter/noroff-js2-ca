@@ -1,0 +1,43 @@
+// Container widhts
+$content-width: 1200px;
+$full-width: 1440px;
+$max-width: 2560px;
+$feed-width: 700px;
+
+// Breakpoints
+$breakpoint-mobile-compact: 400px;
+$breakpoint-mobile: 500px;
+$breakpoint-tablet: 900px;
+$breakpoint-desktop: 1200px;
+$breakpoint-huge-screen: 1440px;
+
+// Media queries
+$mq-mobile-compact: '(max-width: #{$breakpoint-mobile-compact})';
+$mq-mobile-up: '(min-width: calc(#{$breakpoint-mobile-compact} + 0.0625rem))';
+$mq-mobile-down: '(max-width: #{$breakpoint-mobile})';
+$mq-mobile-only: '(min-width: calc(#{$breakpoint-mobile-compact} + 0.0625rem)) and (max-width: #{$breakpoint-mobile})';
+$mq-tablet-up: '(min-width: calc(#{$breakpoint-mobile} + 0.0625rem))';
+$mq-tablet-down: '(max-width: #{$breakpoint-tablet})';
+$mq-tablet-only: '(min-width: calc(#{$breakpoint-mobile} + 0.0625rem)) and (max-width: #{$breakpoint-tablet})';
+$mq-desktop-up: '(min-width: calc(#{$breakpoint-tablet} + 0.0625rem))';
+$mq-desktop-down: '(max-width: #{$breakpoint-desktop})';
+$mq-desktop-only: '(min-width: calc(#{$breakpoint-tablet} + 0.0625rem)) and (max-width: #{$breakpoint-desktop})';
+$mq-huge-screen-up: '(min-width: calc(#{$breakpoint-desktop} + 0.0625rem))';
+$mq-huge-screen-down: '(max-width: #{$breakpoint-huge-screen})';
+$mq-huge-screen-only: '(min-width: calc(#{$breakpoint-desktop} + 0.0625rem)) and (max-width: #{$breakpoint-huge-screen})';
+
+// Box-shadows
+$box-shadow-100: hsla(0, 0%, 0%, 0.1) 0px 1px 3px 0px, hsla(0, 0%, 0%, 0.06) 0px 1px 2px 0px;
+$box-shadow-200: hsla(0, 0%, 0%, 0.1) 0px 4px 6px -1px, hsla(0, 0%, 0%, 0.06) 0px 2px 4px -1px;
+$box-shadow-300: hsla(0, 0%, 0%, 0.1) 0px 10px 15px -3px, hsla(0, 0%, 0%, 0.05) 0px 4px 6px -2px;
+$box-shadow-400: hsla(0, 0%, 0%, 0.1) 0px 20px 25px -5px, hsla(0, 0%, 0%, 0.04) 0px 10px 10px -5px;
+$box-shadow-500: hsla(0, 0%, 0%, 0.25) 0px 25px 50px -12px;
+$box-shadow-outline: hsla(212, 97%, 43%, 0.3) 0px 0px 0px 3px;
+
+// Constants
+$spaceing: 0.5rem;
+$spaceing-1: 1rem;
+$spaceing-2: 2rem;
+$spaceing-3: 4rem;
+$spaceing-4: 6rem;
+$spaceing-5: 10rem;

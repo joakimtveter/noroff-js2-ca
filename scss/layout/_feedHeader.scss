@@ -1,0 +1,45 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../base/colors' as *;
+
+.feed-header__section {
+    padding-block: 3rem 0;
+}
+
+.feed-header__container {
+    @include feed-width-container;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid $palette-neutral-400;
+    border-radius: 10px;
+
+    &:focus-within {
+        outline: 2px solid $palette-accent-500;
+        outline-offset: 4px;
+    }
+    #search-input {
+        flex-grow: 2;
+        border-radius: 10px 0 0 10px;
+        border: none;
+        padding-inline: 0.5rem;
+        &:focus {
+            outline: none;
+        }
+    }
+    #search-button {
+        background-color: #ffffff;
+        min-width: 40px;
+        min-height: 40px;
+        border: none;
+        padding-inline: 0.5rem;
+        border-radius: 0 10px 10px 0;
+
+        &:focus,
+        &:hover {
+            background-color: $palette-primary-50;
+        }
+    }
+}

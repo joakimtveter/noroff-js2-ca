@@ -1,0 +1,41 @@
+@use '../abstracts/variables' as *;
+
+@mixin full-width-container {
+    max-width: $full-width;
+    margin-inline: auto;
+    @media #{$mq-desktop-down} {
+        padding-inline: 1rem;
+    }
+
+    @media #{$mq-mobile-down} {
+        padding-inline: 0.5rem;
+    }
+}
+
+@mixin content-width-container {
+    max-width: $content-width;
+    margin-inline: auto;
+
+    @media #{$mq-desktop-down} {
+        padding-inline: 1rem;
+    }
+
+    @media #{$mq-mobile-down} {
+        padding-inline: 0.5rem;
+    }
+}
+
+// Project specific styles
+
+@mixin feed-width-container {
+    max-width: $feed-width;
+    margin-inline: auto;
+
+    @media #{$mq-tablet-down} {
+        padding-inline: 1rem;
+    }
+
+    @media #{$mq-mobile-down} {
+        padding-inline: 0.5rem;
+    }
+}
